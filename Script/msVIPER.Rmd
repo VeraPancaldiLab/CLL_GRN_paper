@@ -1,0 +1,98 @@
+---
+title: "msVIPER"
+author: "Hugo Chenel, Malvina Marku, Vera Pancaldi"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+
+# Source external functions
+```{r}
+source("Script/msVIPER.R")
+```
+
+
+# Load libraries
+```{r}
+library(igraph)
+library(gtools)
+```
+
+
+# Load msViper files
+```{r} 
+# Define file paths for msVIPER output files for both conditions.
+files_mono <- list.files("Results/msVIPER/Monoculture/Objects", full.names = TRUE)
+files_auto <- list.files("Results/msVIPER/Autologous/Objects", full.names = TRUE)
+
+# This function reads in the TFs and their normalized enrichment scores (NES) from each file.
+## Load autologous data:
+auto_data <- load_msViper_files(files_auto)
+## Load monoculture data:
+mono_data <- load_msViper_files(files_mono)
+```
+
+
+# Build TF Matrix and correlation analysis
+```{r}
+# Build a TF matrix by combining data from both conditions.
+# This matrix aligns the TF activity data (NES) from autologous and monoculture conditions.
+result <- build_tf_matrix(
+  auto_data$tfs, mono_data$tfs, 
+  auto_data$nes, mono_data$nes, 
+  files_auto, files_mono
+)
+
+# Display the constructed TF matrix.
+result$mat
+
+# Display the correlation matrix that compares TF activities among conditions (TFs based on their activity profiles across all conditions).
+result$allcondcor
+
+# Calculate correlations between TF activities and export the results.
+# The output is a list containing:
+# - 'corcond': Correlation between conditions.
+# - 'cortf': Correlation among TF activities.
+# - 'graph': A network graph representing these correlations.
+corr_result <- calculate_correlation_and_export(result$mat)
+```
+
+
+# TF activity comparisons between conditions
+```{r}
+# Process the data for each condition to prepare for plotting and further analysis.
+# The function 'process_culture_data' refines the dataset based on provided TFs and NES values.
+
+## Process data for the autologous culture condition.
+auto_data <- process_culture_data(
+  files_auto, auto_data$tfs, auto_data$nes, result$tfsuniqueauto
+)
+
+## Process data for the monoculture condition.
+mono_data <- process_culture_data(
+  files_mono, mono_data$tfs, mono_data$nes, result$tfsuniquemono
+)
+
+# Plot the TF activity data for each condition.
+# 'plot_culture_data' creates visualizations that help compare TF activity profiles.
+plot_culture_data(auto_data, "Autologous culture - TF activity profiles")
+plot_culture_data(mono_data, "Monoculture - TF activity profiles")
+```
+
+
+# Association between TFs and time points
+```{r}
+# Annotate TFs based on their association with different time points for each patient.
+# The 'annotate_tfs_by_patient' function categorizes TFs into 'positive' and 'negative' groups for each patient.
+p1_annotations <- annotate_tfs_by_patient(result$mat, "Patient1")
+p2_annotations <- annotate_tfs_by_patient(result$mat, "Patient2")
+p3_annotations <- annotate_tfs_by_patient(result$mat, "Patient3")
+
+# The output for each patient includes:
+# - pX_annotations$positive: TFs positively associated with specific time points.
+# - pX_annotations$negative: TFs negatively associated with specific time points.
+# Replace 'X' with the patient number (1, 2, or 3) accordingly.
+```

@@ -1,0 +1,95 @@
+---
+title: "BIODICA"
+author: "Hugo Chenel"
+output: html_notebook
+editor_options: 
+  chunk_output_type: console
+---
+
+
+**Run Biodica**
+blabla
+
+
+# Source external functions and load libraries
+
+```{r}
+source("Script/Biodica.R")
+```
+
+
+# Import data
+
+```{r}
+# Importing data matrices produced by BIODICA.
+# There are two types of matrices:
+# 1. Metasample matrices (suffix _A): These capture sample-specific ICA components.
+# 2. Metagene matrices (suffix _S): These capture gene-specific contributions from ICA.
+
+# Metasample matrices
+metasample_df_auto <- read.csv("Results/ICA/work/autologous_log2normalized_counts_ICA/autologous_log2normalized_counts_ica_A.xls", header = TRUE, row.names = 1)
+metasample_df_mono <- read.csv("Results/ICA/work/monoculture_log2normalized_counts_ICA/monoculture_log2normalized_counts_ica_A.xls", header = TRUE, row.names = 1)
+metasample_df_combined <- read.csv("Results/ICA/work/combined_auto_mono_after_normalized_df_ICA/combined_auto_mono_after_normalized_df_ica_A.xls", header = TRUE, row.names = 1)
+
+# Metagene matrices
+metagene_df_auto <- read.table("Results/ICA/work/autologous_log2normalized_counts_ICA/autologous_log2normalized_counts_ica_S.xls", header = TRUE, row.names = 1)
+metagene_df_mono <- read.table("Results/ICA/work/monoculture_log2normalized_counts_ICA/monoculture_log2normalized_counts_ica_S.xls", header = TRUE, row.names = 1)
+metagene_df_combined <- read.table("Results/ICA/work/combined_auto_mono_after_normalized_df_ICA/combined_auto_mono_after_normalized_df_ica_S.xls", header = TRUE, row.names = 1)
+```
+
+
+# Merging replicates 
+
+```{r}
+# Merge replicate rows in the combined metasample matrix.
+# The goal is to average the values of replicates (if more than one exists).
+metasample_df_combined_mergedrep <- merge_replicates(metasample_df_combined)
+```
+
+
+# Representation of metasamples
+
+```{r}
+# Generate heatmaps for different subsets of the metasample data.
+# This includes separate heatmaps for:
+# - Autologous culture samples.
+# - Monoculture samples.
+# - Combined dataset with rows split (by culture).
+# - Combined dataset with samples split as columns (by culture).
+
+heatmaps <- plot_metasample_heatmaps(
+  metasample_df_auto,
+  metasample_df_mono,
+  metasample_df_combined_mergedrep
+)
+
+heatmaps$heatmap_auto
+heatmaps$heatmap_mono
+heatmaps$heatmap_combined_rows
+heatmaps$heatmap_combined_cols
+```
+
+
+# Line plots
+
+```{r}
+## Filter the combined data frame into separate data frames for each culture/patient.
+filtered_dfs <- create_filtered_dfs(metasample_df_combined)
+# 
+# # Individual plots (if desired)
+# plot_auto_p1 <- process_and_plot(filtered_dfs$auto_p1, "Autologous - Patient 1")
+# plot_auto_p2 <- process_and_plot(filtered_dfs$auto_p2, "Autologous - Patient 2")
+# plot_auto_p3 <- process_and_plot(filtered_dfs$auto_p3, "Autologous - Patient 3")
+# plot_mono_p1 <- process_and_plot(filtered_dfs$mono_p1, "Monoculture - Patient 1")
+# plot_mono_p2 <- process_and_plot(filtered_dfs$mono_p2, "Monoculture - Patient 2")
+# plot_mono_p3 <- process_and_plot(filtered_dfs$mono_p3, "Monoculture - Patient 3")
+# 
+# # Display individual plots arranged in two rows:
+# print(grid.arrange(plot_auto_p1, plot_auto_p2, plot_auto_p3, ncol = 3))
+# print(grid.arrange(plot_mono_p1, plot_mono_p2, plot_mono_p3, ncol = 3))
+# 
+# # Combined plot:
+combined_line_plot <- plot_all_patients_combined(filtered_dfs)
+print(combined_line_plot)
+```
+

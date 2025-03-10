@@ -1,0 +1,221 @@
+---
+title: "CLL time-course bulk RNA-seq data processing"
+author: "Hugo Chenel, Malvina Marku"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+
+# Install system dependencies, source external functions and load libraries
+
+This section installs any required system dependencies and loads custom functions and libraries needed for data processing.
+Note that *install_system_dependencies.R* assumes you are using a Debian-based distribution like Ubuntu. For other distributions, you may need to modify the package manager and package names accordingly. Also, running this script will require sudo permissions, as it installs system packages. If you would prefer not to use sudo within the script, you can install the dependencies manually.
+
+```{r}
+# Install system dependencies and load custom data processing functions
+source("Script/install_system_dependencies.R")
+source("Script/Data_processing.R")
+```
+
+
+# Load gene expression data
+
+In our case, we have the time-course transcriptomics from 3 patients and 2 technical replicates per patient in two different cultures (Autologous and B cell).
+
+```{r}
+# Read gene count matrices (RSEM) for the different conditions
+gene_count_matrix_auto <- read.table("Data/Gene_count_matrix_ENS_HGCN_auto.txt", header = TRUE, row.names = 1)
+gene_count_matrix_B <- read.table("Data/Gene_count_matrix_ENS_HGCN_B.txt", header = TRUE, row.names = 1)
+
+# Rename days in colnames
+colnames(gene_count_matrix_auto) <- gsub("J", "D", colnames(gene_count_matrix_auto))
+head(gene_count_matrix_auto)
+colnames(gene_count_matrix_B) <- gsub("J", "D", colnames(gene_count_matrix_B))
+head(gene_count_matrix_B)
+
+# Remove ENSEMBL Gene ID from the rownames, keep only Gene Symbol (and differentiate identical Gene Symbol)
+gene_count_matrix_auto <- remove_ensembl_id(gene_count_matrix_auto)
+gene_count_matrix_B <- remove_ensembl_id(gene_count_matrix_B)
+
+# Create separate tables for each patient and replicate combination from a given gene count matrix
+create_patient_replicate_tables(gene_count_matrix_auto, 1:3, 1:2, "auto")
+create_patient_replicate_tables(gene_count_matrix_B, 1:3, 1:2, "B")
+```
+
+
+# Re-format the data
+_Firstly_, make sure there is no `NA, NaN, or Inf` value in the dataset: 
+
+```{r}
+# Define impute.mean to replace NA, NaN, or infinite values with the column mean
+impute.mean <- function(x) replace(x, is.na(x) | is.nan(x) | is.infinite(x) | is.factor(x), mean(x, na.rm = TRUE))
+
+# Apply mean imputation to Autologous and B cell patient tables
+apply_impute_mean(1:3, 1:2, "auto")
+apply_impute_mean(1:3, 1:2, "B")
+```
+
+_Secondly_, re-format the time-series:
+
+```{r}
+# Process patient replicate tables for each condition to extract common genes and form time series data
+result_auto <- process_patient_tables(1:3, 1:2, "auto")
+common_genes_auto <- result_auto$common_genes
+time_series_data_auto <- as.data.frame(result_auto$time_series_data)
+
+result_B <- process_patient_tables(1:3, 1:2, "B")
+common_genes_B <- result_B$common_genes
+time_series_data_B <- as.data.frame(result_B$time_series_data)
+```
+
+
+# Generate normalized counts and remove genes with constant expression
+
+We now create DESeq2 objects, filter low-count genes, perform normalization and remove genes with constant expression.
+
+```{r}
+# Process time-series data for Autologous condition
+res_auto <- process_time_series_data(time_series_data_auto)
+normalized_counts_auto <- res_auto$norm
+unnormalized_counts_auto <- res_auto$unnorm
+dds_auto <- res_auto$dds_obj
+
+# Process time-series data for B cell condition
+res_B <- process_time_series_data(time_series_data_B)
+normalized_counts_B <- res_B$norm
+unnormalized_counts_B <- res_B$unnorm
+dds_B <- res_B$dds_obj
+```
+
+
+# PCA analysis and batch effect considerations of gene expression data for multiple CLL patients
+
+Perform PCA to assess data quality and potential batch effects, and write normalized and unnormalized counts to files.
+
+```{r}
+# Generate PCA plots for the Autologous and B cell conditions
+plot_PCA(normalized_counts_auto, "normalized_counts", "Autologous")
+plot_PCA(normalized_counts_B, "normalized_counts", "B cell")
+
+# Visualize PCA for each patient separately using DESeq2 sample information
+patient_pca(dds_auto, normalized_counts_auto, "Autologous")
+patient_pca(dds_B, normalized_counts_B, "B cell")
+
+# Write normalized and unnormalized counts to files for downstream analysis
+write.table(normalized_counts_auto, file="Results/Normalized_data/Autologous/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(normalized_counts_B, file="Results/Normalized_data/B_cell/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(unnormalized_counts_auto, file="Results/Normalized_data/Autologous/unnormalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(unnormalized_counts_B, file="Results/Normalized_data/B_cell/unnormalized_counts.txt", sep="\t", quote=F, col.names=NA)
+```
+
+Note: By performing normalization first, we make sure that the expression values are comparable across samples, and then, we correct for any batch effects that might be present in the data if necessary. If we perform batch correction before normalization, we might introduce additional variation in the data that could make it difficult to accurately normalize the expression values.
+- Normalize the data to make expression values comparable across samples.
+- Perform batch correction to account for any unwanted variation due to experimental conditions or other technical factors.
+
+However, ComBat_seq is designed to work on raw counts for RNA-seq data. The method is an extension of the original ComBat method, which was developed for microarray data. The ComBat_seq function specifically takes into account the count-based nature of RNA-seq data and the mean-variance relationship observed in the raw counts. In this case, we should perform batch correction using ComBat_seq on raw counts, and then normalize the corrected data as needed for downstream analysis.
+
+
+# Processing for downstream analyses
+```{r}
+# Process normalized counts to keep only TFs
+
+results_infer_auto <- process_normalized_counts(
+  normalized_counts = normalized_counts_auto,
+  tf_names_file = "Data/TF_names_v_1.01.txt",
+  id_form = "genenames",
+  sample_suffixes = c("p1_rep1_auto", "p1_rep2_auto", "p2_rep1_auto", "p2_rep2_auto", "p3_rep1_auto", "p3_rep2_auto")
+)
+
+results_infer_B <- process_normalized_counts(
+  normalized_counts = normalized_counts_B,
+  tf_names_file = "Data/TF_names_v_1.01.txt",
+  id_form = "genenames",
+  sample_suffixes = c("p1_rep1_B", "p1_rep2_B", "p2_rep1_B", "p2_rep2_B", "p3_rep1_B", "p3_rep2_B")
+)
+
+# Write out the normalized counts (only TFs) and lists for each condition
+write.table(results_infer_auto$normalized_counts_TF, file="Results/Normalized_data/Autologous/normalized_counts_TF.txt", sep="\t", quote=F, col.names=NA)
+write.csv(results_infer_auto$normalized_counts_list, "Results/Normalized_data/Autologous/normalized_counts_TF_list.csv", row.names = TRUE)
+write.csv(results_infer_auto$TFs_vector, "Results/Normalized_data/Autologous/TFs_vector.csv", row.names = FALSE, quote = FALSE)
+
+write.table(results_infer_B$normalized_counts_TF, file="Results/Normalized_data/B_cell/normalized_counts_TF.txt", sep="\t", quote=F, col.names=NA)
+write.csv(results_infer_B$normalized_counts_list, "Results/Normalized_data/B_cell/normalized_counts_TF_list.csv", row.names = TRUE)
+write.csv(results_infer_B$TFs_vector, "Results/Normalized_data/B_cell/TFs_vector.csv", row.names = FALSE, quote = FALSE)
+```
+
+```{r}
+# Inform the user that data processing has been completed successfully
+cat("
+The Data_processing.Rmd script has been successfully completed.
+
+Normalized counts and normalized counts containing transcription factors are now available for both conditions: autologous and monoculture. These processed data can be used for further analysis and visualization.
+
+The 'normalized_counts_list' variable contains the normalized counts for each replicate and patient, which is essential for the next stages of the analysis. This list can be used as input for the Gene Regulatory Network (GRN) inference in the 'Run_dynGENIE3.Rmd' script.
+
+You can proceed with the GRN inference using the Run_dynGENIE3.Rmd script and the generated 'normalized_counts_TF_list.csv' as input.
+")
+```
+
+
+# Advanced processing for additional analyses
+
+Here we perform a log2 transformation of the normalized data, subset the data by patient, and combine conditions for joint analysis.
+
+```{r}
+# Log2 transformation of normalized counts (adding 1 to avoid log(0))
+log2_transformed_data_auto <- log2(normalized_counts_auto + 1)
+log2_transformed_data_B <- log2(normalized_counts_B + 1)
+
+# Extract data for individual patients
+P1_auto <- log2_transformed_data_auto %>% dplyr::select(contains('_p1_'))
+P2_auto <- log2_transformed_data_auto %>% dplyr::select(contains('_p2_'))
+P3_auto <- log2_transformed_data_auto %>% dplyr::select(contains('_p3_'))
+P1_B <- log2_transformed_data_B %>% dplyr::select(contains('_p1_'))
+P2_B <- log2_transformed_data_B %>% dplyr::select(contains('_p2_'))
+P3_B <- log2_transformed_data_B %>% dplyr::select(contains('_p3_'))
+
+################################################################################
+# Optionally combine Autologous and B cell data if joint analysis is desired
+common_genes <- Reduce(intersect, list(rownames(log2_transformed_data_auto), rownames(log2_transformed_data_B)))
+
+# Keep only the common genes across conditions
+normalized_counts_auto <- normalized_counts_auto[common_genes, , drop = FALSE]
+normalized_counts_B <- normalized_counts_B[common_genes, , drop = FALSE]
+log2_transformed_data_auto <- log2_transformed_data_auto[common_genes, , drop = FALSE]
+log2_transformed_data_B <- log2_transformed_data_B[common_genes, , drop = FALSE]
+
+# Combine the Autologous and B cell matrices for joint analysis
+auto_mono_normalized_data <- cbind(normalized_counts_auto, normalized_counts_B)
+auto_mono_log2transformed_data <- cbind(log2_transformed_data_auto, log2_transformed_data_B)
+
+# Extract data for individual patients from the combined dataset
+P1 <- auto_mono_log2transformed_data %>% dplyr::select(contains('_p1_'))
+P2 <- auto_mono_log2transformed_data %>% dplyr::select(contains('_p2_'))
+P3 <- auto_mono_log2transformed_data %>% dplyr::select(contains('_p3_'))
+
+################################################################################
+# Generate a PCA plot for the combined conditions
+grid.arrange(sample_pca(auto_mono_log2transformed_data, Culture = "both conditions"), nrow = 1, ncol = 1)
+
+# Write out the log2 transformed and combined matrices
+write.table(log2_transformed_data_auto, file="Results/Normalized_data/Autologous/autologous_log2normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(log2_transformed_data_B, file="Results/Normalized_data/B_cell/monoculture_log2normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(auto_mono_normalized_data, file="Results/Normalized_data/Auto_mono/normalized_counts_allconds.txt", sep="\t", quote=F, col.names=NA)
+write.table(auto_mono_log2transformed_data, file="Results/Normalized_data/Auto_mono/log2normalized_counts_allconds.txt", sep="\t", quote=F, col.names=NA)
+```
+
+
+# CLL cell viability analyses
+
+This final step integrates cell viability data into the transcriptomics study. By plotting CLL cell viability over time, we gain insights about processes (cell health, treatment response or dynamic behavior). This phenotypic data helps correlate gene expression changes with biological outcomes, revealing variations across patients and culture conditions.
+
+```{r}
+# Load CLL cell viability data and plot the time course
+cell_counts <- read.csv("Data/CLL_viability.csv", header = T)
+plot_day_data(cell_counts)
+```
