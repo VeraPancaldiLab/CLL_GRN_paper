@@ -10,17 +10,17 @@ This comprehensive resource is designed for reproducibility and transparency in 
 
 ## 📑 Table of contents
 
-- 📌 [Overview](#overview)
-- 🎯 [Motivation and background](#motivation-and-background)
-- 📂 [Repository structure](#repository-structure)
-- 📊 [Data description](#data-description)
-- ⚙️ [Installation and dependencies](#installation-and-dependencies)
-- 🚀 [Usage instructions](#usage-instructions)
-- 🤝 [Contribution guidelines](#contribution-guidelines)
-- 📝 [Citation](#citation)
-- ❓ [Troubleshooting and FAQ](#troubleshooting-and-faq)
-- 📜 [License](#license)
-- 📧 [Contact](#contact)
+- 📌 [Overview](#-overview)
+- 🎯 [Motivation and background](#-motivation-and-background)
+- 📂 [Repository structure](#-repository-structure)
+- 📊 [Data description](#-data-description)
+- ⚙️ [Installation and dependencies](#-installation-and-dependencies)
+- 🚀 [Usage instructions](#-usage-instructions)
+- 🤝 [Contribution guidelines](#-contribution-guidelines)
+- 📝 [Citation](#-citation)
+- ❓ [Troubleshooting and FAQ](#-troubleshooting-and-faq)
+- 📜 [License](#-license)
+- 📧 [Contact](#-contact)
 
 ---
 
