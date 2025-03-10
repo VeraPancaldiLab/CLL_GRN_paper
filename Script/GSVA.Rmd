@@ -1,0 +1,279 @@
+---
+title: "GSVA"
+author: "Hugo Chenel"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+
+# Load libraries
+
+```{r}
+library(GSVA)
+library(GSEABase)
+library(dplyr)
+library(tibble)
+library(RColorBrewer)
+library(stringr)
+library(pheatmap)
+library(grid)
+library(gridExtra)
+```
+
+
+# Load expression data and gene sets
+
+```{r} 
+# Load expression data for different conditions.
+# 'auto_mono' represents the combined autologous and monoculture data.
+# 'autologous' and 'monoculture' are separate datasets for each condition.
+auto_mono <- as.matrix(read.csv("Results/Normalized_data/Auto_mono/log2normalized_counts_allconds.txt", sep = ""))
+autologous <- as.matrix(read.csv("Results/Normalized_data/Autologous/autologous_log2normalized_counts.txt", sep = ""))
+monoculture <- as.matrix(read.csv("Results/Normalized_data/B_cell/monoculture_log2normalized_counts.txt", sep = ""))
+
+# Load gene sets from a GMT file.
+# For this analysis, we are using the Hallmark gene sets (H Collection) from MSigDB.
+# These sets represent well-defined biological states or processes.
+# https://www.gsea-msigdb.org/gsea/msigdb/
+
+# H Collection: Hallmark gene sets, representing well-defined biological states or processes.
+gene_sets_hallmarks <- getGmt("Results/GSVA/h.all.v2024.1.Hs.symbols.gmt")
+
+# Other collections (C2, C5) are commented out but can be used similarly if needed.
+# C2 Collection: Curated gene sets, including canonical pathways (KEGG, Reactome).
+# gene_sets_c2 <- getGmt("Results/GSVA/c2.all.v2024.1.Hs.symbols.gmt")
+# C5 Collection: Gene Ontology gene sets for biological processes, molecular functions, and cellular components.
+# gene_sets_c5 <- getGmt("Results/GSVA/c5.all.v2024.1.Hs.symbols.gmt")
+
+# Create the GSVA parameter object.
+# gsvaParam() helps set up parameters for the GSVA function.
+#   - exprData: The expression matrix.
+#   - geneSets: The gene set collection to be used.
+#   - kcdf: Kernel type
+#   - minSize, maxSize: Define the allowed size range of gene sets.
+#   - maxDiff: When TRUE, enforces a difference in expression for gene sets.
+gsvapar <- gsvaParam(
+  exprData = auto_mono,
+  geneSets = gene_sets_hallmarks,
+  kcdf = "Gaussian", # "Gaussian" is appropriate if data is log-transformed RNA-seq values (log-CPM, log-RPKM, log-TPM), and "Poisson" if data is raw RNA-seq integer counts
+  minSize = 1,
+  maxSize = Inf,
+  maxDiff = TRUE
+)
+
+# Estimate GSVA scores based on the parameters.
+# gsva() returns an expression matrix with GSVA enrichment scores per pathway.
+gsva_results_automono_hallmarks <- gsva(gsvapar)
+```
+
+
+# Merging replicates GSVA scores 
+
+```{r}
+# Calculate the mean GSVA score per condition by grouping replicates together.
+# Step 1: Convert the GSVA results matrix to a data frame and keep the row names as a separate column.
+gsva_results_df <- as.data.frame(gsva_results_automono_hallmarks)
+gsva_results_df <- tibble::rownames_to_column(gsva_results_df, var = "Pathway")
+
+# Step 2: Initialize a new data frame to store the mean GSVA scores for each condition.
+gsva_mean_results <- data.frame(Pathway = gsva_results_df$Pathway)
+
+# Identify unique sample prefixes from the column names.
+# This removes replicate identifiers (e.g., "_rep1_" or "_rep2_") along with culture information.
+sample_prefixes <- unique(sub("_rep[12]_(auto|B)", "", colnames(gsva_results_df)[-1]))
+
+# Loop over each sample prefix to calculate the mean for replicates in each condition.
+for (sample_prefix in sample_prefixes) {
+  
+  # For 'auto' samples:
+  # Find columns that match the pattern (e.g., "D1_p1_rep1_auto" and "D1_p1_rep2_auto").
+  auto_columns <- grep(paste0("^", sample_prefix, "_rep[12]_auto"), colnames(gsva_results_df), value = TRUE)
+  if (length(auto_columns) > 1) {
+    # If multiple replicates exist, compute the row-wise mean.
+    gsva_mean_results[[paste0(sample_prefix, "_auto")]] <- rowMeans(gsva_results_df[auto_columns])
+  } else {
+    # If only one replicate exists, use its values directly.
+    gsva_mean_results[[paste0(sample_prefix, "_auto")]] <- gsva_results_df[[auto_columns]]
+  }
+  
+  # For 'B' (monoculture) samples:
+  B_columns <- grep(paste0("^", sample_prefix, "_rep[12]_B"), colnames(gsva_results_df), value = TRUE)
+  if (length(B_columns) > 1) {
+    gsva_mean_results[[paste0(sample_prefix, "_B")]] <- rowMeans(gsva_results_df[B_columns])
+  } else {
+    gsva_mean_results[[paste0(sample_prefix, "_B")]] <- gsva_results_df[[B_columns]]
+  }
+}
+
+# Step 3: Reset row names.
+# Set the row names to the pathway names and then remove the extra "Pathway" column.
+rownames(gsva_mean_results) <- gsva_mean_results$Pathway
+gsva_mean_results$Pathway <- NULL
+```
+
+
+# Generating annotations for merged data
+
+```{r}
+# Remove replicate identifiers from the original column names.
+# This produces unique merged column names (e.g., "D1_p1_auto" instead of "D1_p1_rep1_auto").
+merged_colnames <- unique(sub("_rep[12]_", "_", colnames(gsva_results_automono_hallmarks)))
+
+# Extract sample information by splitting the merged column names.
+# The expected format is: Day_Patient_Culture (e.g., "D1_p1_auto").
+column_info <- str_split(merged_colnames, "_", simplify = TRUE)
+Day <- column_info[, 1]      # First element represents the Day.
+Patient <- column_info[, 2]  # Second element represents the Patient.
+Culture <- column_info[, 3]  # Third element represents the Culture type (auto or B).
+
+# Create an annotation data frame for the heatmap.
+annotation_col_merged <- data.frame(
+  Day = factor(Day, levels = c("D1", "D4", "D8", "D11", "D14")),
+  Patient = factor(Patient, levels = c("p1", "p2", "p3")),
+  Culture = factor(Culture, levels = c("auto", "B"))
+)
+rownames(annotation_col_merged) <- merged_colnames
+
+# Define a list of annotation colors.
+# Colors are specified for each level of Day, Patient, and Culture.
+annotation_colors_merged <- list(
+  Day = c(
+    "D1"  = "#1f78b4",  # Blue
+    "D4"  = "#33a02c",  # Green
+    "D8"  = "#e31a1c",  # Red
+    "D11" = "#ff7f00",  # Orange
+    "D14" = "#6a3d9a"   # Purple
+  ),
+  Patient = c(
+    "p1" = "#a6cee3",  # Light Blue
+    "p2" = "#1f78b4",  # Blue
+    "p3" = "#b2df8a"   # Light Green
+  ),
+  Culture = c(
+    "auto" = "#44AA99",
+    "B" = "#E69F00"   
+  )
+)
+```
+
+
+# Preparing GSVA data for heatmap visualization
+
+```{r}
+# Remove the prefix "HALLMARK_" from pathway names for a cleaner display.
+rownames(gsva_mean_results) <- gsub("^HALLMARK_", "", rownames(gsva_mean_results))
+
+# Define the color palette for the heatmap.
+# We use a reversed RdBu palette with 256 colors.
+hmcol <- colorRampPalette(rev(brewer.pal(10, "RdBu")))(256)
+
+# Generate the advanced heatmap using pheatmap.
+pheatmap(
+  gsva_mean_results,            # The GSVA scores matrix.
+  color = hmcol,                # Color palette.
+  scale = "row",                # Standardize rows (z-scores).
+  cluster_cols = TRUE,          # Cluster columns to reveal patterns.
+  cluster_rows = TRUE,          # Cluster rows (pathways).
+  main = "GSVA heatmap for autologous and monoculture", 
+  fontsize_row = 9,             # Font size for pathway names.
+  fontsize_col = 9,             # Font size for sample names.
+  border_color = NA,            # Remove borders for a cleaner look.
+  annotation_col = annotation_col_merged,   # Add column annotations.
+  annotation_colors = annotation_colors_merged, # Use defined annotation colors.
+  annotation_legend = TRUE       # Display legend for annotations.
+)
+```
+
+
+# Patient-specific heatmaps
+
+```{r}
+# Define the patient groups.
+patients <- c("p1", "p2", "p3")
+
+# Generate a heatmap for each patient using lapply.
+heatmaps <- lapply(patients, function(p) {
+  # Select columns corresponding to the current patient.
+  selected_cols <- rownames(annotation_col_merged)[annotation_col_merged$Patient == p]
+  
+  # Subset the GSVA mean results and corresponding annotations.
+  gsva_subset <- gsva_mean_results[, selected_cols]
+  annotation_subset <- annotation_col_merged[selected_cols, , drop = FALSE] %>% dplyr::select(Culture)
+  
+  # Generate and return the heatmap.
+  pheatmap(
+    gsva_subset,
+    color = hmcol,
+    scale = "row",
+    cluster_cols = FALSE,
+    cluster_rows = FALSE,
+    fontsize_row = 9,
+    fontsize_col = 9,
+    border_color = NA,
+    annotation_col = annotation_subset,
+    annotation_colors = annotation_colors_merged,
+    annotation_legend = TRUE,
+    gaps_col = ceiling(ncol(gsva_subset) / 2)
+  )
+})
+
+# Arrange the heatmaps side by side.
+grid.arrange(heatmaps[[1]]$gtable, heatmaps[[2]]$gtable, heatmaps[[3]]$gtable, ncol = 3)
+
+# Alternatively, arrange the heatmaps with a main title and patient-specific titles.
+grid.arrange(
+  arrangeGrob(
+    top = textGrob("GSVA heatmap for autologous and monoculture", gp = gpar(fontsize = 15, fontface = "bold")),
+    grobs = lapply(seq_along(heatmaps), function(i) {
+      arrangeGrob(heatmaps[[i]]$gtable, top = textGrob(paste("Patient", i), gp = gpar(fontsize = 14, fontface = "italic")))
+    }),
+    ncol = 3
+  )
+)
+```
+
+
+# Comprehensive heatmap: combined patient data
+
+```{r}
+# Select columns corresponding to patients p1, p2, and p3.
+selected_cols_p1p2p3_merged <- rownames(annotation_col_merged)[annotation_col_merged$Patient %in% c("p1", "p2", "p3")]
+gsva_p1p2p3_merged <- gsva_mean_results[, selected_cols_p1p2p3_merged]
+
+# Create a reduced annotation that only includes Culture and Patient.
+annotation_col_merged_full <- annotation_col_merged %>% dplyr::select(Culture, Patient)
+
+# Reorder the columns of the GSVA results for a desired layout.
+# This reordering groups columns in specific segments.
+gsva_p1p2p3_merged_faced <- gsva_p1p2p3_merged[, c(
+  1:5,
+  16:20,        
+  6:10,           
+  21:25,
+  11:15,
+  26:ncol(gsva_p1p2p3_merged)
+)]
+
+# Plot the full heatmap with additional parameters:
+#   - scale = "row": Standardizes each pathway.
+#   - gaps_col: Introduces gaps between predefined groups.
+pheatmap(
+  gsva_p1p2p3_merged_faced,            
+  color = hmcol,            
+  scale = "row",           
+  cluster_cols = FALSE,       
+  cluster_rows = FALSE,       
+  main = "GSVA heatmap for autologous and monoculture", 
+  fontsize_row = 9,   
+  fontsize_col = 9,   
+  border_color = NA,    
+  annotation_col = annotation_col_merged_full,   
+  annotation_colors = annotation_colors_merged, 
+  annotation_legend = TRUE,
+  gaps_col = c(5, 10, 10, 15, 20, 20, 25)  # Define where gaps should be inserted.
+)
+```
+

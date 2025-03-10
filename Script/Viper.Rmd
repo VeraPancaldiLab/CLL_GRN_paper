@@ -1,0 +1,79 @@
+---
+title: "Viper"
+author: "Hugo Chenel"
+output: html_notebook
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Source external functions and load libraries
+
+```{r}
+source("Script/Viper.R")
+```
+
+
+# Load the data
+
+```{r}
+gcm_auto <- read.csv("Results/Normalized_data/Autologous/normalized_counts.txt", header = T, sep = "")
+gcm_B <- read.csv("Results/Normalized_data/B_cell/normalized_counts.txt", header = T, sep = "")
+```
+
+
+# Run Viper
+
+```{r}
+# =========================
+# ✅ SETUP FOR REPRODUCIBILITY
+# =========================
+
+# Define paths
+save_path <- "Results/Viper/saved_databases"  # Where databases are stored
+save_path_copy <- "Results/Viper/saved_databases_copy"
+output_dir_auto <- "Results/Viper/Autologous"
+output_dir_B <- "Results/Viper/B_cell"
+
+# =========================
+# ❌❌❌ WARNING
+# =========================
+
+# Run the following code ONLY ONCE to save databases locally. If they already exist, skip this step.
+# 1️⃣ Save databases locally (Run only once)
+save_database_locally("Dorothea", save_path_copy)
+save_database_locally("COLLECTRI", save_path_copy)
+
+# 2️⃣ Get and store database versions
+dorothea_version <- get_database_version("Dorothea")
+collectri_version <- get_database_version("COLLECTRI")
+
+# Print version info for documentation
+print(paste("Dorothea version:", dorothea_version))
+print(paste("COLLECTRI version:", collectri_version))
+
+# =========================
+# ✅ RUN THE ANALYSIS
+# =========================
+
+# Compute TF scores for both conditions using locally saved databases
+viper_res_dorothea_auto <- compute_TFs_scores(gcm_auto, output_dir_auto, database = "Dorothea", save_path = save_path_copy)
+viper_res_collectri_auto <- compute_TFs_scores(gcm_auto, output_dir_auto, database = "COLLECTRI", save_path = save_path_copy)
+
+viper_res_dorothea_B <- compute_TFs_scores(gcm_B, output_dir_B, database = "Dorothea", save_path = save_path_copy)
+viper_res_collectri_B <- compute_TFs_scores(gcm_B, output_dir_B, database = "COLLECTRI", save_path = save_path_copy)
+
+# =========================
+# ✅ SAVE VERSIONS INFO
+# =========================
+
+# Save versions info for documentation
+version_info <- data.frame(
+  Database = c("Dorothea", "COLLECTRI"),
+  Version = c(as.character(dorothea_version), as.character(collectri_version))
+)
+write.csv(version_info, file.path(output_dir_auto, "database_versions.csv"), row.names = FALSE)
+write.csv(version_info, file.path(output_dir_B, "database_versions.csv"), row.names = FALSE)
+```
+
+The output of the VIPER algorithm includes the inferred activity levels of transcription factors (TFs) in the form of a matrix. Each row corresponds to a TF, and each column represents a sample. The values in the matrix indicate the inferred activity level of each TF in each sample.
