@@ -14,7 +14,7 @@ This comprehensive resource is designed for reproducibility and transparency in 
 - 🎯 [Motivation and background](#-motivation-and-background)
 - 📂 [Repository structure](#-repository-structure)
 - 📊 [Data description](#-data-description)
-- ⚙️ [Installation and dependencies](#-installation-and-dependencies)
+- ⚙️ [Installation and dependencies](%EF%B8%8F-installation-and-dependencies)
 - 🚀 [Usage instructions](#-usage-instructions)
 - 🤝 [Contribution guidelines](#-contribution-guidelines)
 - 📝 [Citation](#-citation)
