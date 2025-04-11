@@ -1,0 +1,87 @@
+---
+title: "msVIPER"
+author: "Marcelo Hurtado"
+date: "`r format(Sys.Date(), '%m/%d/%Y')`"
+output: pdf
+---
+
+Input
+```{r}
+library(viper)
+library(dplyr)
+library(decoupleR)
+library(org.Hs.eg.db)
+library(ReactomePA)
+library(clusterProfiler)
+source("diff_analysis.R") #Load function 
+```
+
+Load the data
+```{r}
+gcm_auto <- read.table("../../Results/Normalized_data/normalized_counts.txt", header = TRUE, row.names = 1)
+
+gcm_B <- read.table("../../Results/Normalized_data/B_cell/normalized_counts.txt", header = TRUE, row.names = 1)
+
+sample_info = data.frame(
+  Sample = colnames(gcm_B),
+  Time = as.numeric(sub("J(\\d+)_.*", "\\1", colnames(gcm_B))),
+  Patient = as.numeric(sub(".*_p(\\d+)_.*", "\\1", colnames(gcm_B))),
+  Replicate = as.numeric(sub(".*_rep(\\d+)_.*", "\\1", colnames(gcm_B)))
+)
+
+```
+
+Estimate the TF activities for each patient 
+```{r}
+# Loop over each patient 
+results <- list() #Initialize list to save results
+contador = 1 
+
+net = get_collectri(organism = 'human', split_complexes = F) #Get universe  
+  
+  collectri2viper_regulons <- function(df) {
+    regulon_list <- split(df, df$source)
+    regulons <- lapply(regulon_list, function(regulon) {
+      tfmode <- stats::setNames(regulon$mor, regulon$target)
+      list(tfmode = tfmode, likelihood = rep(1, length(tfmode)))
+    })
+    
+    return(regulons)
+  }
+  
+  net_regulons = collectri2viper_regulons(net)
+  #net_regulons <- pruneRegulon(net_regulons, 50, adaptive = FALSE, eliminate = TRUE) #Pruned regulons to a maximum of 50 targets to avoid statistic bias
+  
+  
+for (patient in unique(sample_info$Patient)) {
+  # Filter samples for the specific patient 
+  patient_rep_samples <- sample_info %>%
+    filter(Patient == patient) %>%
+    arrange(Time)
+  
+  # Filter counts for the specific patient
+  counts_rep_samples = gcm_B[,patient_rep_samples$Sample]
+  
+  # Loop through each consecutive pair of time points for comparison
+  results_time = list() #Initialize list to save results per time points comparison
+  contador2 = 1
+  timepoints = unique(patient_rep_samples$Time) #As now there are replicates, we use unique() to extract unique time points
+  for (i in 1:(length(timepoints) - 1)) {
+    time1 <- timepoints[i] 
+    time2 <- timepoints[i + 1]
+    results_time[[contador2]] = diff_analysis(counts_rep_samples, 
+                                              patient_rep_samples$Time, 
+                                              test = time1, 
+                                              ref = time2, 
+                                              pval = 0.05, 
+                                              file.name = paste0("Patient", patient, "_TimePoint_", time1, "vs", time2)) #Main function diff_analysis()
+    names(results_time)[contador2] = paste0("TimePoint_", time1, "vs", time2)
+    contador2 = contador2 + 1
+  }
+  
+  #Save results per patient
+  results[[contador]] = results_time
+  names(results)[contador] = paste0("Patient_", patient)
+  contador = contador + 1
+}
+```
