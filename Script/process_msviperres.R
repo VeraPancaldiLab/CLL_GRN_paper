@@ -16,8 +16,6 @@ monofiles <- list.files(path = mono_dir, pattern = '^msViper.*\\.rds$', full.nam
 
 files <- c(autofiles, monofiles)
 
-files = autofiles
-
 #--------------------------------------------
 # Parse msVIPER results, filter significant TFs
 #--------------------------------------------
