@@ -1,0 +1,775 @@
+---
+title: "`BulkSignalR` : </br> Inference of ligand-receptor interactions from bulk data in Chronic Lymphocytic Leukaemia"
+author: Malvina Marku
+date: "`r format(Sys.Date(), '%m/%d/%Y')`"
+output: 
+  rmarkdown::html_vignette:
+      self_contained: true
+      toc: true
+      toc_depth: 4
+      highlight: pygments
+      fig_height: 3
+      fig_width: 3
+      fig_caption: no
+      code_folding: show
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = FALSE, 
+  comment = "##"
+)
+knitr::knit_hooks$set(optipng = knitr::hook_optipng)
+```
+
+# Load packages {.unnumbered}
+```{r load-libs, message = FALSE,  warning = FALSE, results = FALSE}
+library(BulkSignalR)
+library(igraph)
+library(dplyr)
+library(tidyverse)
+library(pheatmap)
+library(ggplot2)
+library(gridExtra)
+library(ComplexHeatmap)
+library(circlize)
+```
+  
+
+# Introduction
+`BulkSignalR` is a tool that enables the inference of L-R interactions from bulk expression data, *i.e.*, from transcriptomics (RNA-seq or microarrays) or expression proteomics.
+
+## Starting point 
+There are a variety of potential data sources prior to using `BulkSignalR` (proteomics, sequencing, etc.) that result
+in the generation of a matrix of numbers representing the expression levels of genes or proteins. This matrix may be normalized already or not. In every case, the latter matrix is the starting point of using `BulkSignalR`.
+It is mandatory that genes/proteins are represented as rows of the expression matrix and the samples as columns. HUGO gene symbols (even for proteins) must be used to ensure matching LR*db*, Reactome, and GOBP contents.
+
+Three S4 objects will be sequentially constructed:  
+* **BSR-DataModel**, denoted `bsrdm`: integrates the expression data matrix and the parameters of the statistical model learned on this matrix
+* **BSR-Inference**, denoted `bsrinf`: provides a list triples (ligand, receptor, pathway downstream the receptor) with their statistical significance. If a receptor occurs in multiple pathways, the corresponding number of triples will be described
+in the BSR-Inference object. Genes (or proteins) targeted by the pathway are also described in this object.
+* **BSR-Signature**, denoted `bsrsig`: contains gene signatures associated with the triples (ligand, receptor, downstream pathway) stored in a `BSRInference` object. Those signatures are comprised of the ligand and the receptor obviously, but also all the pathway target genes that were used by the statistical model. Gene signatures are meant to report the L-R interaction as a global phenomenon integrating its downstream effect. Indeed, signatures can be scored with a dedicated function allowing the user to set an arbitrary weight on the downstream component. Those scores represent the activity of the L-R interactions across the samples, they are returned as a matrix.
+  
+## Loading the data
+
+The analysis performed in the paper is it done for each condition separately (autologous and monoculture), as well as for the combined data, so that a differential analysis can be performed. In the script below, we focus on the combined analysis.
+
+```{r loading,eval=FALSE}
+# Autologous
+auto_data <- read.table("../Normalized_data/Autologous/normalized_counts.txt", 
+                                   header = TRUE, row.names = 1)
+# Monoculture
+mono_data <- read.table("../Normalized_data/B_cell/normalized_counts_TF.txt", 
+                                   header = TRUE, row.names = 1)
+# Combined data
+cll_data_auto_mono <- read.table("../Normalized_data/Auto_mono/normalized_counts_allconds.txt", 
+                                   header = TRUE, row.names = 1)
+
+colnames(cll_data_auto_mono) <- gsub("^J", "D", colnames(cll_data_auto_mono))
+
+data(cll_data_auto_mono)
+head(cll_data_auto_mono)
+```  
+
+
+## Building a BSRDataModel object  
+
+`prepareDataset` creates the first object with information relative to your bulk expression data.
+
+```{r prepareDataset , eval=FALSE,cache=FALSE}
+bsrdm <- prepareDataset(counts = cll_data_auto_mono_noP3)
+# print object
+str(bsrdm)
+```  
+
+`learnParameters` updates a BSR-DataModel object with the parameters necessary for `BulkSignalR` statistical model. As it entails generating Spearman correlation null distributions, you can provide a directory and a base file name to plot this distribution along with the fitted model for visual inspection.
+
+```{r learnParameters , eval=FALSE,cache=FALSE,results=FALSE}
+bsrdm <- learnParameters(bsrdm, 
+         plot.folder = "../L-R pair analysis/Auto_and_mono", filename = "cll_data_auto_mono")
+```
+
+## Building a BSRInference object
+
+From the previous object `bsrdm`, you can generate inferences by calling its method `initialInference`. The resulting BSR-Inference object, `bsrinf`, contains all the inferred L-R interactions with their associated pathways and corrected p-values.  
+
+```{r BSRInference , eval=FALSE,cache=FALSE}
+bsrinf <- initialInference(bsrdm)
+
+LRinter.dataframe <- LRinter(bsrinf)
+
+head(LRinter.dataframe[order(LRinter.dataframe$qval <= 0.05), #0.001
+  c("L",  "R" ,"LR.corr", "pw.id",  "pw.name",  "pval"  , "qval")])
+
+# filter out non-significant L-R interactions and order them by best Q-value and save them to a file
+write.table(LRinter.dataframe[order(LRinter.dataframe$qval <= 0.05),],
+            "../L-R pair analysis/Auto_and_mono/cll_data_auto_mono.tsv",
+            row.names = FALSE,
+            sep = "\t",
+            quote = FALSE)
+
+```
+
+
+### Reducing a BSRInference object to pathway
+
+With `reduceToPathway`, all the L-R interactions with the receptor included in a certain pathway are aggregated to only report each downstream pathway once. For a given pathway, the reported P-values and target genes are those of best (minimum P-value) L-R interaction that was part of the aggregation.Nothing is recomputed, we simply merge.
+
+```{r ReduceToPathway, eval=FALSE,cache=FALSE}
+     bsrinf.redP <- reduceToPathway(bsrinf)
+```
+
+### Reducing a BSRInference object to best pathway
+
+With ` reduceToBestPathway`, a BSR-Inference object is reduced to only report one pathway per L-R interaction. The pathway with the smallest P-value is selected. A same pathways might occur multiple times with with different L-R interactions.
+
+```{r ReduceToBestPathway, eval=FALSE,cache=FALSE}
+     bsrinf.redBP    <- reduceToBestPathway(bsrinf)
+```
+
+### Reducing to ligands or receptors
+
+As already mentioned, several ligands might bind a single receptor (or several shared receptors) and the converse is true as well. Two reduction operators enable users to either aggregate all the ligands of a same receptor or all the receptors bound by a same ligand:
+
+```{r ReduceToLigand, eval=FALSE,cache=FALSE}
+     bsrinf.L    <- reduceToLigand(bsrinf)
+     bsrinf.R    <- reduceToReceptor(bsrinf)
+```
+
+### Combined reductions
+
+Combinations are possible.
+
+For instance, users can apply `reduceToPathway` and `reduceToBestPathway` reductions sequentially to maximize the reduction effect. In case the exact same sets of aggregated ligands and receptors obtained with `reduceToPathway` was associated with several pathways, the pathway with the best P-value would be kept by `reduceToBestPathway`.
+
+```{r doubleReduction, eval=FALSE,cache=FALSE}
+     bsrinf.redP  <- reduceToPathway(bsrinf)  
+     bsrinf.redPBP <- reduceToBestPathway(bsrinf.redP) 
+```
+
+  
+
+## Building a BSRSignature object
+
+Gene signatures for a given, potentially reduced BSR-Inference object are generated by `getLRGeneSignatures`, which returns a BSRSignature object. To follow the activity of L-R interactions across the samples of the dataset, `scoreLRGeneSignatures` computes a score for each gene signature. 
+
+###  Scoring by ligand-receptor
+
+```{r scoringLR  ,cache=FALSE,results=FALSE,eval=FALSE}
+
+bsrsig.redBP <- getLRGeneSignatures(bsrinf.redBP, qval.thres = 0.05)
+
+scoresLR <- scoreLRGeneSignatures(bsrdm, bsrsig.redBP, name.by.pathway =
+                                    FALSE)
+write.csv(scoresLR, "../L-R pair analysis/Auto_and_mono/scoresLR3.csv")
+
+# Take the average between replicates
+scoresLR_avg_complete <- scoresLR %>%
+  as.data.frame() %>%
+  janitor::clean_names() %>%
+  tibble::rownames_to_column("L_R_pair") %>%
+  pivot_longer(cols = -L_R_pair,
+               names_to = "Sample",
+               values_to = "Score") %>%
+  mutate(
+    Day = sub("d(\\d+)_.*", "\\1", Sample),
+    Patient = sub(".*_p(\\d+)_.*", "\\1", Sample),
+    Replicate = sub(".*_rep(\\d+)_.*", "\\1", Sample),
+    Condition = sub(".*_(auto|b)$", "\\1", Sample)
+  ) %>%
+  group_by(L_R_pair, Day, Patient, Condition) %>%
+  summarize(Avg_Expression = mean(Score, na.rm = TRUE),
+            .groups = "drop") %>%
+  pivot_wider(
+    names_from = c("Day", "Patient", "Condition"),
+    values_from = Avg_Expression,
+    names_glue = "D{Day}_p{Patient}_{Condition}",
+    names_vary = "slowest"
+  ) %>%
+  column_to_rownames("L_R_pair") %>% as.matrix()
+
+# Filter on row variance
+row_variances <- apply(scoresLR_avg_complete, 1, var)
+scoresLR_avg_complete <- scoresLR_avg_complete[row_variances >= 0.1, ]
+
+# Sort the columns
+columns <- colnames(scoresLR_avg_complete)
+
+# Define a function to extract day, patient, and condition
+extract_order <- function(col) {
+  matches <- regmatches(col, regexec("D(\\d+)_p(\\d+)_(auto|b)", col))
+  if (length(matches[[1]]) > 1) {
+    day <- as.numeric(matches[[1]][2])      # Extract day as numeric
+    patient <- as.numeric(matches[[1]][3]) # Extract patient as numeric
+    condition <- matches[[1]][4]           # Extract condition (_auto or _b)
+    return(list(
+      day = day,
+      patient = patient,
+      condition = condition
+    ))
+  }
+  return(NULL)
+}
+
+# Parse and sort columns
+parsed_cols <- lapply(columns, extract_order)
+sorted_columns <- columns[order(
+  sapply(parsed_cols, function(x)
+    x$patient),
+  # Sort by patient
+  sapply(parsed_cols, function(x)
+    x$condition),
+  # Sort by condition
+  sapply(parsed_cols, function(x)
+    x$day)              # Sort by day
+)]
+
+# Reorder dataframe columns
+scoresLR_avg_complete <- scoresLR_avg_complete[, sorted_columns]
+rownames(scoresLR_avg_complete) <- gsub("\\{(.+?)\\} / \\{(.+?)\\}", "\\1-\\2", rownames(scoresLR_avg_complete))
+auto_cols <- grep("_auto$", colnames(scoresLR_avg_complete), value = TRUE)
+b_cols <- gsub("_auto", "_b", auto_cols)
+df_diff <- scoresLR_avg_complete[, auto_cols] - scoresLR_avg_complete[, b_cols]
+colnames(df_diff) <- gsub("_auto", "_diff", auto_cols)
+write.csv(df_diff, "../L-R pair analysis/Auto_and_mono/scoresLR_difference.csv")
+
+#Filter on patients
+scoresLR_p1 <- scoresLR_avg_complete %>% as.data.frame() %>% dplyr::select(contains("_p1_"))
+        auto_cols_p1 <- grep("_auto$", colnames(scoresLR_p1), value = TRUE)
+        b_cols_p1 <- gsub("_auto", "_b", auto_cols_p1)
+        df_diff_p1 <- scoresLR_p1[, auto_cols_p1] - scoresLR_p1[, b_cols_p1]
+        colnames(df_diff_p1) <- gsub("_auto", "_diff", auto_cols_p1)
+scoresLR_p2 <- scoresLR_avg_complete %>% as.data.frame() %>% dplyr::select(contains("_p2_"))
+        auto_cols_p2 <- grep("_auto$", colnames(scoresLR_p2), value = TRUE)
+        b_cols_p2 <- gsub("_auto", "_b", auto_cols_p2)
+        df_diff_p2 <- scoresLR_p2[, auto_cols_p2] - scoresLR_p2[, b_cols_p2]
+        colnames(df_diff_p2) <- gsub("_auto", "_diff", auto_cols_p2)
+scoresLR_p3 <- scoresLR_avg_complete %>% as.data.frame() %>% dplyr::select(contains("_p3_"))
+        auto_cols_p3 <- grep("_auto$", colnames(scoresLR_p3), value = TRUE)
+        b_cols_p3 <- gsub("_auto", "_b", auto_cols_p3)
+        df_diff_p3 <- scoresLR_p3[, auto_cols_p3] - scoresLR_p3[, b_cols_p3]
+        colnames(df_diff_p3) <- gsub("_auto", "_diff", auto_cols_p3)
+
+filter_low_variance <- function(df_list, threshold = 0.1) {
+  # Identify rows to keep in each dataframe based on variance
+  row_filters <- lapply(df_list, function(df) apply(df, 1, var) >= threshold)
+  
+  # Combine filters across dataframes (TRUE if a row passes in any dataframe)
+  combined_filter <- Reduce(`|`, row_filters)
+  
+  # Adjust dataframes: replace excluded rows with NA
+  adjusted_dfs <- mapply(function(df, filter) {
+    df[!filter & combined_filter, ] <- NA # Mark excluded rows as NA
+    return(df)
+  }, df_list, row_filters, SIMPLIFY = FALSE)
+  
+  return(adjusted_dfs)
+}
+df_list <- list(df_diff_p1, df_diff_p2) #, df_diff_p3
+
+adjusted_dfs <- filter_low_variance(df_list, threshold = 0.1)
+
+# Plot heatmaps for the adjusted dataframes
+heatmaps <- lapply(adjusted_dfs, function(df) {
+  Heatmap(as.matrix(df),
+          cluster_rows = FALSE,
+          cluster_columns = FALSE,
+          na_col = "grey", # Display blank rows as white
+          col = colorRamp2(c(min(scoresLR_avg_complete), 0, max(scoresLR_avg_complete)), c("steelblue1", "white", "coral")), # Color scale
+          row_names_gp = gpar(fontsize = 7),
+          column_names_gp = gpar(fontsize = 8),
+          name = "L-R score")
+})
+
+# Combine and plot the heatmaps side-by-side
+draw(heatmaps[[1]] + heatmaps[[2]], # + heatmaps[[3]]
+     column_title = "L-R scores", column_title_gp = gpar(fontsize = 12))
+
+p1 <- pheatmap::pheatmap(
+  df_diff_p1,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 1",
+  fontsize = 7
+)
+
+p2 <- pheatmap::pheatmap(
+  df_diff_p2,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 2",
+  fontsize = 7
+)
+
+p3 <- pheatmap::pheatmap(
+  df_diff_p3,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 3",
+  fontsize = 7
+)
+
+arranged_plot <- grid.arrange(p1$gtable, p2$gtable, ncol = 2) #, p3$gtable
+ggsave(
+  filename = "../L-R pair analysis/Auto_and_mono/LR_score_difference.pdf",
+  plot = arranged_plot,
+  device = "pdf",
+  width = 8,
+  height = 20
+)
+
+# Plot only the top-10 L-R pairs for each patient
+row_variances_p1 <- apply(scoresLR_p1, 1, var)
+top10_indices_p1 <- order(row_variances_p1, decreasing = TRUE)[1:15]
+top10_df_p1 <- scoresLR_p1[top10_indices_p1, ]
+
+row_variances_p2 <- apply(scoresLR_p2, 1, var)
+top10_indices_p2 <- order(row_variances_p2, decreasing = TRUE)[1:15]
+top10_df_p2 <- scoresLR_p2[top10_indices_p2, ]
+
+row_variances_p3 <- apply(scoresLR_p3, 1, var)
+top10_indices_p3 <- order(row_variances_p3, decreasing = TRUE)[1:15]
+top10_df_p3 <- scoresLR_p3[top10_indices_p3, ]
+
+p1_f <- pheatmap::pheatmap(
+  top10_df_p1,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 1",
+  fontsize = 7
+)
+
+p2_f <- pheatmap::pheatmap(
+  top10_df_p2,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 2",
+  fontsize = 7
+)
+
+p3_f <- pheatmap::pheatmap(
+  top10_df_p3,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "L-R scores, Patient 3",
+  fontsize = 7
+)
+
+arranged_plot <- grid.arrange(p1_f$gtable, p2_f$gtable, p3_f$gtable, ncol = 3)
+ggsave(
+  filename = "../L-R pair analysis/Auto_and_mono/top15_p1_p2_p3_LR_score.pdf",
+  plot = arranged_plot,
+  device = "pdf",
+  width = 8,
+  height = 4
+)
+
+filter_rows_consistently <- function(df_list, threshold = 0.1) {
+  # Calculate row-wise variance for each dataframe
+  row_variances <- lapply(df_list, function(df) apply(df, 1, var))
+  
+  # Identify rows to keep: TRUE if variance >= threshold in all dataframes
+  keep_rows <- Reduce(`&`, lapply(row_variances, function(v) v >= threshold))
+  
+  # Filter rows consistently across all dataframes
+  filtered_dfs <- lapply(df_list, function(df) df[keep_rows, , drop = FALSE])
+  
+  return(filtered_dfs)
+}
+
+filtered_dfs <- filter_rows_consistently(df_list, threshold = 0.1)
+
+# Plot heatmaps for the filtered dataframes
+heatmaps <- lapply(filtered_dfs, function(df) {
+  Heatmap(as.matrix(df),
+          cluster_rows = TRUE,
+          cluster_columns = FALSE,
+          col = colorRamp2(c(-2, 0, 2), c("blue", "white", "red")), # Color scale
+          name = "Expression")
+})
+
+# Combine and plot the heatmaps side-by-side
+draw(heatmaps[[1]] + heatmaps[[2]] + heatmaps[[3]])
+```
+
+
+###  Scoring by pathway
+
+```{r scoringPathway}    
+bsrsig.redPBP <- getLRGeneSignatures(bsrinf.redPBP, pval.thres = 0.05)
+
+scoresPathway <- scoreLRGeneSignatures(bsrdm, bsrsig.redPBP, name.by.pathway =
+                                         TRUE)
+write.csv(scoresPathway,
+          "../L-R pair analysis/Auto_and_mono/scoresPathways.csv")
+############### Take the average between the replicates ####################
+df_avg_complete <- scoresPathway %>%
+  as.data.frame() %>%
+  janitor::clean_names() %>%
+  tibble::rownames_to_column("Pathway") %>%
+  pivot_longer(cols = -Pathway,
+               names_to = "Sample",
+               values_to = "Score") %>%
+  mutate(
+    Day = sub("d(\\d+)_.*", "\\1", Sample),
+    Patient = sub(".*_p(\\d+)_.*", "\\1", Sample),
+    Replicate = sub(".*_rep(\\d+)_.*", "\\1", Sample),
+    Condition = sub(".*_(auto|b)$", "\\1", Sample)
+  ) %>%
+  group_by(Pathway, Day, Patient, Condition) %>%
+  summarize(Avg_Expression = mean(Score, na.rm = TRUE),
+            .groups = "drop") %>%
+  pivot_wider(
+    names_from = c("Day", "Patient", "Condition"),
+    values_from = Avg_Expression,
+    names_glue = "D{Day}_p{Patient}_{Condition}",
+    names_vary = "slowest"
+  ) %>%
+  column_to_rownames("Pathway") %>% as.matrix()
+
+columns <- colnames(df_avg_complete)
+
+############### Define a function to extract day, patient, and condition ####################
+
+extract_order <- function(col) {
+  matches <- regmatches(col, regexec("D(\\d+)_p(\\d+)_(auto|b)", col))
+  if (length(matches[[1]]) > 1) {
+    day <- as.numeric(matches[[1]][2])      # Extract day as numeric
+    patient <- as.numeric(matches[[1]][3]) # Extract patient as numeric
+    condition <- matches[[1]][4]           # Extract condition (_auto or _b)
+    return(list(
+      day = day,
+      patient = patient,
+      condition = condition
+    ))
+  }
+  return(NULL)
+}
+
+# Parse and sort columns
+parsed_cols <- lapply(columns, extract_order)
+sorted_columns <- columns[order(
+  sapply(parsed_cols, function(x)
+    x$patient),
+  # Sort by patient
+  sapply(parsed_cols, function(x)
+    x$condition),
+  # Sort by condition
+  sapply(parsed_cols, function(x)
+    x$day)              # Sort by day
+)]
+
+# Reorder dataframe columns
+df_avg_complete <- df_avg_complete[, sorted_columns]
+
+############### Calculate the difference between auto and mono ####################
+row_variances_scorePath <- apply(df_avg_complete, 1, var)
+top10_indices_scorePath <- order(row_variances_scorePath, decreasing = TRUE)
+top10_scorePath <- df_avg_complete[top10_indices_scorePath, ]
+
+auto_cols <- grep("_auto$", colnames(df_avg_complete), value = TRUE)
+b_cols <- gsub("_auto", "_b", auto_cols)
+df_diff <- df_avg_complete[, auto_cols] - df_avg_complete[, b_cols]
+colnames(df_diff) <- gsub("_auto", "_diff", auto_cols)
+
+  row_variances_scorePath <- apply(df_diff, 1, var)
+  top10_indices_scorePath <- order(row_variances_scorePath, decreasing = TRUE)
+  top10_scorePath <- df_diff[top10_indices_scorePath, ]
+  write.csv(top10_scorePath,
+  "../L-R pair analysis/Auto_and_mono/3rd_run/scoresPathways_difference_ordered.csv")
+
+write.csv(
+  df_diff,
+  "../L-R pair analysis/Auto_and_mono/3rd_run/scoresPathways_difference.csv"
+)
+
+############### Filter pathways by patient ####################
+pathways_p1 <- scoresPathway %>% as.data.frame() %>% dplyr::select(contains("R1_"))
+pathways_p1_diff <- df_diff %>% as.data.frame() %>% dplyr::select(contains("_p1_"))
+
+pathways_p2 <- scoresPathway %>% as.data.frame() %>% dplyr::select(contains("R2_"))
+pathways_p2_diff <- df_diff %>% as.data.frame() %>% dplyr::select(contains("_p2_"))
+
+pathways_p3 <- scoresPathway %>% as.data.frame() %>% dplyr::select(contains("R3_"))
+pathways_p3_diff <- df_diff %>% as.data.frame() %>% dplyr::select(contains("_p3_"))
+
+pathway_list <- list(pathways_p1_diff, pathways_p2_diff, pathways_p3_diff) #, df_diff_p3
+
+############### Filter pathways by variance: each patient separately ####################
+
+filter_low_variance <- function(df_list, threshold = 0.1) {
+  # Identify rows to keep in each dataframe based on variance
+  row_filters <- lapply(df_list, function(df)
+    apply(df, 1, var) >= threshold)
+  
+  # Combine filters across dataframes (TRUE if a row passes in any dataframe)
+  combined_filter <- Reduce(`|`, row_filters)
+  
+  # Adjust dataframes: replace excluded rows with NA
+  adjusted_dfs <- mapply(function(df, filter) {
+    df[!filter & combined_filter, ] <- NA # Mark excluded rows as NA
+    return(df)
+  }, df_list, row_filters, SIMPLIFY = FALSE)
+  return(adjusted_dfs)
+}
+
+adjusted_pathway_dfs <- filter_low_variance(pathway_list, threshold = 0.1)
+
+############### Visualise ####################
+
+## Plot heatmaps for the adjusted dataframes
+heatmaps_pathways <- lapply(adjusted_pathway_dfs, function(df) {
+  Heatmap(
+    as.matrix(df),
+    cluster_rows = FALSE,
+    cluster_columns = FALSE,
+    na_col = "grey",
+    # Display blank rows as white
+    col = colorRamp2(c(
+      min(df_avg_complete), 0, max(df_avg_complete)
+    ), c("steelblue1", "white", "coral")),
+    # Color scale
+    row_names_gp = gpar(fontsize = 7),
+    column_names_gp = gpar(fontsize = 8),
+    name = "Pathway score"
+  )
+})
+
+draw(
+  heatmaps_pathways[[1]] + heatmaps_pathways[[2]] + heatmaps_pathways[[3]],
+  #+ heatmaps_pathways[[3]]
+  column_title = "Pathway scores",
+  column_title_gp = gpar(fontsize = 12)
+)
+#ggsave(filename = "../L-R pair analysis/Auto_and_mono/3rd_run/p1_p2_p3_pathway_score_withNas.pdf", plot = arranged_plot_pathways, device = "pdf", width = 24, height = 14)
+
+
+## Pheatmap
+p1 <- pheatmap::pheatmap(
+  pathways_p1,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 1",
+  fontsize = 8
+)
+
+p2 <- pheatmap::pheatmap(
+  pathways_p2,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 2",
+  fontsize = 8
+)
+
+p3 <- pheatmap::pheatmap(
+  pathways_p3,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 3",
+  fontsize = 8
+)
+
+arranged_plot <- grid.arrange(p1$gtable, p2$gtable, p3$gtable, ncol = 3) #, p3$gtable
+ggsave(
+  filename = "../L-R pair analysis/Auto_and_mono/3rd_run/pathway_score_difference_orderedVar.png",
+  plot = arranged_plot,
+  device = "png",
+  width = 20,
+  height = 12
+)
+
+
+############### Filter selected pathways ####################
+pathways_filter <- c(
+  "TNF signaling",
+  "PI3K/AKT Signaling in Cancer",
+  "NOTCH2 intracellular domain regulates transcription",
+  "Interleukin-10 signaling",
+  "positive regulation of NF-kappaB transcription factor activity",
+  "Regulation by c-FLIP",
+  "Death Receptor Signalling",
+  "cell migration",
+  "FOXO-mediated transcription",
+  "Cell surface interactions at the vascular wall",
+  "Integrin cell surface interactions",
+  "Signaling by the B Cell Receptor (BCR)",
+  "Apoptosis"
+)
+
+selected_pathways <- df_avg_complete %>% as.data.frame() %>% filter(rownames(df_avg_complete) %in% pathways_filter)
+selected_pathways_p1 <- selected_pathways %>% as.data.frame() %>% dplyr::select(contains("_p1_"))
+selected_pathways_p2 <- selected_pathways %>% as.data.frame() %>% dplyr::select(contains("_p2_"))
+selected_pathways_p3 <- selected_pathways %>% as.data.frame() %>% dplyr::select(contains("_p3_"))
+p1_sel <- pheatmap::pheatmap(
+  selected_pathways_p1,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 1",
+  fontsize = 10
+)
+
+p2_sel <- pheatmap::pheatmap(
+  selected_pathways_p2,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 2",
+  fontsize = 10
+)
+
+p3_sel <- pheatmap::pheatmap(
+  selected_pathways_p3,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, L-R, Patient 3",
+  fontsize = 10
+)
+
+arranged_plot <- grid.arrange(p1_sel$gtable, p2_sel$gtable, p3_sel$gtable, ncol = 3)
+ggsave(
+  filename = "../L-R pair analysis/Auto_and_mono/pathway_score_selection.pdf",
+  plot = arranged_plot,
+  device = "pdf",
+  width = 20,
+  height = 5
+)
+
+############### Plot only the top-X pathways for each patient ####################
+row_variances_p1 <- apply(pathways_p1, 1, var)
+top10_indices_p1 <- order(row_variances_p1, decreasing = TRUE)[1:20]
+top10_df_p1 <- pathways_p1[top10_indices_p1, ]
+
+row_variances_p2 <- apply(pathways_p2, 1, var)
+top10_indices_p2 <- order(row_variances_p2, decreasing = TRUE)[1:20]
+top10_df_p2 <- pathways_p2[top10_indices_p2, ]
+
+row_variances_p3 <- apply(pathways_p3, 1, var)
+top10_indices_p3 <- order(row_variances_p3, decreasing = TRUE)[1:20]
+top10_df_p3 <- pathways_p3[top10_indices_p3, ]
+
+p1_f <- pheatmap::pheatmap(
+  top10_df_p1,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, Patient 1",
+  fontsize = 7
+)
+
+p2_f <- pheatmap::pheatmap(
+  top10_df_p2,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, Patient 2",
+  fontsize = 7
+)
+
+p3_f <- pheatmap::pheatmap(
+  top10_df_p3,
+  cluster_rows = F,
+  cluster_cols = F,
+  main = "Pathway scores, Patient 3",
+  fontsize = 7
+)
+
+arranged_plot <- grid.arrange(p1_f$gtable, p2_f$gtable, p3_f$gtable, ncol = 3) #, p3_f$gtable
+ggsave(
+  filename = "../L-R pair analysis/Auto_and_mono/3rd_run/top15_pathway_score.pdf",
+  plot = arranged_plot,
+  device = "pdf",
+  width = 20,
+  height = 7
+)
+```
+  
+
+## Other visualization utilities
+
+### Heatmap of ligand-receptor-target genes expression
+
+After computing gene signatures score, one may wish to look at the expression of the genes involved in that signature. For instance, we can display three heatmaps corresponding to the scaled (z-scores) expression of ligands (pink), receptors (green), and target genes (blue).
+
+```{r HeatmapRTL ,results=FALSE,,eval=FALSE}   
+pathway1 <- "Apoptosis"
+signatureHeatmaps(
+        pathway = pathway1,
+        bsrdm = bsrdm,
+        bsrsig = bsrsig.redPBP,
+        path = "../L-R pair analysis/Auto_and_mono/",
+        filename = "Apoptosis_signatureheatmap",
+        h.width  = 15,
+        h.height = 10 ,
+        show_column_names = TRUE)
+```        
+
+
+### AlluvialPlot
+
+`alluvial.plot` is a function that enable users to represent the different interactions between ligands, receptors, and pathways stored in a BSRInference object. Obviously, it is possible to filter by ligand, receptor, or pathway. This is achieved by specifying a key word on the chosen category. A filter on L-R interaction Q-values can be applied in addition.
+
+```{r AlluvialPlot,results=FALSE,eval=FALSE}   
+
+alluvialPlot(bsrinf,
+              keywords = c("CCL4", "CD40LG", "IL10", "NAMPT", "TNFSF13"),
+              type = "L",
+              qval.thres = 0.1,
+              path = "../L-R pair analysis/Auto_and_mono/",
+              filename = "cll_data_alluvial_CCL4_CD40LG_IL10_NAMPT_TNFSF13", 
+              width  = 30, 
+              height = 20
+              )
+
+```
+
+
+### BubblePlot
+
+`bubblePlotPathwaysLR` is a handy way to visualize the strengths of several L-R interactions in relation with their receptor downstream pathways.
+
+A vector of pathways of interest can be provided to limit the complexity of the plot.
+
+```{r BubblePlot,results=FALSE,eval=FALSE} 
+pathway_list <- c("Signaling by the B Cell Receptor (BCR)", 
+                  "TNF signaling", 
+                  "PI3K/AKT Signaling in Cancer",
+                  "NOTCH2 intracellular domain regulates transcription",
+                  "Interleukin-10 signaling",
+                  "positive regulation of NF-kappaB transcription factor activity",
+                  "Apoptosis")
+
+bubblePlotPathwaysLR(bsrinf,
+    pathways = pathway_list, 
+    qval.thres  = 1,
+    path = "../L-R pair analysis/Auto_and_mono/",
+    color = "red",
+    filename  = "cll_data_bubble", 
+    width  = 20, 
+    height = 7,
+    pointsize = 6
+    #filter.L = c("ADAM12")
+    #filter.R = c("ITGA3")
+    ) 
+```
+
+
+### Chordiagram
+
+`chord.diagram.LR` is a function that enable users to feature the different L-R interactions involved in a specific pathway.
+
+L-R correlations strengths are drawn in a yellow color-scale. Ligands are in grey, whereas receptors are in green.  
+You can also highlight in red one specific interaction by passing values of a L-R pair as follows `ligand="COL18A1", receptor="ITGA3"`.  
+
+```{r Chordiagram,results=FALSE,eval=FALSE} 
+chordDiagramLR (bsrinf,
+                  path = "../L-R pair analysis/Auto_and_mono/",
+                  filename = "cll_data_auto_chord",
+                  pw.id.filter = "R-HSA-202733",
+                  limit = 20,
+                  width = 5, 
+                  height = 4.5
+    )
+```
+  
+# Session Information
+
+```{r session-info}
+sessionInfo()
+```
