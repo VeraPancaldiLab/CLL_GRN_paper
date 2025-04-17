@@ -56,16 +56,14 @@ The analysis performed in the paper is it done for each condition separately (au
 
 ```{r loading,eval=FALSE}
 # Autologous
-auto_data <- read.table("../Normalized_data/Autologous/normalized_counts.txt", 
+auto_data <- read.table("../Results/Normalized_data/Autologous/normalized_counts.txt", 
                                    header = TRUE, row.names = 1)
 # Monoculture
-mono_data <- read.table("../Normalized_data/B_cell/normalized_counts_TF.txt", 
+mono_data <- read.table("../Results/Normalized_data/B_cell/normalized_counts.txt", 
                                    header = TRUE, row.names = 1)
 # Combined data
-cll_data_auto_mono <- read.table("../Normalized_data/Auto_mono/normalized_counts_allconds.txt", 
+cll_data_auto_mono <- read.table("../Results/Normalized_data/Auto_mono/normalized_counts_allconds.txt", 
                                    header = TRUE, row.names = 1)
-
-colnames(cll_data_auto_mono) <- gsub("^J", "D", colnames(cll_data_auto_mono))
 
 data(cll_data_auto_mono)
 head(cll_data_auto_mono)
@@ -77,7 +75,7 @@ head(cll_data_auto_mono)
 `prepareDataset` creates the first object with information relative to your bulk expression data.
 
 ```{r prepareDataset , eval=FALSE,cache=FALSE}
-bsrdm <- prepareDataset(counts = cll_data_auto_mono_noP3)
+bsrdm <- prepareDataset(counts = cll_data_auto_mono)
 # print object
 str(bsrdm)
 ```  
@@ -86,7 +84,7 @@ str(bsrdm)
 
 ```{r learnParameters , eval=FALSE,cache=FALSE,results=FALSE}
 bsrdm <- learnParameters(bsrdm, 
-         plot.folder = "../L-R pair analysis/Auto_and_mono", filename = "cll_data_auto_mono")
+         plot.folder = "../Results/LR analysis/", filename = "cll_data_auto_mono")
 ```
 
 ## Building a BSRInference object
@@ -103,7 +101,7 @@ head(LRinter.dataframe[order(LRinter.dataframe$qval <= 0.05), #0.001
 
 # filter out non-significant L-R interactions and order them by best Q-value and save them to a file
 write.table(LRinter.dataframe[order(LRinter.dataframe$qval <= 0.05),],
-            "../L-R pair analysis/Auto_and_mono/cll_data_auto_mono.tsv",
+            "../Results/LR analysis/cll_data_auto_mono.tsv",
             row.names = FALSE,
             sep = "\t",
             quote = FALSE)
@@ -161,7 +159,7 @@ bsrsig.redBP <- getLRGeneSignatures(bsrinf.redBP, qval.thres = 0.05)
 
 scoresLR <- scoreLRGeneSignatures(bsrdm, bsrsig.redBP, name.by.pathway =
                                     FALSE)
-write.csv(scoresLR, "../L-R pair analysis/Auto_and_mono/scoresLR3.csv")
+write.csv(scoresLR, "../Results/LR analysis/scoresLR.csv")
 
 # Take the average between replicates
 scoresLR_avg_complete <- scoresLR %>%
@@ -231,7 +229,7 @@ auto_cols <- grep("_auto$", colnames(scoresLR_avg_complete), value = TRUE)
 b_cols <- gsub("_auto", "_b", auto_cols)
 df_diff <- scoresLR_avg_complete[, auto_cols] - scoresLR_avg_complete[, b_cols]
 colnames(df_diff) <- gsub("_auto", "_diff", auto_cols)
-write.csv(df_diff, "../L-R pair analysis/Auto_and_mono/scoresLR_difference.csv")
+write.csv(df_diff, "../Results/LR analysis/scoresLR_difference.csv")
 
 #Filter on patients
 scoresLR_p1 <- scoresLR_avg_complete %>% as.data.frame() %>% dplyr::select(contains("_p1_"))
@@ -311,7 +309,7 @@ p3 <- pheatmap::pheatmap(
 
 arranged_plot <- grid.arrange(p1$gtable, p2$gtable, ncol = 2) #, p3$gtable
 ggsave(
-  filename = "../L-R pair analysis/Auto_and_mono/LR_score_difference.pdf",
+  filename = "../Results/LR analysis/LR_score_difference.pdf",
   plot = arranged_plot,
   device = "pdf",
   width = 8,
@@ -357,7 +355,7 @@ p3_f <- pheatmap::pheatmap(
 
 arranged_plot <- grid.arrange(p1_f$gtable, p2_f$gtable, p3_f$gtable, ncol = 3)
 ggsave(
-  filename = "../L-R pair analysis/Auto_and_mono/top15_p1_p2_p3_LR_score.pdf",
+  filename = "../Results/LR analysis/top15_p1_p2_p3_LR_score.pdf",
   plot = arranged_plot,
   device = "pdf",
   width = 8,
@@ -401,7 +399,7 @@ bsrsig.redPBP <- getLRGeneSignatures(bsrinf.redPBP, pval.thres = 0.05)
 scoresPathway <- scoreLRGeneSignatures(bsrdm, bsrsig.redPBP, name.by.pathway =
                                          TRUE)
 write.csv(scoresPathway,
-          "../L-R pair analysis/Auto_and_mono/scoresPathways.csv")
+          "../Results/LR analysis/scoresPathways.csv")
 ############### Take the average between the replicates ####################
 df_avg_complete <- scoresPathway %>%
   as.data.frame() %>%
@@ -476,11 +474,11 @@ colnames(df_diff) <- gsub("_auto", "_diff", auto_cols)
   top10_indices_scorePath <- order(row_variances_scorePath, decreasing = TRUE)
   top10_scorePath <- df_diff[top10_indices_scorePath, ]
   write.csv(top10_scorePath,
-  "../L-R pair analysis/Auto_and_mono/3rd_run/scoresPathways_difference_ordered.csv")
+  "../Results/LR analysis/scoresPathways_difference_ordered.csv")
 
 write.csv(
   df_diff,
-  "../L-R pair analysis/Auto_and_mono/3rd_run/scoresPathways_difference.csv"
+  "../Results/LR analysis/scoresPathways_difference.csv"
 )
 
 ############### Filter pathways by patient ####################
@@ -571,7 +569,7 @@ p3 <- pheatmap::pheatmap(
 
 arranged_plot <- grid.arrange(p1$gtable, p2$gtable, p3$gtable, ncol = 3) #, p3$gtable
 ggsave(
-  filename = "../L-R pair analysis/Auto_and_mono/3rd_run/pathway_score_difference_orderedVar.png",
+  filename = "../Results/LR analysis/pathway_score_difference_orderedVar.png",
   plot = arranged_plot,
   device = "png",
   width = 20,
@@ -626,7 +624,7 @@ p3_sel <- pheatmap::pheatmap(
 
 arranged_plot <- grid.arrange(p1_sel$gtable, p2_sel$gtable, p3_sel$gtable, ncol = 3)
 ggsave(
-  filename = "../L-R pair analysis/Auto_and_mono/pathway_score_selection.pdf",
+  filename = "../Results/LR analysis/pathway_score_selection.pdf",
   plot = arranged_plot,
   device = "pdf",
   width = 20,
@@ -672,7 +670,7 @@ p3_f <- pheatmap::pheatmap(
 
 arranged_plot <- grid.arrange(p1_f$gtable, p2_f$gtable, p3_f$gtable, ncol = 3) #, p3_f$gtable
 ggsave(
-  filename = "../L-R pair analysis/Auto_and_mono/3rd_run/top15_pathway_score.pdf",
+  filename = "../Results/LR analysis/top15_pathway_score.pdf",
   plot = arranged_plot,
   device = "pdf",
   width = 20,
@@ -693,7 +691,7 @@ signatureHeatmaps(
         pathway = pathway1,
         bsrdm = bsrdm,
         bsrsig = bsrsig.redPBP,
-        path = "../L-R pair analysis/Auto_and_mono/",
+        path = "../Results/LR analysis/",
         filename = "Apoptosis_signatureheatmap",
         h.width  = 15,
         h.height = 10 ,
@@ -711,7 +709,7 @@ alluvialPlot(bsrinf,
               keywords = c("CCL4", "CD40LG", "IL10", "NAMPT", "TNFSF13"),
               type = "L",
               qval.thres = 0.1,
-              path = "../L-R pair analysis/Auto_and_mono/",
+              path = "../Results/LR analysis/",
               filename = "cll_data_alluvial_CCL4_CD40LG_IL10_NAMPT_TNFSF13", 
               width  = 30, 
               height = 20
@@ -738,7 +736,7 @@ pathway_list <- c("Signaling by the B Cell Receptor (BCR)",
 bubblePlotPathwaysLR(bsrinf,
     pathways = pathway_list, 
     qval.thres  = 1,
-    path = "../L-R pair analysis/Auto_and_mono/",
+    path = "../Results/LR analysis/",
     color = "red",
     filename  = "cll_data_bubble", 
     width  = 20, 
@@ -759,7 +757,7 @@ You can also highlight in red one specific interaction by passing values of a L-
 
 ```{r Chordiagram,results=FALSE,eval=FALSE} 
 chordDiagramLR (bsrinf,
-                  path = "../L-R pair analysis/Auto_and_mono/",
+                  path = "../Results/LR analysis/",
                   filename = "cll_data_auto_chord",
                   pw.id.filter = "R-HSA-202733",
                   limit = 20,

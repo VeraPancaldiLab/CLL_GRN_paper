@@ -14,7 +14,7 @@ read_all_rds <- function(folder_path) {
 }
 
 # Specify the folder path
-folder_path <- "Script/msViper/Results/Monoculture/"
+folder_path <- "Results/msVIPER/Autologous/Objects/"
 
 # Call the function to read all RDS files
 all_rds_data <- read_all_rds(folder_path)
@@ -53,14 +53,14 @@ for (file_name in names(all_rds_data)) {
 
 }
 auto_TFs <- list_TFs_all_patients
-write.csv(auto_TFs, "Results/Temp/msViper_auto_TFs_comparison_info.csv")
+write.csv(auto_TFs, "Results/msVIPER/Autologous/msViper_auto_TFs_comparison_info.csv")
 auto_TFs_msViper <- unique(auto_TFs$TF)
-write.csv(auto_TFs_msViper, "Results/Temp/msViper_auto_TFs.csv")
+write.csv(auto_TFs_msViper, "Results/msVIPER/Autologous/msViper_auto_TFs.csv")
 
 mono_TFs <- list_TFs_all_patients
-write.csv(mono_TFs, "Results/Temp/msViper_mono_TFs_comparison_info.csv")
+write.csv(mono_TFs, "Results/msVIPER/Monoculture/msViper_mono_TFs_comparison_info.csv")
 mono_TFs_msViper <- unique(mono_TFs$TF)
-write.csv(mono_TFs_msViper, "Results/Temp/msViper_mono_TFs.csv")
+write.csv(mono_TFs_msViper, "Results/msVIPER/Monoculture/msViper_mono_TFs.csv")
 # Run again the code above for the two conditions and take the merge between the two lists 
 
 all_TFs_msViper <- unique(c(auto_TFs_msViper, mono_TFs_msViper))
@@ -73,52 +73,7 @@ Patient3_TFs <- rbind((auto_TFs %>% filter(auto_TFs$Patient == "Patient3")), (mo
 Patient3_TFs <- unique(Patient3_TFs$TF)
 # msViper_TFs <- unique(c(auto_TFs_msViper, mono_TFs_msViper))
 
-# Load the TF activity matrices for auto and mono
-TFact_auto <- read.csv("Results/Viper/Autologous/TF_score_collectri.csv", row.names = 1) 
-TFact_mono <- read.csv("Results/Viper/B_cell/TF_score_collectri.csv", row.names = 1)
-
-# Filter these matrices to select only the most DA TFs and then do the merge
-TFact_auto_DA_TFs <- TFact_auto[most_DA_TFs$`unique(c(auto_TFs$TF, mono_TFs$TF))`, , drop = FALSE]
-TFact_mono_DA_TFs <- TFact_mono[most_DA_TFs$`unique(c(auto_TFs$TF, mono_TFs$TF))`, , drop = FALSE]
-
-TFact_DA_TFs <- cbind(TFact_auto_DA_TFs, TFact_mono_DA_TFs)
-# Extract unique time points, patients, and conditions
-time_points <- c("D1", "D4", "D8", "D11", "D14")
-patients <- c("p1", "p2", "p3")
-conditions <- c("auto", "B")
-
-# Initialize an empty dataframe for the means
-mean_df <- data.frame(row_id = seq_len(nrow(df)))
-rownames(mean_df) <- rownames(df)
-
-# Loop through time points, patients, and conditions to compute means
-for (time in time_points) {
-  for (patient in patients) {
-    for (condition in conditions) {
-      # Build column names for replicates
-      rep1_col <- paste0(time, "_", patient, "_rep1_", condition)
-      rep2_col <- paste0(time, "_", patient, "_rep2_", condition)
-      
-      # Check if both columns exist in the dataframe
-      if (rep1_col %in% colnames(df) && rep2_col %in% colnames(df)) {
-        # Compute mean of replicates
-        mean_col <- rowMeans(df[, c(rep1_col, rep2_col)])
-        
-        # Add the mean to the new dataframe
-        mean_df[[paste0(time, "_", patient, "_mean_", condition)]] <- mean_col
-      }
-    }
-  }
-}
-
-# Remove the row_id column (if not needed)
-mean_df$row_id <- NULL
-
-correlation_matrix <- cor(t(mean_df)) %>% melt() %>% filter(abs(value) >= 0.5)
 
 #######################################################################
 
-# Compare with the TFs in the GRN
-TFs_previous_GRN <- read.csv("Results/Temp/TFs_auto_mono_separately.csv")
 
-common_Tfs <- intersect(msViper_TFs, TFs_previous_GRN$x)
