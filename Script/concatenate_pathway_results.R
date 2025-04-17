@@ -30,8 +30,8 @@ enrichment_loader <- function(file_path) {
 }
 
 # Specify the directory containing the enrichment files
-enrichment_dir_auto <- "Script/msViper/Rerun/Autologous/"
-enrichment_dir_mono <- "Script/msViper/Rerun/Monoculture/"
+enrichment_dir_auto <- "Results/msVIPER/Autologous/Objects/"
+enrichment_dir_mono <- "Results/msVIPER/Monoculture/Objects/"
 
 # List all enrichment files
 enrichment_files_auto <- list.files(enrichment_dir_auto, full.names = TRUE, pattern = "\\.csv$")
@@ -46,7 +46,7 @@ enrichment_results_mono$Condition <- str_extract(enrichment_dir_mono, "Autologou
 
 enrichment_results <- rbind(enrichment_results_auto, enrichment_results_mono)
 
-write.csv(enrichment_results, file = "Script/msViper/Rerun/Autologous//concatenated_enrichment_results_auto.csv", row.names = FALSE)
+write.csv(enrichment_results, file = "Results/msVIPER/concatenated_enrichment_results_auto_mono.csv", row.names = FALSE)
 
 time_comparison_levels <- c("TimePoint_1vs4", "TimePoint_4vs8", "TimePoint_8vs11", "TimePoint_11vs14") 
 
@@ -74,9 +74,9 @@ for (source in c("DOWN", "UP")) {
     theme(axis.text.x = element_text(angle = 30, hjust = 0.5),
           strip.text = element_text(size = 16, face = "bold")) +  # Increase facet title font size and bold
     scale_y_discrete(labels = label_wrap(50)) +
-    scale_color_manual(values = c("Autologous" = "#44AA99", "Monoculture" = "#E69F00"))  # Correct function
+    scale_color_manual(values = c("Autologous" = "#44AA99", "Monoculture" = "#E69F00"))  
   
   print(dotplot_path)  # Ensure the plot is displayed
-  ggsave(paste("Script/msViper/Rerun/enrichment_auto_mono_", source, ".svg", sep = ""), plot = dotplot_path, width = 9, height = 9)
+  ggsave(paste("Results/msVIPER/enrichment_auto_mono_", source, ".svg", sep = ""), plot = dotplot_path, width = 9, height = 9)
 }
 #}

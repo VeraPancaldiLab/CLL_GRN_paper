@@ -9,7 +9,7 @@ library(ReactomePA)
 library(stringr)  # For wrapping text
 
 # Load gene list with scores
-ICscore <- read.table("Results/ICA/contributive_genes/combined_auto_mono_after_normalized_df_ica_S.xls", header = TRUE)
+ICscore <- read.table("Results/ICA/work/combined_auto_mono_after_normalized_df_ICA/combined_auto_mono_after_normalized_df_ica_S.xls", header = TRUE)
 
 # Loop through IC1 to IC10
 for (i in 1:10) {
@@ -86,7 +86,7 @@ for (i in 1:10) {
       theme(legend.title = element_blank(), text = element_text(size = 14))
     
     # Save the plot as a high-resolution PNG
-    filename <- paste0("../CLL_GRN_paper/Results/ICA/GSEA_ICs/GSEA_Reactome_", IC_name, ".svg")
+    filename <- paste0("Results/ICA/GSEA_ICs/GSEA_Reactome_", IC_name, ".svg")
     ggsave(filename, plot = p, width = 8, height = 10, dpi = 600)  # High-resolution
   } else {
     print(paste("No significant pathways found for", IC_name, "(FDR ≤ 0.05)."))

@@ -1,0 +1,4 @@
+"","category","subcategory","ID","Description","GeneRatio","BgRatio","RichFactor","FoldEnrichment","zScore","pvalue","p.adjust","qvalue","geneID","Count"
+"hsa04012","Environmental Information Processing","Signal transduction","hsa04012","ErbB signaling pathway","3/11","72/5972",0.0416666666666667,22.6212121212121,7.92830953138749,0.000258717883775331,0.023839828158586,0.019689574673488,"3725/369/4609",3
+"hsa05210","Human Diseases","Cancer: specific types","hsa05210","Colorectal cancer","3/11","81/5972",0.037037037037037,20.1077441077441,7.43734164476562,0.000366766587055169,0.023839828158586,0.019689574673488,"3725/369/4609",3
+"hsa05224","Human Diseases","Cancer: specific types","hsa05224","Breast cancer","3/11","114/5972",0.0263157894736842,14.2870813397129,6.15272710296441,0.000999738400457409,0.0433219973531544,0.0357801111742652,"3725/369/4609",3

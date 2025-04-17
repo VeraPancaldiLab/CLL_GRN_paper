@@ -1,0 +1,218 @@
+---
+title: "GRN Inference from CLL time-course bulk RNA-seq"
+author: "Hugo Chenel, Malvina Marku"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+# Load the libraries and `dynGENIE3` functions
+
+```{r include=FALSE}
+library(doRNG)
+library(doParallel)
+library(sva)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+source("dynGENIE3.R")
+```
+
+# Import gene count matrices, TF activity matrixes, and other objects required for the inference 
+
+```{r}
+# Normalised counts for both conditions 
+normalized_data_auto <- read.table("../Results/Normalized_data/normalized_counts.txt", header = TRUE, row.names = 1)
+normalized_data_B <- read.table("../Results/Normalized_data/B_cell/normalized_counts.txt", header = TRUE, row.names = 1)
+
+# TF activity matrices for both conditions 
+TF_activity_auto <- read.csv("../Results/Viper/Autologous/TF_score_collectri.csv", header = T, row.names = 1)
+TF_activity_B <- read.csv("../Results/Viper/B_cell/TF_score_collectri.csv", header = T, row.names = 1)
+
+# Import the list of TFs in interest 
+TFs_diff_active_auto <- read.csv("../Results/msVIPER/Autologous/msViper_auto_TFs.csv")
+TFs_diff_active_B <- read.csv("../Results/msVIPER/Monoculture/msViper_mono_TFs.csv")
+
+# Filter the count matrices according to the gene list of interest and create a common dataframe with the two conditions
+      
+normalized_counts_auto <- TF_activity_auto[TFs_diff_active_auto$x,  , drop = F] %>% na.omit()
+normalized_counts_B <- TF_activity_B[TFs_diff_active_B$x,  , drop = F] %>% na.omit()
+
+```
+
+# Process the objects to split the patients and replicates. Thw following chunks must be ran for each condition separately. 
+
+```{r}
+process_normalized_counts <- function(normalized_counts, tf_names_file, id_form, sample_suffixes) {
+  
+  # Keep only rows corresponding to TF
+  normalized_counts <- as.data.frame(normalized_counts)
+  
+  if (id_form == "genenames") {
+    TFs_df <- read.csv(tf_names_file)
+    TFs_vector <- TFs_df[['x']]
+    TFs_vector <- TFs_vector[TFs_vector %in% rownames(normalized_counts)] 
+    normalized_counts_TF <- normalized_counts[rownames(normalized_counts) %in% TFs_vector, ]
+  } else if (id_form == "ensemblIDs_genenames") {
+    TFs_df <- read.csv(tf_names_file)
+    TFs_vector <- TFs_df[['x']]
+    grepl(paste(TFs_vector, collapse = "|"), rownames(normalized_counts))
+    TFs_vector <- TFs_vector[TFs_vector %in% (str_extract(rownames(normalized_counts), paste(TFs_vector, collapse = "|")))]
+    normalized_counts_TF <- normalized_counts[grepl(paste0(TFs_vector, collapse = "|"), rownames(normalized_counts)), ]
+  }
+  
+  # List of matrices corresponding to the different patients/replicates 
+  df_conditions <- sapply(sample_suffixes,
+                          function(x) normalized_counts_TF[endsWith(names(normalized_counts_TF), x)],
+                          simplify = FALSE)
+  
+  normalized_counts_list <- lapply(df_conditions, function(x) as.matrix(x))
+  
+  # Return the results as a list
+  return(list(normalized_counts_TF = normalized_counts_TF, normalized_counts_list = normalized_counts_list, TFs_vector = TFs_vector))
+}
+
+# Call the function with the provided parameters for each condition
+processed_dataset <- process_normalized_counts(
+  normalized_counts = TF_activity_auto,
+  tf_names_file = "../Results/msVIPER/Autologous/msViper_auto_TFs.csv",
+  id_form = "genenames",
+  sample_suffixes = c("p1_rep1_auto", "p1_rep2_auto", "p2_rep1_auto", "p2_rep2_auto", "p3_rep1_auto", "p3_rep2_auto") # change the suffix accordingly for each condition
+)
+```
+
+
+# Set parameters to run `dynGENIE3`
+
+```{r}
+# Define time points from the datasets of each condition
+
+time.points_auto_p1 <- c(1, 4, 8, 11, 14)
+time.points_auto_p2 <- c(1, 4, 8, 11, 14)
+time.points_auto_p3 <- c(1, 4, 8, 11, 14)
+time.points_B_p1 <- c(1, 4, 8, 11, 14)
+time.points_B_p2 <- c(1, 4, 8, 11, 14)
+time.points_B_p3 <- c(1, 4, 8, 11, 14)
+
+time.points <- list(time.points_auto_p1, time.points_auto_p1, time.points_auto_p1, time.points_auto_p1, time.points_auto_p1, time.points_auto_p1)
+
+# Define gene decay rate
+# Function to determine median or the most frequent decay rate based on data
+calculate_decay_rates <- function(normalized_data_list, time_points_list, digits = 2) {
+  # Transpose the data frames
+  transposed_data <- lapply(normalized_data_list, t)
+  
+  # Create a list of time point matrices
+  time_points_matrices <- lapply(time_points_list, as.matrix)
+  
+  # Match the length of the time_points_matrices to the length of transposed_data
+  matched_time_points <- rep(time_points_matrices, length.out = length(transposed_data))
+  
+  alphas <- estimate.decay.rates(transposed_data, matched_time_points)
+  
+  decay_rates_median <- median(alphas, na.rm = TRUE)
+  
+  mode <- function(x) {
+    return(as.numeric(names(which.max(table(x)))))
+  }
+  
+  alphas_rounded <- round(alphas, digits = digits)
+  decay_rates_mode <- mode(alphas_rounded)
+  
+  return(list(median = decay_rates_median, mode = decay_rates_mode))
+}
+
+decay_rates = calculate_decay_rates(processed_dataset$normalized_counts_list, time.points)
+```
+
+
+# Run `dynGENIE3` with default parameters or by tuning the parameters
+
+```{r eval=FALSE, include=FALSE}
+# Function to run the analysis N times and take the intersection of the links
+run_multiple_times <- function(N, normalized_counts_list, time_points, decay_rates, TFs_vector, weight_threshold) {
+  
+  # Initialize a list to store the results from each run
+  all_links_filtered_TF <- list()
+  
+  # Run the analysis N times
+  for (i in 1:N) {
+    cat("Running analysis iteration", i, "\n")
+    
+    # Run inference with dynGENIE3
+    run_inference <- dynGENIE3(
+      normalized_counts_list,
+      time_points,
+      alpha = decay_rates$median,
+      tree.method = "RF",
+      SS.data = NULL,
+      K = "sqrt",
+      ntrees = 1000,
+      regulators = TFs_vector,
+      ncores = 12,
+      verbose = FALSE,
+      seed = NULL
+    )
+    
+    # Process links
+    links_filtered_TF <- process_links_and_plot(run_inference, weight_threshold)$links_filtered_TF
+    
+    # Store the filtered links
+    all_links_filtered_TF[[i]] <- links_filtered_TF
+  }
+  
+  # Compute the intersection of the links from all runs
+  intersection_links <- Reduce(function(x, y) dplyr::inner_join(x, y, by = c("regulatory.gene", "target.gene")), all_links_filtered_TF)
+  
+  # Return the intersection of links
+  return(intersection_links)
+}
+```
+
+
+# Filter and visualize the results
+
+```{r}
+process_links_and_plot <- function(dynGENIE3_output, weight_threshold) {
+   link.list <- dynGENIE3_output
+
+   links_filtered_TF <- dplyr::filter(link.list, link.list$weight >= weight_threshold)
+
+   plot1 <- ggplot(link.list, aes(x=weight)) +
+     geom_histogram(color="black", fill="white") +
+     labs(title="Links weight distribution", subtitle="Edges weight histogram plot") +
+     theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold"), plot.subtitle = element_text(hjust = 0.5)) +
+     xlab("Weight")+ylab("Count")
+
+   plot2 <- ggplot(links_filtered_TF, aes(x=weight)) +
+     geom_histogram(color="black", fill="white") +
+     xlim(min(links_filtered_TF$weight), max(links_filtered_TF$weight)) +
+     labs(title="Links filtered weight distribution", subtitle="Edges weight histogram plot") +
+     theme(plot.title = element_text(hjust = 0.5, size = 12, face = "bold"), plot.subtitle = element_text(hjust = 0.5)) +
+     xlab("Weight")+ylab("Count") + geom_vline(xintercept= min(links_filtered_TF$weight), size = 2, colour = "red")
+
+   return(list(plot_links = plot1, plot_linksfiltered = plot2, links_filtered_TF = links_filtered_TF))
+ }
+
+```
+
+Perform GRN inference and save the results: 
+
+```{r}
+
+intersection_links <- run_multiple_times(
+  N = 10,
+  normalized_counts_list = processed_dataset$normalized_counts_list,
+  time_points = time.points,
+  decay_rates = decay_rates,
+  TFs_vector = processed_dataset$TFs_vector,
+  weight_threshold = 0.01
+)
+
+write.csv(intersection_links_allconds, "../Results/Network files/GRN_auto_withTFs_msViper_TFs_001.csv", row.names = F, quote = F)
+```
+
