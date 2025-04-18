@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='432.00pt' height='432.00pt' viewBox='0 0 432.00 432.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='576.00pt' height='720.00pt' viewBox='0 0 576.00 720.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,100 +16,134 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0MzIuMDB8MC4wMHw0MzIuMDA='>
-    <rect x='0.00' y='0.00' width='432.00' height='432.00' />
+  <clipPath id='cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA='>
+    <rect x='0.00' y='0.00' width='576.00' height='720.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHw0MzIuMDA=)'>
+<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMTc1LjQ5fDQyNi41MnwyMi4yMXw0MDEuOTg='>
-    <rect x='175.49' y='22.21' width='251.03' height='379.77' />
+  <clipPath id='cpMjU4LjUzfDU3MC41MnwyNi43MHw2ODMuMjU='>
+    <rect x='258.53' y='26.70' width='311.99' height='656.56' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMTc1LjQ5fDQyNi41MnwyMi4yMXw0MDEuOTg=)'>
-<polyline points='223.65,401.98 223.65,22.21 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='295.11,401.98 295.11,22.21 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='366.57,401.98 366.57,22.21 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,390.70 426.52,390.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,371.90 426.52,371.90 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,353.10 426.52,353.10 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,334.30 426.52,334.30 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,315.50 426.52,315.50 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,296.70 426.52,296.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,277.90 426.52,277.90 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,259.09 426.52,259.09 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,240.29 426.52,240.29 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,221.49 426.52,221.49 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,202.69 426.52,202.69 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,183.89 426.52,183.89 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,165.09 426.52,165.09 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,146.29 426.52,146.29 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,127.49 426.52,127.49 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,108.69 426.52,108.69 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,89.89 426.52,89.89 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,71.09 426.52,71.09 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,52.29 426.52,52.29 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='175.49,33.49 426.52,33.49 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='187.93,401.98 187.93,22.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='259.38,401.98 259.38,22.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='330.84,401.98 330.84,22.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='402.30,401.98 402.30,22.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='330.84' y='25.03' width='84.27' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='43.83' width='73.64' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='62.63' width='73.33' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='81.43' width='73.32' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='100.23' width='71.54' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='119.03' width='71.21' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='137.83' width='70.21' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='175.43' width='69.12' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='156.63' width='69.12' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='330.84' y='194.23' width='68.84' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='186.90' y='382.24' width='143.94' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='215.24' y='363.44' width='115.60' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='216.53' y='344.64' width='114.31' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='218.73' y='325.84' width='112.11' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='218.73' y='307.04' width='112.11' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='219.96' y='288.24' width='110.88' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='221.01' y='269.43' width='109.83' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='222.84' y='250.63' width='108.00' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='223.22' y='231.83' width='107.62' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='223.49' y='213.03' width='107.35' height='16.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<g clip-path='url(#cpMjU4LjUzfDU3MC41MnwyNi43MHw2ODMuMjU=)'>
+<polyline points='313.17,683.25 313.17,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='403.96,683.25 403.96,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='494.75,683.25 494.75,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,670.21 570.52,670.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,648.47 570.52,648.47 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,626.73 570.52,626.73 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,604.99 570.52,604.99 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,583.25 570.52,583.25 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,561.51 570.52,561.51 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,539.77 570.52,539.77 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,518.03 570.52,518.03 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,496.29 570.52,496.29 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,474.55 570.52,474.55 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,452.81 570.52,452.81 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,431.07 570.52,431.07 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,409.33 570.52,409.33 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,387.59 570.52,387.59 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,365.85 570.52,365.85 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,344.11 570.52,344.11 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,322.37 570.52,322.37 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,300.63 570.52,300.63 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,278.89 570.52,278.89 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,257.15 570.52,257.15 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,235.40 570.52,235.40 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,213.66 570.52,213.66 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,191.92 570.52,191.92 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,170.18 570.52,170.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,148.44 570.52,148.44 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,126.70 570.52,126.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,104.96 570.52,104.96 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,83.22 570.52,83.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,61.48 570.52,61.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='258.53,39.74 570.52,39.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='267.78,683.25 267.78,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='358.57,683.25 358.57,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='449.36,683.25 449.36,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='540.15,683.25 540.15,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='449.36' y='29.96' width='106.98' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='51.70' width='93.89' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='73.44' width='92.27' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='95.18' width='91.98' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='116.92' width='91.20' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='138.66' width='90.37' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='160.40' width='89.33' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='182.14' width='87.27' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='203.88' width='86.88' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='225.62' width='86.79' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='247.36' width='86.56' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='269.10' width='86.38' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='312.58' width='86.14' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='290.84' width='86.14' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='449.36' y='334.32' width='85.84' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='272.71' y='660.43' width='176.65' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='302.52' y='638.69' width='146.84' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='303.01' y='616.95' width='146.35' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='305.73' y='595.21' width='143.63' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='305.73' y='573.47' width='143.63' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='307.60' y='551.73' width='141.76' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='310.89' y='529.99' width='138.47' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='311.84' y='508.25' width='137.52' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='312.69' y='486.51' width='136.67' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='313.08' y='464.76' width='136.28' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='313.56' y='443.02' width='135.79' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='313.81' y='421.28' width='135.55' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='314.33' y='399.54' width='135.02' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='317.20' y='377.80' width='132.16' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='320.59' y='356.06' width='128.76' height='19.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHw0MzIuMDA=)'>
-<text x='170.56' y='393.62' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='93.52px' lengthAdjust='spacingAndGlyphs'>cytoplasmic translation</text>
-<text x='170.56' y='374.81' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='103.87px' lengthAdjust='spacingAndGlyphs'>oxidative phosphorylation</text>
-<text x='170.56' y='356.01' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='128.50px' lengthAdjust='spacingAndGlyphs'>aerobic electron transport chain</text>
-<text x='170.56' y='337.21' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='163.73px' lengthAdjust='spacingAndGlyphs'>ATP synthesis coupled electron transport</text>
-<text x='170.56' y='314.09' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='146.72px' lengthAdjust='spacingAndGlyphs'>mitochondrial ATP synthesis coupled</text>
-<text x='170.56' y='322.73' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='72.21px' lengthAdjust='spacingAndGlyphs'>electron transport</text>
-<text x='170.56' y='299.61' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='75.12px' lengthAdjust='spacingAndGlyphs'>aerobic respiration</text>
-<text x='170.56' y='280.81' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='164.65px' lengthAdjust='spacingAndGlyphs'>proton motive force-driven ATP synthesis</text>
-<text x='170.56' y='262.01' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='142.72px' lengthAdjust='spacingAndGlyphs'>respiratory electron transport chain</text>
-<text x='170.56' y='243.21' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='74.84px' lengthAdjust='spacingAndGlyphs'>cellular respiration</text>
-<text x='170.56' y='220.09' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='165.08px' lengthAdjust='spacingAndGlyphs'>proton motive force-driven mitochondrial</text>
-<text x='170.56' y='228.73' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='54.77px' lengthAdjust='spacingAndGlyphs'>ATP synthesis</text>
-<text x='170.56' y='205.61' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='94.53px' lengthAdjust='spacingAndGlyphs'>sarcomere organization</text>
-<text x='170.56' y='182.49' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='136.94px' lengthAdjust='spacingAndGlyphs'>cilium or flagellum-dependent cell</text>
-<text x='170.56' y='191.13' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='30.37px' lengthAdjust='spacingAndGlyphs'>motility</text>
-<text x='170.56' y='168.01' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='119.33px' lengthAdjust='spacingAndGlyphs'>cilium-dependent cell motility</text>
-<text x='170.56' y='144.89' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='155.47px' lengthAdjust='spacingAndGlyphs'>epithelial cilium movement involved in</text>
-<text x='170.56' y='153.53' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='115.86px' lengthAdjust='spacingAndGlyphs'>extracellular fluid movement</text>
-<text x='170.56' y='126.09' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='132.89px' lengthAdjust='spacingAndGlyphs'>detection of mechanical stimulus</text>
-<text x='170.56' y='134.73' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='122.89px' lengthAdjust='spacingAndGlyphs'>involved in sensory perception</text>
-<text x='170.56' y='111.60' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='133.62px' lengthAdjust='spacingAndGlyphs'>striated muscle cell development</text>
-<text x='170.56' y='88.48' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='146.58px' lengthAdjust='spacingAndGlyphs'>regulation of presynaptic membrane</text>
-<text x='170.56' y='97.12' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='35.60px' lengthAdjust='spacingAndGlyphs'>potential</text>
-<text x='170.56' y='74.00' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.74px' lengthAdjust='spacingAndGlyphs'>cilium movement</text>
-<text x='170.56' y='50.88' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='159.34px' lengthAdjust='spacingAndGlyphs'>detection of chemical stimulus involved</text>
-<text x='170.56' y='59.52' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='86.47px' lengthAdjust='spacingAndGlyphs'>in sensory perception</text>
-<text x='170.56' y='32.08' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='130.69px' lengthAdjust='spacingAndGlyphs'>detection of stimulus involved in</text>
-<text x='170.56' y='40.72' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='76.64px' lengthAdjust='spacingAndGlyphs'>sensory perception</text>
-<text x='187.93' y='412.74' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.98px' lengthAdjust='spacingAndGlyphs'>-4</text>
-<text x='259.38' y='412.74' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.98px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='330.84' y='412.74' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='5.09px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='402.30' y='412.74' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arimo";' textLength='5.09px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='301.01' y='424.44' text-anchor='middle' style='font-size: 10.00px; font-family: "Arimo";' textLength='148.64px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
-<text x='175.49' y='14.23' style='font-size: 12.00px; font-family: "Arimo";' textLength='155.35px' lengthAdjust='spacingAndGlyphs'>GSEA GO Enrichment, IC1</text>
+<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
+<text x='253.60' y='674.29' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='130.78px' lengthAdjust='spacingAndGlyphs'>cytoplasmic translation</text>
+<text x='253.60' y='652.55' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='145.28px' lengthAdjust='spacingAndGlyphs'>oxidative phosphorylation</text>
+<text x='253.60' y='630.81' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='179.67px' lengthAdjust='spacingAndGlyphs'>aerobic electron transport chain</text>
+<text x='253.60' y='609.07' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.95px' lengthAdjust='spacingAndGlyphs'>ATP synthesis coupled electron transport</text>
+<text x='253.60' y='581.28' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='205.19px' lengthAdjust='spacingAndGlyphs'>mitochondrial ATP synthesis coupled</text>
+<text x='253.60' y='593.38' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='100.96px' lengthAdjust='spacingAndGlyphs'>electron transport</text>
+<text x='253.60' y='565.59' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='230.27px' lengthAdjust='spacingAndGlyphs'>proton motive force-driven ATP synthesis</text>
+<text x='253.60' y='543.85' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='105.03px' lengthAdjust='spacingAndGlyphs'>aerobic respiration</text>
+<text x='253.60' y='522.11' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='139.08px' lengthAdjust='spacingAndGlyphs'>ATP biosynthetic process</text>
+<text x='253.60' y='494.32' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='230.87px' lengthAdjust='spacingAndGlyphs'>proton motive force-driven mitochondrial</text>
+<text x='253.60' y='506.42' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='76.60px' lengthAdjust='spacingAndGlyphs'>ATP synthesis</text>
+<text x='253.60' y='478.63' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='199.56px' lengthAdjust='spacingAndGlyphs'>respiratory electron transport chain</text>
+<text x='253.60' y='450.84' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='174.37px' lengthAdjust='spacingAndGlyphs'>purine nucleoside triphosphate</text>
+<text x='253.60' y='462.93' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='115.16px' lengthAdjust='spacingAndGlyphs'>biosynthetic process</text>
+<text x='253.60' y='429.10' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='196.03px' lengthAdjust='spacingAndGlyphs'>purine ribonucleoside triphosphate</text>
+<text x='253.60' y='441.19' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='115.16px' lengthAdjust='spacingAndGlyphs'>biosynthetic process</text>
+<text x='253.60' y='413.41' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='104.64px' lengthAdjust='spacingAndGlyphs'>cellular respiration</text>
+<text x='253.60' y='385.62' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.76px' lengthAdjust='spacingAndGlyphs'>ribonucleoside triphosphate biosynthetic</text>
+<text x='253.60' y='397.71' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='43.00px' lengthAdjust='spacingAndGlyphs'>process</text>
+<text x='253.60' y='369.93' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='134.81px' lengthAdjust='spacingAndGlyphs'>electron transport chain</text>
+<text x='253.60' y='342.14' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='185.06px' lengthAdjust='spacingAndGlyphs'>cilium movement involved in cell</text>
+<text x='253.60' y='354.23' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='42.47px' lengthAdjust='spacingAndGlyphs'>motility</text>
+<text x='253.60' y='320.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='191.50px' lengthAdjust='spacingAndGlyphs'>cilium or flagellum-dependent cell</text>
+<text x='253.60' y='332.49' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='42.47px' lengthAdjust='spacingAndGlyphs'>motility</text>
+<text x='253.60' y='304.70' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='166.87px' lengthAdjust='spacingAndGlyphs'>cilium-dependent cell motility</text>
+<text x='253.60' y='282.96' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='248.12px' lengthAdjust='spacingAndGlyphs'>homologous chromosome pairing at meiosis</text>
+<text x='253.60' y='261.22' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='185.84px' lengthAdjust='spacingAndGlyphs'>detection of mechanical stimulus</text>
+<text x='253.60' y='239.48' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='125.32px' lengthAdjust='spacingAndGlyphs'>extracellular transport</text>
+<text x='253.60' y='217.74' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='132.19px' lengthAdjust='spacingAndGlyphs'>sarcomere organization</text>
+<text x='253.60' y='196.00' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='106.03px' lengthAdjust='spacingAndGlyphs'>myofibril assembly</text>
+<text x='253.60' y='168.21' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='185.84px' lengthAdjust='spacingAndGlyphs'>detection of mechanical stimulus</text>
+<text x='253.60' y='180.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='171.88px' lengthAdjust='spacingAndGlyphs'>involved in sensory perception</text>
+<text x='253.60' y='146.47' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='217.45px' lengthAdjust='spacingAndGlyphs'>epithelial cilium movement involved in</text>
+<text x='253.60' y='158.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='162.04px' lengthAdjust='spacingAndGlyphs'>extracellular fluid movement</text>
+<text x='253.60' y='130.78' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='186.85px' lengthAdjust='spacingAndGlyphs'>striated muscle cell development</text>
+<text x='253.60' y='102.99' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='204.98px' lengthAdjust='spacingAndGlyphs'>regulation of presynaptic membrane</text>
+<text x='253.60' y='115.09' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='49.77px' lengthAdjust='spacingAndGlyphs'>potential</text>
+<text x='253.60' y='87.30' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='97.55px' lengthAdjust='spacingAndGlyphs'>cilium movement</text>
+<text x='253.60' y='59.51' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='222.84px' lengthAdjust='spacingAndGlyphs'>detection of chemical stimulus involved</text>
+<text x='253.60' y='71.61' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='120.93px' lengthAdjust='spacingAndGlyphs'>in sensory perception</text>
+<text x='253.60' y='37.77' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='182.79px' lengthAdjust='spacingAndGlyphs'>detection of stimulus involved in</text>
+<text x='253.60' y='49.87' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='107.17px' lengthAdjust='spacingAndGlyphs'>sensory perception</text>
+<text x='267.78' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-4</text>
+<text x='358.57' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='449.36' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='540.15' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='414.53' y='711.61' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='207.99px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
+<text x='258.53' y='17.73' style='font-size: 16.80px; font-family: "Arimo";' textLength='217.41px' lengthAdjust='spacingAndGlyphs'>GSEA GO Enrichment, IC1</text>
 </g>
 </svg>
