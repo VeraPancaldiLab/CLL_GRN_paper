@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='576.00pt' height='720.00pt' viewBox='0 0 576.00 720.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='1080.00pt' viewBox='0 0 720.00 1080.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -14,106 +14,154 @@
     }
   ]]></style>
 </defs>
-<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
 <defs>
-  <clipPath id='cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA='>
-    <rect x='0.00' y='0.00' width='576.00' height='720.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw'>
+    <rect x='0.00' y='0.00' width='720.00' height='1080.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
 </g>
 <defs>
-  <clipPath id='cpMjU3LjA4fDU3MC41MnwyNi43MHw2ODMuMjU='>
-    <rect x='257.08' y='26.70' width='313.44' height='656.56' />
+  <clipPath id='cpMjkyLjQ2fDcxNC41MnwyOC45NHwxMDM5Ljg3'>
+    <rect x='292.46' y='28.94' width='422.06' height='1010.93' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjU3LjA4fDU3MC41MnwyNi43MHw2ODMuMjU=)'>
-<polyline points='320.36,683.25 320.36,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='384.50,683.25 384.50,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='448.63,683.25 448.63,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='512.76,683.25 512.76,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,663.75 570.52,663.75 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,631.25 570.52,631.25 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,598.75 570.52,598.75 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,566.24 570.52,566.24 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,533.74 570.52,533.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,501.24 570.52,501.24 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,468.74 570.52,468.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,436.23 570.52,436.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,403.73 570.52,403.73 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,371.23 570.52,371.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,338.73 570.52,338.73 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,306.22 570.52,306.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,273.72 570.52,273.72 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,241.22 570.52,241.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,208.71 570.52,208.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,176.21 570.52,176.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,143.71 570.52,143.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,111.21 570.52,111.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,78.70 570.52,78.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='257.08,46.20 570.52,46.20 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='288.30,683.25 288.30,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='352.43,683.25 352.43,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='416.56,683.25 416.56,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='480.69,683.25 480.69,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='544.83,683.25 544.83,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='416.56' y='31.57' width='139.71' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='64.08' width='137.45' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='96.58' width='137.14' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='129.08' width='134.68' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='161.58' width='134.52' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='194.09' width='133.50' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='226.59' width='133.12' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='259.09' width='129.88' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='291.60' width='129.38' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='416.56' y='324.10' width='129.38' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='271.32' y='584.12' width='145.24' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='271.32' y='649.13' width='145.24' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='271.32' y='616.62' width='145.24' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='275.96' y='551.62' width='140.60' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='276.62' y='519.12' width='139.94' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='278.41' y='486.61' width='138.15' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='278.96' y='389.10' width='137.60' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='278.96' y='454.11' width='137.60' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='278.96' y='421.61' width='137.60' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='279.47' y='356.60' width='137.09' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<g clip-path='url(#cpMjkyLjQ2fDcxNC41MnwyOC45NHwxMDM5Ljg3)'>
+<polyline points='373.58,1039.87 373.58,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='461.18,1039.87 461.18,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='548.77,1039.87 548.77,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='636.37,1039.87 636.37,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,1022.14 714.52,1022.14 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,992.58 714.52,992.58 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,963.02 714.52,963.02 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,933.46 714.52,933.46 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,903.90 714.52,903.90 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,874.34 714.52,874.34 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,844.78 714.52,844.78 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,815.22 714.52,815.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,785.66 714.52,785.66 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,756.10 714.52,756.10 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,726.54 714.52,726.54 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,696.98 714.52,696.98 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,667.42 714.52,667.42 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,637.86 714.52,637.86 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,608.30 714.52,608.30 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,578.74 714.52,578.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,549.18 714.52,549.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,519.62 714.52,519.62 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,490.06 714.52,490.06 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,460.51 714.52,460.51 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,430.95 714.52,430.95 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,401.39 714.52,401.39 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,371.83 714.52,371.83 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,342.27 714.52,342.27 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,312.71 714.52,312.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,283.15 714.52,283.15 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,253.59 714.52,253.59 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,224.03 714.52,224.03 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,194.47 714.52,194.47 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,164.91 714.52,164.91 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,135.35 714.52,135.35 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,105.79 714.52,105.79 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,76.23 714.52,76.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='292.46,46.67 714.52,46.67 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='329.78,1039.87 329.78,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='417.38,1039.87 417.38,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='504.97,1039.87 504.97,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='592.57,1039.87 592.57,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='680.16,1039.87 680.16,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='504.97' y='33.37' width='190.36' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='62.93' width='188.12' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='92.49' width='187.41' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='122.05' width='186.22' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='151.61' width='184.06' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='181.17' width='182.28' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='210.73' width='181.90' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='240.29' width='178.43' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='269.85' width='177.26' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='299.41' width='177.26' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='328.97' width='176.66' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='358.53' width='174.81' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='388.08' width='173.73' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='417.64' width='172.76' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='447.20' width='172.76' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='476.76' width='169.09' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='504.97' y='506.32' width='167.97' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='311.65' y='949.71' width='193.32' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='311.65' y='1008.83' width='193.32' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='311.65' y='979.27' width='193.32' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='313.77' y='920.16' width='191.20' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='314.02' y='890.60' width='190.96' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='317.35' y='861.04' width='187.63' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='319.09' y='772.36' width='185.89' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='319.09' y='831.48' width='185.89' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='319.09' y='801.92' width='185.89' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='320.73' y='742.80' width='184.25' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='320.75' y='713.24' width='184.23' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='320.82' y='683.68' width='184.15' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='322.15' y='654.12' width='182.83' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='322.29' y='624.56' width='182.69' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='322.83' y='595.00' width='182.14' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='322.92' y='565.44' width='182.05' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='323.71' y='535.88' width='181.27' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
 </g>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
-<text x='252.14' y='667.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='207.91px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged pyrimidine</text>
-<text x='252.14' y='635.33' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='96.54px' lengthAdjust='spacingAndGlyphs'>Depyrimidination</text>
-<text x='252.14' y='590.73' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='199.50px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
-<text x='252.14' y='602.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='195.92px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
-<text x='252.14' y='614.92' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='109.32px' lengthAdjust='spacingAndGlyphs'>affected pyrimidine</text>
-<text x='252.14' y='570.32' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='222.89px' lengthAdjust='spacingAndGlyphs'>Base-Excision Repair, AP Site Formation</text>
-<text x='252.14' y='537.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='158.09px' lengthAdjust='spacingAndGlyphs'>Packaging Of Telomere Ends</text>
-<text x='252.14' y='499.27' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='205.28px' lengthAdjust='spacingAndGlyphs'>Assembly of the ORC complex at the</text>
-<text x='252.14' y='511.37' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='108.76px' lengthAdjust='spacingAndGlyphs'>origin of replication</text>
-<text x='252.14' y='472.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='184.16px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged purine</text>
-<text x='252.14' y='440.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Depurination</text>
-<text x='252.14' y='395.71' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='199.50px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
-<text x='252.14' y='407.81' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='195.92px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
-<text x='252.14' y='419.91' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='85.56px' lengthAdjust='spacingAndGlyphs'>affected purine</text>
-<text x='252.14' y='375.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='115.06px' lengthAdjust='spacingAndGlyphs'>Defective pyroptosis</text>
-<text x='252.14' y='336.76' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='246.66px' lengthAdjust='spacingAndGlyphs'>Nonsense Mediated Decay (NMD) enhanced</text>
-<text x='252.14' y='348.85' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='198.21px' lengthAdjust='spacingAndGlyphs'>by the Exon Junction Complex (EJC)</text>
-<text x='252.14' y='310.30' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='188.45px' lengthAdjust='spacingAndGlyphs'>Nonsense-Mediated Decay (NMD)</text>
-<text x='252.14' y='271.75' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='215.94px' lengthAdjust='spacingAndGlyphs'>SRP-dependent cotranslational protein</text>
-<text x='252.14' y='283.85' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='130.87px' lengthAdjust='spacingAndGlyphs'>targeting to membrane</text>
-<text x='252.14' y='245.30' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='192.72px' lengthAdjust='spacingAndGlyphs'>Eukaryotic Translation Termination</text>
-<text x='252.14' y='212.79' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='127.86px' lengthAdjust='spacingAndGlyphs'>Viral mRNA Translation</text>
-<text x='252.14' y='180.29' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='224.65px' lengthAdjust='spacingAndGlyphs'>Formation of a pool of free 40S subunits</text>
-<text x='252.14' y='147.79' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='141.11px' lengthAdjust='spacingAndGlyphs'>Selenocysteine synthesis</text>
-<text x='252.14' y='115.28' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='186.61px' lengthAdjust='spacingAndGlyphs'>Eukaryotic Translation Elongation</text>
-<text x='252.14' y='70.69' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='187.96px' lengthAdjust='spacingAndGlyphs'>Nonsense Mediated Decay (NMD)</text>
-<text x='252.14' y='82.78' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='239.08px' lengthAdjust='spacingAndGlyphs'>independent of the Exon Junction Complex</text>
-<text x='252.14' y='94.88' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='26.91px' lengthAdjust='spacingAndGlyphs'>(EJC)</text>
-<text x='252.14' y='50.28' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='138.54px' lengthAdjust='spacingAndGlyphs'>Peptide chain elongation</text>
-<text x='288.30' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='352.43' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-1</text>
-<text x='416.56' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='480.69' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>1</text>
-<text x='544.83' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='413.80' y='711.61' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='207.99px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
-<text x='257.08' y='17.73' style='font-size: 16.80px; font-family: "Arimo";' textLength='275.52px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC9</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
+<text x='287.53' y='1026.80' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='237.78px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged pyrimidine</text>
+<text x='287.53' y='997.24' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='110.39px' lengthAdjust='spacingAndGlyphs'>Depyrimidination</text>
+<text x='287.53' y='953.85' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.13px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
+<text x='287.53' y='967.68' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='224.04px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
+<text x='287.53' y='981.50' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='125.03px' lengthAdjust='spacingAndGlyphs'>affected pyrimidine</text>
+<text x='287.53' y='938.12' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='180.79px' lengthAdjust='spacingAndGlyphs'>Packaging Of Telomere Ends</text>
+<text x='287.53' y='908.56' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='254.89px' lengthAdjust='spacingAndGlyphs'>Base-Excision Repair, AP Site Formation</text>
+<text x='287.53' y='872.09' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='234.75px' lengthAdjust='spacingAndGlyphs'>Assembly of the ORC complex at the</text>
+<text x='287.53' y='885.91' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='124.37px' lengthAdjust='spacingAndGlyphs'>origin of replication</text>
+<text x='287.53' y='849.44' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='210.61px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged purine</text>
+<text x='287.53' y='819.88' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='83.22px' lengthAdjust='spacingAndGlyphs'>Depurination</text>
+<text x='287.53' y='776.50' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.13px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
+<text x='287.53' y='790.32' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='224.04px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
+<text x='287.53' y='804.15' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='97.86px' lengthAdjust='spacingAndGlyphs'>affected purine</text>
+<text x='287.53' y='760.76' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='180.95px' lengthAdjust='spacingAndGlyphs'>HDACs deacetylate histones</text>
+<text x='287.53' y='731.20' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='131.58px' lengthAdjust='spacingAndGlyphs'>Defective pyroptosis</text>
+<text x='287.53' y='701.64' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='234.16px' lengthAdjust='spacingAndGlyphs'>RNA Polymerase I Promoter Opening</text>
+<text x='287.53' y='665.17' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='227.40px' lengthAdjust='spacingAndGlyphs'>Chromatin modifications during the</text>
+<text x='287.53' y='679.00' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='231.26px' lengthAdjust='spacingAndGlyphs'>maternal to zygotic transition (MZT)</text>
+<text x='287.53' y='642.52' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='227.37px' lengthAdjust='spacingAndGlyphs'>PRC2 methylates histones and DNA</text>
+<text x='287.53' y='612.96' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='109.18px' lengthAdjust='spacingAndGlyphs'>DNA methylation</text>
+<text x='287.53' y='576.49' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='264.47px' lengthAdjust='spacingAndGlyphs'>ERCC6 (CSB) and EHMT2 (G9a) positively</text>
+<text x='287.53' y='590.32' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='163.00px' lengthAdjust='spacingAndGlyphs'>regulate rRNA expression</text>
+<text x='287.53' y='546.93' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='207.62px' lengthAdjust='spacingAndGlyphs'>SIRT1 negatively regulates rRNA</text>
+<text x='287.53' y='560.76' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.02px' lengthAdjust='spacingAndGlyphs'>expression</text>
+<text x='287.53' y='524.29' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='142.52px' lengthAdjust='spacingAndGlyphs'>Nucleotide catabolism</text>
+<text x='287.53' y='487.81' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='252.37px' lengthAdjust='spacingAndGlyphs'>SARS-CoV-1 modulates host translation</text>
+<text x='287.53' y='501.64' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='67.82px' lengthAdjust='spacingAndGlyphs'>machinery</text>
+<text x='287.53' y='465.17' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='232.93px' lengthAdjust='spacingAndGlyphs'>Cap-dependent Translation Initiation</text>
+<text x='287.53' y='435.61' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='201.71px' lengthAdjust='spacingAndGlyphs'>Eukaryotic Translation Initiation</text>
+<text x='287.53' y='406.05' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='142.71px' lengthAdjust='spacingAndGlyphs'>Syndecan interactions</text>
+<text x='287.53' y='369.58' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='238.67px' lengthAdjust='spacingAndGlyphs'>GTP hydrolysis and joining of the 60S</text>
+<text x='287.53' y='383.40' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='114.88px' lengthAdjust='spacingAndGlyphs'>ribosomal subunit</text>
+<text x='287.53' y='340.02' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='258.05px' lengthAdjust='spacingAndGlyphs'>L13a-mediated translational silencing of</text>
+<text x='287.53' y='353.84' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='164.96px' lengthAdjust='spacingAndGlyphs'>Ceruloplasmin expression</text>
+<text x='287.53' y='310.46' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='282.05px' lengthAdjust='spacingAndGlyphs'>Nonsense Mediated Decay (NMD) enhanced</text>
+<text x='287.53' y='324.28' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='226.66px' lengthAdjust='spacingAndGlyphs'>by the Exon Junction Complex (EJC)</text>
+<text x='287.53' y='287.81' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='215.47px' lengthAdjust='spacingAndGlyphs'>Nonsense-Mediated Decay (NMD)</text>
+<text x='287.53' y='251.34' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='246.95px' lengthAdjust='spacingAndGlyphs'>SRP-dependent cotranslational protein</text>
+<text x='287.53' y='265.16' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='149.67px' lengthAdjust='spacingAndGlyphs'>targeting to membrane</text>
+<text x='287.53' y='228.69' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='146.22px' lengthAdjust='spacingAndGlyphs'>Viral mRNA Translation</text>
+<text x='287.53' y='199.13' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='220.37px' lengthAdjust='spacingAndGlyphs'>Eukaryotic Translation Termination</text>
+<text x='287.53' y='169.57' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='161.35px' lengthAdjust='spacingAndGlyphs'>Selenocysteine synthesis</text>
+<text x='287.53' y='140.01' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='256.89px' lengthAdjust='spacingAndGlyphs'>Formation of a pool of free 40S subunits</text>
+<text x='287.53' y='110.45' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='213.39px' lengthAdjust='spacingAndGlyphs'>Eukaryotic Translation Elongation</text>
+<text x='287.53' y='67.07' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='214.93px' lengthAdjust='spacingAndGlyphs'>Nonsense Mediated Decay (NMD)</text>
+<text x='287.53' y='80.89' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='273.39px' lengthAdjust='spacingAndGlyphs'>independent of the Exon Junction Complex</text>
+<text x='287.53' y='94.72' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='30.77px' lengthAdjust='spacingAndGlyphs'>(EJC)</text>
+<text x='287.53' y='51.33' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='158.44px' lengthAdjust='spacingAndGlyphs'>Peptide chain elongation</text>
+<text x='329.78' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='417.38' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-1</text>
+<text x='504.97' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='592.57' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='680.16' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='503.49' y='1071.19' text-anchor='middle' style='font-size: 16.00px; font-family: "Arimo";' textLength='237.74px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
+<text x='292.46' y='19.47' style='font-size: 19.20px; font-family: "Arimo";' textLength='314.70px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC9</text>
 </g>
 </svg>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='576.00pt' height='720.00pt' viewBox='0 0 576.00 720.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='1080.00pt' viewBox='0 0 720.00 1080.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -14,103 +14,154 @@
     }
   ]]></style>
 </defs>
-<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
 <defs>
-  <clipPath id='cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA='>
-    <rect x='0.00' y='0.00' width='576.00' height='720.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw'>
+    <rect x='0.00' y='0.00' width='720.00' height='1080.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
 </g>
 <defs>
-  <clipPath id='cpMjI4LjUwfDU3MC41MnwyNi43MHw2ODMuMjU='>
-    <rect x='228.50' y='26.70' width='342.02' height='656.56' />
+  <clipPath id='cpMjgyLjU5fDcxNC41MnwyOC45NHwxMDM5Ljg3'>
+    <rect x='282.59' y='28.94' width='431.93' height='1010.93' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjI4LjUwfDU3MC41MnwyNi43MHw2ODMuMjU=)'>
-<polyline points='292.81,683.25 292.81,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='368.50,683.25 368.50,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='444.19,683.25 444.19,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='519.88,683.25 519.88,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,663.75 570.52,663.75 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,631.25 570.52,631.25 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,598.75 570.52,598.75 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,566.24 570.52,566.24 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,533.74 570.52,533.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,501.24 570.52,501.24 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,468.74 570.52,468.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,436.23 570.52,436.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,403.73 570.52,403.73 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,371.23 570.52,371.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,338.73 570.52,338.73 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,306.22 570.52,306.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,273.72 570.52,273.72 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,241.22 570.52,241.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,208.71 570.52,208.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,176.21 570.52,176.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,143.71 570.52,143.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,111.21 570.52,111.21 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,78.70 570.52,78.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='228.50,46.20 570.52,46.20 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='254.97,683.25 254.97,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='330.66,683.25 330.66,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='406.35,683.25 406.35,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='482.04,683.25 482.04,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='557.73,683.25 557.73,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='406.35' y='31.57' width='148.63' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='406.35' y='64.08' width='137.81' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
-<rect x='289.57' y='96.58' width='116.78' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='288.09' y='129.08' width='118.26' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='286.59' y='161.58' width='119.76' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='286.32' y='194.09' width='120.03' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='284.58' y='226.59' width='121.76' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='283.64' y='259.09' width='122.70' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='283.41' y='291.60' width='122.94' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='281.50' y='324.10' width='124.85' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='244.05' y='649.13' width='162.30' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='245.10' y='616.62' width='161.25' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='245.11' y='584.12' width='161.23' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='252.41' y='551.62' width='153.94' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='259.36' y='519.12' width='146.98' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='259.95' y='486.61' width='146.40' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='261.59' y='454.11' width='144.76' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='262.03' y='356.60' width='144.31' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='262.03' y='421.61' width='144.31' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='262.03' y='389.10' width='144.31' height='29.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<g clip-path='url(#cpMjgyLjU5fDcxNC41MnwyOC45NHwxMDM5Ljg3)'>
+<polyline points='364.84,1039.87 364.84,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='459.10,1039.87 459.10,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='553.37,1039.87 553.37,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='647.63,1039.87 647.63,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,1022.14 714.52,1022.14 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,992.58 714.52,992.58 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,963.02 714.52,963.02 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,933.46 714.52,933.46 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,903.90 714.52,903.90 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,874.34 714.52,874.34 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,844.78 714.52,844.78 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,815.22 714.52,815.22 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,785.66 714.52,785.66 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,756.10 714.52,756.10 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,726.54 714.52,726.54 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,696.98 714.52,696.98 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,667.42 714.52,667.42 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,637.86 714.52,637.86 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,608.30 714.52,608.30 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,578.74 714.52,578.74 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,549.18 714.52,549.18 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,519.62 714.52,519.62 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,490.06 714.52,490.06 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,460.51 714.52,460.51 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,430.95 714.52,430.95 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,401.39 714.52,401.39 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,371.83 714.52,371.83 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,342.27 714.52,342.27 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,312.71 714.52,312.71 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,283.15 714.52,283.15 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,253.59 714.52,253.59 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,224.03 714.52,224.03 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,194.47 714.52,194.47 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,164.91 714.52,164.91 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,135.35 714.52,135.35 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,105.79 714.52,105.79 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,76.23 714.52,76.23 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='282.59,46.67 714.52,46.67 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='317.71,1039.87 317.71,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='411.97,1039.87 411.97,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='506.24,1039.87 506.24,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='600.50,1039.87 600.50,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='694.76,1039.87 694.76,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='506.24' y='33.37' width='188.65' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='506.24' y='62.93' width='163.26' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4C7FA5;' />
+<rect x='363.82' y='92.49' width='142.42' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='360.33' y='122.05' width='145.90' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='357.37' y='151.61' width='148.87' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='356.44' y='181.17' width='149.79' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='355.91' y='210.73' width='150.32' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='352.51' y='240.29' width='153.72' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='350.82' y='269.85' width='155.41' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='349.91' y='299.41' width='156.33' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='348.91' y='328.97' width='157.33' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='348.78' y='388.08' width='157.45' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='348.78' y='358.53' width='157.45' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='348.45' y='417.64' width='157.79' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='347.39' y='447.20' width='158.85' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='346.60' y='476.76' width='159.63' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='346.07' y='506.32' width='160.17' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='302.23' y='1008.83' width='204.01' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='303.55' y='979.27' width='202.69' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='303.57' y='949.71' width='202.67' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='313.47' y='920.16' width='192.76' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='322.56' y='890.60' width='183.68' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='324.65' y='861.04' width='181.59' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='326.68' y='772.36' width='179.56' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='326.68' y='831.48' width='179.56' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='326.68' y='801.92' width='179.56' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='326.79' y='742.80' width='179.45' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='327.20' y='713.24' width='179.04' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='329.40' y='683.68' width='176.84' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='329.56' y='654.12' width='176.68' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='329.63' y='624.56' width='176.61' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='330.02' y='595.00' width='176.21' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='330.21' y='565.44' width='176.03' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='330.22' y='535.88' width='176.01' height='26.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
 </g>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
-<text x='223.57' y='667.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='202.55px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation elongation</text>
-<text x='223.57' y='635.33' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='192.33px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation initiation</text>
-<text x='223.57' y='602.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='208.30px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation termination</text>
-<text x='223.57' y='570.32' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='139.67px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation</text>
-<text x='223.57' y='537.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='158.09px' lengthAdjust='spacingAndGlyphs'>Packaging Of Telomere Ends</text>
-<text x='223.57' y='505.32' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='60.97px' lengthAdjust='spacingAndGlyphs'>Translation</text>
-<text x='223.57' y='472.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='218.09px' lengthAdjust='spacingAndGlyphs'>TNFs bind their physiological receptors</text>
-<text x='223.57' y='440.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='184.16px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged purine</text>
-<text x='223.57' y='407.81' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Depurination</text>
-<text x='223.57' y='363.21' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='199.50px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
-<text x='223.57' y='375.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='195.92px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
-<text x='223.57' y='387.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='85.56px' lengthAdjust='spacingAndGlyphs'>affected purine</text>
-<text x='223.57' y='330.71' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='197.13px' lengthAdjust='spacingAndGlyphs'>Activation of anterior HOX genes in</text>
-<text x='223.57' y='342.80' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='201.79px' lengthAdjust='spacingAndGlyphs'>hindbrain development during early</text>
-<text x='223.57' y='354.90' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='85.69px' lengthAdjust='spacingAndGlyphs'>embryogenesis</text>
-<text x='223.57' y='310.30' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='128.46px' lengthAdjust='spacingAndGlyphs'>Gene Silencing by RNA</text>
-<text x='223.57' y='277.80' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='74.23px' lengthAdjust='spacingAndGlyphs'>Reproduction</text>
-<text x='223.57' y='245.30' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='41.27px' lengthAdjust='spacingAndGlyphs'>Meiosis</text>
-<text x='223.57' y='212.79' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='114.18px' lengthAdjust='spacingAndGlyphs'>GPCR ligand binding</text>
-<text x='223.57' y='180.29' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='132.33px' lengthAdjust='spacingAndGlyphs'>HATs acetylate histones</text>
-<text x='223.57' y='141.74' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='194.98px' lengthAdjust='spacingAndGlyphs'>Aerobic respiration and respiratory</text>
-<text x='223.57' y='153.84' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='100.96px' lengthAdjust='spacingAndGlyphs'>electron transport</text>
-<text x='223.57' y='115.28' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='92.25px' lengthAdjust='spacingAndGlyphs'>rRNA processing</text>
-<text x='223.57' y='76.73' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='205.67px' lengthAdjust='spacingAndGlyphs'>Regulation of RUNX1 Expression and</text>
-<text x='223.57' y='88.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='41.85px' lengthAdjust='spacingAndGlyphs'>Activity</text>
-<text x='223.57' y='50.28' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='204.47px' lengthAdjust='spacingAndGlyphs'>Transcriptional Regulation by MECP2</text>
-<text x='254.97' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='330.66' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-1</text>
-<text x='406.35' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='482.04' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>1</text>
-<text x='557.73' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='399.51' y='711.61' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='207.99px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
-<text x='228.50' y='17.73' style='font-size: 16.80px; font-family: "Arimo";' textLength='275.52px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC5</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
+<text x='277.66' y='1026.80' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='231.62px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation elongation</text>
+<text x='277.66' y='997.24' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='219.94px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation initiation</text>
+<text x='277.66' y='967.68' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='238.20px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation termination</text>
+<text x='277.66' y='938.12' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='159.72px' lengthAdjust='spacingAndGlyphs'>Mitochondrial translation</text>
+<text x='277.66' y='908.56' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.72px' lengthAdjust='spacingAndGlyphs'>Translation</text>
+<text x='277.66' y='879.00' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='180.79px' lengthAdjust='spacingAndGlyphs'>Packaging Of Telomere Ends</text>
+<text x='277.66' y='849.44' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='210.61px' lengthAdjust='spacingAndGlyphs'>Cleavage of the damaged purine</text>
+<text x='277.66' y='819.88' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='83.22px' lengthAdjust='spacingAndGlyphs'>Depurination</text>
+<text x='277.66' y='776.50' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.13px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
+<text x='277.66' y='790.32' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='224.04px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
+<text x='277.66' y='804.15' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='97.86px' lengthAdjust='spacingAndGlyphs'>affected purine</text>
+<text x='277.66' y='760.76' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='182.72px' lengthAdjust='spacingAndGlyphs'>Mitochondrial protein import</text>
+<text x='277.66' y='724.29' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='247.21px' lengthAdjust='spacingAndGlyphs'>DNA Damage/Telomere Stress Induced</text>
+<text x='277.66' y='738.11' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='76.55px' lengthAdjust='spacingAndGlyphs'>Senescence</text>
+<text x='277.66' y='694.73' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='221.68px' lengthAdjust='spacingAndGlyphs'>Inhibition of DNA recombination at</text>
+<text x='277.66' y='708.56' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='57.46px' lengthAdjust='spacingAndGlyphs'>telomere</text>
+<text x='277.66' y='672.08' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='142.28px' lengthAdjust='spacingAndGlyphs'>Meiotic recombination</text>
+<text x='277.66' y='642.52' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='234.16px' lengthAdjust='spacingAndGlyphs'>RNA Polymerase I Promoter Opening</text>
+<text x='277.66' y='612.96' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='132.44px' lengthAdjust='spacingAndGlyphs'>Base Excision Repair</text>
+<text x='277.66' y='576.49' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='179.15px' lengthAdjust='spacingAndGlyphs'>Transcriptional regulation of</text>
+<text x='277.66' y='590.32' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='93.09px' lengthAdjust='spacingAndGlyphs'>granulopoiesis</text>
+<text x='277.66' y='540.02' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.13px' lengthAdjust='spacingAndGlyphs'>Recognition and association of DNA</text>
+<text x='277.66' y='553.85' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='224.04px' lengthAdjust='spacingAndGlyphs'>glycosylase with site containing an</text>
+<text x='277.66' y='567.67' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='125.03px' lengthAdjust='spacingAndGlyphs'>affected pyrimidine</text>
+<text x='277.66' y='517.37' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='206.39px' lengthAdjust='spacingAndGlyphs'>NoRC negatively regulates rRNA</text>
+<text x='277.66' y='531.20' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.02px' lengthAdjust='spacingAndGlyphs'>expression</text>
+<text x='277.66' y='487.81' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='272.18px' lengthAdjust='spacingAndGlyphs'>B-WICH complex positively regulates rRNA</text>
+<text x='277.66' y='501.64' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.02px' lengthAdjust='spacingAndGlyphs'>expression</text>
+<text x='277.66' y='465.17' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='178.34px' lengthAdjust='spacingAndGlyphs'>RHO GTPases activate PKNs</text>
+<text x='277.66' y='428.70' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='242.53px' lengthAdjust='spacingAndGlyphs'>Positive epigenetic regulation of rRNA</text>
+<text x='277.66' y='442.52' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='69.02px' lengthAdjust='spacingAndGlyphs'>expression</text>
+<text x='277.66' y='392.22' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='225.42px' lengthAdjust='spacingAndGlyphs'>Activation of anterior HOX genes in</text>
+<text x='277.66' y='406.05' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='230.77px' lengthAdjust='spacingAndGlyphs'>hindbrain development during early</text>
+<text x='277.66' y='419.87' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='97.98px' lengthAdjust='spacingAndGlyphs'>embryogenesis</text>
+<text x='277.66' y='369.58' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='200.22px' lengthAdjust='spacingAndGlyphs'>Activation of HOX genes during</text>
+<text x='277.66' y='383.40' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='90.45px' lengthAdjust='spacingAndGlyphs'>differentiation</text>
+<text x='277.66' y='346.93' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='227.64px' lengthAdjust='spacingAndGlyphs'>Diseases of programmed cell death</text>
+<text x='277.66' y='317.37' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='98.22px' lengthAdjust='spacingAndGlyphs'>HCMV Infection</text>
+<text x='277.66' y='287.81' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='258.62px' lengthAdjust='spacingAndGlyphs'>Transcriptional regulation by small RNAs</text>
+<text x='277.66' y='258.25' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='84.89px' lengthAdjust='spacingAndGlyphs'>Reproduction</text>
+<text x='277.66' y='228.69' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='151.32px' lengthAdjust='spacingAndGlyphs'>HATs acetylate histones</text>
+<text x='277.66' y='199.13' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='130.59px' lengthAdjust='spacingAndGlyphs'>GPCR ligand binding</text>
+<text x='277.66' y='162.66' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='222.99px' lengthAdjust='spacingAndGlyphs'>Aerobic respiration and respiratory</text>
+<text x='277.66' y='176.48' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='115.46px' lengthAdjust='spacingAndGlyphs'>electron transport</text>
+<text x='277.66' y='140.01' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='105.50px' lengthAdjust='spacingAndGlyphs'>rRNA processing</text>
+<text x='277.66' y='103.54' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='227.95px' lengthAdjust='spacingAndGlyphs'>rRNA processing in the nucleus and</text>
+<text x='277.66' y='117.37' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='45.50px' lengthAdjust='spacingAndGlyphs'>cytosol</text>
+<text x='277.66' y='80.89' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='228.58px' lengthAdjust='spacingAndGlyphs'>MITF-M-dependent gene expression</text>
+<text x='277.66' y='51.33' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='233.83px' lengthAdjust='spacingAndGlyphs'>Transcriptional Regulation by MECP2</text>
+<text x='317.71' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='411.97' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-1</text>
+<text x='506.24' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='600.50' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='694.76' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='498.56' y='1071.19' text-anchor='middle' style='font-size: 16.00px; font-family: "Arimo";' textLength='237.74px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
+<text x='282.59' y='19.47' style='font-size: 19.20px; font-family: "Arimo";' textLength='314.70px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC5</text>
 </g>
 </svg>

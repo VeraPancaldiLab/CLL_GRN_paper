@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='576.00pt' height='720.00pt' viewBox='0 0 576.00 720.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='1080.00pt' viewBox='0 0 720.00 1080.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -14,54 +14,53 @@
     }
   ]]></style>
 </defs>
-<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
 <defs>
-  <clipPath id='cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA='>
-    <rect x='0.00' y='0.00' width='576.00' height='720.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw'>
+    <rect x='0.00' y='0.00' width='720.00' height='1080.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
 </g>
 <defs>
-  <clipPath id='cpMjI5LjMwfDU3MC41MnwyNi43MHw2ODMuMjU='>
-    <rect x='229.30' y='26.70' width='341.22' height='656.56' />
+  <clipPath id='cpMjYwLjczfDcxNC41MnwyOC45NHwxMDM5Ljg3'>
+    <rect x='260.73' y='28.94' width='453.79' height='1010.93' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjI5LjMwfDU3MC41MnwyNi43MHw2ODMuMjU=)'>
-<polyline points='233.65,683.25 233.65,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='305.06,683.25 305.06,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='376.47,683.25 376.47,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='447.89,683.25 447.89,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='519.30,683.25 519.30,26.70 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='229.30,589.46 570.52,589.46 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='229.30,433.14 570.52,433.14 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='229.30,276.81 570.52,276.81 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='229.30,120.49 570.52,120.49 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='269.35,683.25 269.35,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='340.77,683.25 340.77,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='412.18,683.25 412.18,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='483.60,683.25 483.60,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='555.01,683.25 555.01,26.70 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='419.96' y='50.15' width='135.05' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='413.47' y='206.47' width='141.54' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='409.90' y='362.79' width='145.11' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='399.91' y='519.12' width='155.10' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='244.81' y='519.12' width='155.10' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='264.78' y='362.79' width='145.11' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='271.93' y='206.47' width='141.54' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
-<rect x='284.91' y='50.15' width='135.05' height='140.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<g clip-path='url(#cpMjYwLjczfDcxNC41MnwyOC45NHwxMDM5Ljg3)'>
+<polyline points='349.40,1039.87 349.40,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='447.82,1039.87 447.82,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='546.25,1039.87 546.25,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='644.68,1039.87 644.68,28.94 ' style='stroke-width: 0.53; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='260.73,895.45 714.52,895.45 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='260.73,654.75 714.52,654.75 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='260.73,414.05 714.52,414.05 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='260.73,173.36 714.52,173.36 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='300.18,1039.87 300.18,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='398.61,1039.87 398.61,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='497.04,1039.87 497.04,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='595.47,1039.87 595.47,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='693.89,1039.87 693.89,28.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='510.89' y='65.04' width='183.00' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='505.19' y='305.74' width='188.71' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='500.32' y='546.44' width='193.58' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='487.62' y='787.14' width='206.27' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='281.35' y='787.14' width='206.27' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='306.74' y='546.44' width='193.58' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='316.48' y='305.74' width='188.71' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
+<rect x='327.90' y='65.04' width='183.00' height='216.63' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #A2893C;' />
 </g>
-<g clip-path='url(#cpMC4wMHw1NzYuMDB8MC4wMHw3MjAuMDA=)'>
-<text x='224.37' y='593.54' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='218.89px' lengthAdjust='spacingAndGlyphs'>Negative regulation of FGFR1 signaling</text>
-<text x='224.37' y='437.22' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='172.52px' lengthAdjust='spacingAndGlyphs'>FRS-mediated FGFR1 signaling</text>
-<text x='224.37' y='280.89' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='170.17px' lengthAdjust='spacingAndGlyphs'>SHC-mediated cascade:FGFR1</text>
-<text x='224.37' y='124.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='161.16px' lengthAdjust='spacingAndGlyphs'>PI3K/AKT Signaling in Cancer</text>
-<text x='269.35' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-4</text>
-<text x='340.77' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-3</text>
-<text x='412.18' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='483.60' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.16px' lengthAdjust='spacingAndGlyphs'>-1</text>
-<text x='555.01' y='696.34' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.12px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='399.91' y='711.61' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='207.99px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
-<text x='229.30' y='17.73' style='font-size: 16.80px; font-family: "Arimo";' textLength='275.52px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC8</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHwxMDgwLjAw)'>
+<text x='255.79' y='900.11' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='250.32px' lengthAdjust='spacingAndGlyphs'>Negative regulation of FGFR1 signaling</text>
+<text x='255.79' y='659.42' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='197.29px' lengthAdjust='spacingAndGlyphs'>FRS-mediated FGFR1 signaling</text>
+<text x='255.79' y='418.72' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='194.61px' lengthAdjust='spacingAndGlyphs'>SHC-mediated cascade:FGFR1</text>
+<text x='255.79' y='178.02' text-anchor='end' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='184.31px' lengthAdjust='spacingAndGlyphs'>PI3K/AKT Signaling in Cancer</text>
+<text x='300.18' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-4</text>
+<text x='398.61' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-3</text>
+<text x='497.04' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='595.47' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.76px' lengthAdjust='spacingAndGlyphs'>-1</text>
+<text x='693.89' y='1054.13' text-anchor='middle' style='font-size: 12.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='8.14px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='487.62' y='1071.19' text-anchor='middle' style='font-size: 16.00px; font-family: "Arimo";' textLength='237.74px' lengthAdjust='spacingAndGlyphs'>Normalized Enrichment Score</text>
+<text x='260.73' y='19.47' style='font-size: 19.20px; font-family: "Arimo";' textLength='314.70px' lengthAdjust='spacingAndGlyphs'>GSEA Reactome Enrichment, IC8</text>
 </g>
 </svg>
