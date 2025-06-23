@@ -161,7 +161,7 @@ Follow coding conventions & include documentation updates!
 
 ## Citation
 
-The preprint with all results is available in \href[bioRxiv]{https://www.biorxiv.org/content/10.1101/2025.04.20.649300v1.abstract}.
+The preprint with all results is available in \href{bioRxiv}{https://www.biorxiv.org/content/10.1101/2025.04.20.649300v1.abstract}.
 
 ---
 
