@@ -38,23 +38,25 @@ combined_data_P3 <- combined_data %>% select(contains("_p3_"))
 ####################################################################################################
 # Get the information from the combined dataset
 
-combined_data_J1 <- data_auto %>% dplyr::select(starts_with("J1_"))
-combined_data_J4 <- data_auto %>% dplyr::select(starts_with("J4_"))
-combined_data_J8 <- data_auto %>% dplyr::select(starts_with("J8_"))
-combined_data_J11 <- data_auto %>% dplyr::select(starts_with("J11_"))
-combined_data_J14 <- data_auto %>% dplyr::select(starts_with("J14_"))
+# Change the main object according to your analysis
+
+combined_data_J1 <- combined_data %>% dplyr::select(starts_with("D1_"))
+combined_data_J4 <- combined_data %>% dplyr::select(starts_with("D4_"))
+combined_data_J8 <- combined_data %>% dplyr::select(starts_with("D8_"))
+combined_data_J11 <- combined_data %>% dplyr::select(starts_with("D11_"))
+combined_data_J14 <- combined_data %>% dplyr::select(starts_with("D14_"))
 
 ####################################################################################################
 
-sample_info = as.data.frame(stringr::str_split_fixed(colnames(data_B), pattern = "_", n = 4))
+sample_info = as.data.frame(stringr::str_split_fixed(colnames(combined_data), pattern = "_", n = 4))
 names(sample_info)[names(sample_info) == "V1"] <- "Day"
 names(sample_info)[names(sample_info) == "V2"] <- "Patient"
 names(sample_info)[names(sample_info) == "V3"] <- "Replicate"
 names(sample_info)[names(sample_info) == "V4"] <- "Condition"
 
-ddsMat <- DESeq2::DESeqDataSetFromMatrix(countData = round(data_B),
+ddsMat <- DESeq2::DESeqDataSetFromMatrix(countData = round(combined_data),
                                             colData = sample_info,
-                                            design = ~ Day)
+                                            design = ~ Condition)
 dds = DESeq(ddsMat)
           # Run this lines only if there are not enough samples for statistics 
           dds <- estimateSizeFactors(ddsMat)
@@ -62,7 +64,7 @@ dds = DESeq(ddsMat)
           dispersions(dds) <- mcols(dds)$dispGeneEst
           dds <- nbinomWaldTest(dds)
 
-contrast_condition <- c("Day", "J4", "J1")
+contrast_condition <- c("Condition", "auto", "B")
 results = results(dds, contrast = contrast_condition)
 
 # keep only the significant genes
@@ -71,12 +73,12 @@ results_sig = subset(results, padj < 0.05)
 up = subset(results_sig, log2FoldChange > 1.5)
 up_df <- as.data.frame(up)
 up_df <- up_df[order(up_df$padj), ]
-write.csv(up_df, "Results/Differential_expression/Auto_mono/Mono_D4_vs_D1_up.csv", quote = F)
+write.csv(up_df, "Results/Differential_expression/Auto_mono/Auto_vs_mono_up.csv", quote = F)
 # get the significant down-regulated genes
 down = subset(results_sig, log2FoldChange < -1.5)
 down_df <- as.data.frame(down)
 down_df <- down_df[order(down_df$padj), ]
-write.csv(down_df, "Results/Differential_expression/Auto_mono/Mono_D4_vs_D1_down.csv", quote = F)
+write.csv(down_df, "Results/Differential_expression/Auto_mono/Auto_vs_mono_down.csv", quote = F)
 
 ##################################################################################
 
@@ -140,8 +142,8 @@ pathways_plot <- gprofiler_plot(up@rownames,
                         gprof_sources = c("GO:BP", "REAC", "KEGG"), 
                         max_set_size = 1000, 
                         min_set_size = 10, 
-                        correction_method = 'fdr', n_terms_per_db = 10, title = "Monoculture D4 vs D1, up")
-ggsave("Results/Differential_expression/Auto_mono/pathways_plot_mono_D4_vs_D1_up.svg", plot = pathways_plot, width = 10, height = 9, dpi = 1000)
+                        correction_method = 'fdr', n_terms_per_db = 10, title = "Autologous vs Monoculture, up")
+ggsave("Results/Differential_expression/Auto_mono/pathways_plot_auto_vs_mono_up.svg", plot = pathways_plot, width = 10, height = 9, dpi = 1000)
 ####################################################################################################
 # volcano plot
 
