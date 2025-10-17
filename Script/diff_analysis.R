@@ -19,11 +19,11 @@ diff_analysis = function(RNA.counts.normalized, feature, test, ref, pval = 0.05,
   
   # Running msVIPER
   mra <- msviper(signature, net_regulons, dnull, verbose = F, minsize = 5)
-  saveRDS(mra$es, file=paste0("Rerun/Monoculture/msViper_result_", file.name, ".rds"))
+  saveRDS(mra$es, file=paste0("Results/msVIPER/Monoculture/msViper_result_", file.name, ".rds"))
   
   
   # Plot DiffActive TFs
-  pdf(paste0("Rerun/Monoculture/Differential_TFs_", file.name, ".pdf"))
+  pdf(paste0("Results/msVIPER/Monoculture/Differential_TFs_", file.name, ".pdf"))
   print(plot(mra, mrs=15, cex=1, include = c("expression","activity")))
   dev.off()
   
@@ -62,15 +62,15 @@ diff_analysis = function(RNA.counts.normalized, feature, test, ref, pval = 0.05,
                      pvalueCutoff = 0.05)
 
   if(nrow(data.frame(kegg))!=0){
-    pdf(paste0("Rerun/Monoculture/ORA_KEGG_UP_TFs_", file.name, ".pdf"))
-    write.csv(kegg, paste0("Rerun/Monoculture/ORA_KEGG_UP_TFs_", file.name, ".csv"))
+    pdf(paste0("Results/msVIPER/Monoculture/ORA_KEGG_UP_TFs_", file.name, ".pdf"))
+    write.csv(kegg, paste0("Results/msVIPER/Monoculture/ORA_KEGG_UP_TFs_", file.name, ".csv"))
     print(dotplot(kegg))
     dev.off()
   }
 
   if(nrow(data.frame(reac))!=0){
-    pdf(paste0("Rerun/Monoculture/ORA_Reactome_UP_TFs_", file.name, ".pdf"))
-    write.csv(kegg, paste0("Rerun/Monoculture/ORA_REAC_UP_TFs_", file.name, ".csv"))
+    pdf(paste0("Results/msVIPER/Monoculture/ORA_Reactome_UP_TFs_", file.name, ".pdf"))
+    write.csv(kegg, paste0("Results/msVIPER/Monoculture/ORA_REAC_UP_TFs_", file.name, ".csv"))
     print(dotplot(reac))
     dev.off()
   }
@@ -89,15 +89,15 @@ diff_analysis = function(RNA.counts.normalized, feature, test, ref, pval = 0.05,
                      pvalueCutoff = 0.05)
 
   if(nrow(data.frame(kegg))!=0){
-    pdf(paste0("Rerun/Monoculture/ORA_KEGG_DOWN_TFs_", file.name, ".pdf"))
-    write.csv(kegg, paste0("Rerun/Monoculture/ORA_KEGG_DOWN_TFs_", file.name, ".csv"))
+    pdf(paste0("Results/msVIPER/Monoculture/ORA_KEGG_DOWN_TFs_", file.name, ".pdf"))
+    write.csv(kegg, paste0("Results/msVIPER/Monoculture/ORA_KEGG_DOWN_TFs_", file.name, ".csv"))
     print(dotplot(kegg))
     dev.off()
   }
 
   if(nrow(data.frame(reac))!=0){
-    pdf(paste0("Rerun/Monoculture/ORA_Reactome_DOWN_TFs_", file.name, ".pdf"))
-    write.csv(kegg, paste0("Rerun/Monoculture/ORA_REAC_DOWN_TFs_", file.name, ".csv"))
+    pdf(paste0("Results/msVIPER/Monoculture/ORA_Reactome_DOWN_TFs_", file.name, ".pdf"))
+    write.csv(kegg, paste0("Results/msVIPER/Monoculture/ORA_REAC_DOWN_TFs_", file.name, ".csv"))
     print(dotplot(reac))
     dev.off()
   }

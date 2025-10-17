@@ -24,7 +24,7 @@ tf_targets <- import_all_interactions()
 
 ####################################################################################################
 # Load the GRN
-grn_node_features <- read.csv("Results/Temp/dynGENIE3_corr/dyngenie3_corr_full_annotation.csv", header = T)
+grn_node_features <- read.csv("Results/Network_inference/dyngenie3_corr_full_annotation_updated.csv", header = T)
 
 # Define function for pathway enrichment and plotting
 gprofiler_plot <- function(gene_list,
@@ -95,7 +95,7 @@ for (module in 1:11) {
   genes_of_interest <- unique(c(upstream_downstream_genes$source_genesymbol, upstream_downstream_genes$target_genesymbol))
   
   # Perform pathway enrichment & save plot
-  output_path <- paste0("Results/Temp/dynGENIE3_corr/Module_enrichment/Prova_Module", module, ".svg")
+  output_path <- paste0("Results/Network_inference/Module_enrichment/Module_enrichment_", module, ".svg")
   pathways_plot <- gprofiler_plot(genes_of_interest, 
                                   custom.bg = NULL, 
                                   gprof_sources = c("GO:BP", "REAC", "KEGG"), 
