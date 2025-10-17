@@ -1,0 +1,623 @@
+---
+title: "Cadot scRNAseq_CLL"
+author: "Hugo Chenel, Marcelo Hurtado"
+date: "2025-06-23"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Marcelo
+
+Load RNA + ADT files
+```{r}
+library(data.table)
+library(Seurat)
+library(dplyr)
+
+# Extended function to load RNA + ADT and return a Seurat object
+load_expression_and_adt <- function(rna_path, adt_path, sample_id) {
+  # Load RNA
+  expr <- fread(cmd = paste("zcat", rna_path), data.table = FALSE)
+  rownames(expr) <- expr[[1]]
+  expr <- expr[,-1]
+  expr_mat <- t(as.matrix(expr))
+  seurat_obj <- CreateSeuratObject(counts = expr_mat, assay = "RNA", project = sample_id)
+
+  # Load ADT if available
+  if (!is.null(adt_path)) {
+    adt <- fread(cmd = paste("zcat", adt_path), data.table = FALSE)
+    rownames(adt) <- adt[[1]]
+    adt <- adt[,-1]
+    adt_mat <- t(as.matrix(adt))
+    colnames(adt_mat) <- paste0(colnames(adt_mat), "-1") #To match barcodes of RNA
+    
+    # Ensure same cells
+    common_cells <- intersect(colnames(seurat_obj), colnames(adt_mat))
+    
+    # Subset RNA and ADT object to keep only common cells
+    seurat_obj <- subset(seurat_obj, cells = common_cells)
+    adt_mat <- adt_mat[, colnames(adt_mat) %in% common_cells]
+    
+    # Ensure matching cell order
+    adt_mat <- adt_mat[, colnames(seurat_obj)]
+    
+    # Add ADT assay
+    seurat_obj[["ADT"]] <- CreateAssayObject(counts = adt_mat)
+  }
+
+  return(seurat_obj)
+}
+
+# Paths to RNA and ADT files
+rna_files <- list(
+  M0 = "~/Downloads/GSE152469_RAW/GSM4616298_Exp_UMI_CLL_CPT1_M0.tsv.gz",
+  M3 = "~/Downloads/GSE152469_RAW/GSM4616299_Exp_UMI_CLL_CPT1_M3.tsv.gz",
+  M27 = "~/Downloads/GSE152469_RAW/GSM4616300_Exp_UMI_CLL_CPT1_M27.tsv.gz"
+)
+
+adt_files <- list(
+  M0 = "~/Downloads/GSE152469_RAW/GSM4616298_Ab_CLL_CPT1_M0.csv.gz",
+  M3 = "~/Downloads/GSE152469_RAW/GSM4616299_Ab_CLL_CPT1_M3.csv.gz",
+  M27 = "~/Downloads/GSE152469_RAW/GSM4616300_Ab_CLL_CPT1_M27.csv.gz"
+)
+
+# Load each sample with RNA + ADT
+seurat_list <- lapply(names(rna_files), function(sample_id) {
+  load_expression_and_adt(rna_files[[sample_id]], adt_files[[sample_id]], sample_id)
+})
+names(seurat_list) <- names(rna_files)
+```
+
+Create CLL seurat object
+```{r}
+cll_obj <- merge(seurat_list[[1]], y = seurat_list[-1])
+cll_obj@meta.data$time_point = c(rep("M0", ncol(seurat_list[[1]])), rep("M3", ncol(seurat_list[[2]])), rep("M27", ncol(seurat_list[[3]]))) #Add info about time point
+```
+
+Processing scRNAseq - RNA
+```{r}
+# RNA
+cll_obj <- NormalizeData(cll_obj)
+cll_obj <- FindVariableFeatures(cll_obj)
+cll_obj <- ScaleData(cll_obj)
+cll_obj <- RunPCA(cll_obj)
+cll_obj <- FindNeighbors(cll_obj, dims = 1:20)
+cll_obj <- FindClusters(cll_obj, resolution = 0.5, verbose = FALSE)
+cll_obj <- RunUMAP(cll_obj, dims = 1:20)
+DimPlot(cll_obj, label = TRUE)
+```
+
+Violin plots
+```{r}
+DefaultAssay(cll_obj) <- "ADT"
+markers = c("CD14", "CD19", "CD20", "CD279", "CD3", "CD4", "CD49d", "CD5", "CD56", "CD69", "CD8")
+VlnPlot(cll_obj, features = markers, ncol = 4)
+```
+
+Cluster annotation
+```{r}
+DefaultAssay(cll_obj) <- "RNA"
+new.cluster.ids <- c("Bcells", "Bcells", "Bcells", "Tcells", "Bcells", "Tcells", "NKcells", "Monocytes/Macrophages")
+#new.cluster.ids <- c("CLL", "Bcells", "CLL", "Tcells", "Bcells", "Tcells", "NKcells", "Monocytes/Macrophages")
+names(new.cluster.ids) <- levels(cll_obj)
+cll_obj <- RenameIdents(cll_obj, new.cluster.ids)
+cll_obj@meta.data$cell_types = as.character(Idents(cll_obj))
+DimPlot(cll_obj, reduction = "umap", label = TRUE, pt.size = 0.05) 
+```
+
+Save scRNAseq object
+```{r}
+save(cll_obj, file = "scRNAseq_obj.RData")
+```
+
+Create cell signatures
+```{r}
+signatures = multideconv::create_sc_signatures(cll_obj@assays$RNA@counts, cll_obj@meta.data, "cell_types", "orig.ident", credentials.mail = "marcelo.hurtado@inserm.fr", 
+                                               credentials.token = "734212f6ad77fc4eea2bdb502792f294", bulk_rna = NULL, cell_markers = NULL, name_signature = "Cadot_CLL_signature")
+```
+
+Create pseudobulk from scRNAseq
+```{r}
+sce_cll = Seurat::as.SingleCellExperiment(cll_obj)
+aggr_counts <- glmGamPoi::pseudobulk(sce_cll, group_by = glmGamPoi::vars(orig.ident), aggregation_functions = list(counts = "rowSums2", .default = "rowSums2"))
+pseudo_counts_raw = data.frame(aggr_counts@assays@data$counts) %>%
+  dplyr::mutate(Sample_ref = rep(NA, nrow(.)))
+
+pseudo_counts = ADImpute::NormalizeTPM(pseudo_counts_raw, log = F) %>%
+  data.frame() %>%
+  dplyr::select(-Sample_ref)
+
+pseudo_counts_raw = pseudo_counts_raw %>%
+  dplyr::select(-Sample_ref)
+```
+
+Deconvolution all without signature creation
+```{r}
+deconv_pseudobulk = multideconv::compute.deconvolution(pseudo_counts, normalized = F, credentials.mail = "marcelo.hurtado@inserm.fr", credentials.token = "734212f6ad77fc4eea2bdb502792f294",
+                                                       file_name = "Pseudobulk", create_signature = F, workers = 6, methods =  c("CBSX", "Epidish", "DWLS"), 
+                                                       signatures_exclude = c("BPRNACan","BPRNACan3DProMet", "BPRNACanProMet", "CBSX-HNSCC-scRNAseq", "CBSX-Melanoma-scRNAseq", 
+                                                                              "CBSX-NSCLC-PBMCs-scRNAseq", "CCLE-TIL10", "LM22", "TIL10"))
+
+deconv_pseudobulk = read.csv("output/Deconvolution_Pseudobulk.csv", row.names = 1)
+```
+
+Benchmarking deconvolution
+
+Groundtruth
+```{r}
+tab <- table(cll_obj@meta.data$orig.ident, cll_obj@meta.data$cell_types)
+cells_groundtruth <- as.data.frame.matrix(prop.table(tab, margin = 1))
+colnames(cells_groundtruth) = stringr::str_replace(colnames(cells_groundtruth), "Monocytes/Macrophages", "Monocytes.Macrophages.cells")
+```
+
+Benchmark 
+```{r}
+source("compute_mse.R")
+corr_matrix = benchmark_mse(deconv_pseudobulk, cells_groundtruth, cells_extra = c("Bcells", "NKcells", "Tcells", "Monocytes.Macrophages.cells"),
+                            scatter = F, file_name = "Cadot_CLL_benchmark", plot = T, height = 8, width = 10)
+```
+
+Save results
+```{r}
+save(pseudo_counts_raw, pseudo_counts, deconv_pseudobulk, file = "Pseudobulk_results.RData")
+```
+
+# Hugo
+
+## Load libraries
+```{r}
+library(Seurat)
+library(ggplot2)
+library(ggpubr)
+library(msigdbr)
+library(dplyr)
+```
+
+## Data exploration
+```{r}
+# scRNA annotated with all B cells
+#seurat_obj_allB <- load(file = "Data/Cadot/scRNAseq_obj.RData")
+
+# scRNA annotated making the distinction between normal Bcells and B-CLL cells
+seurat_obj_B <- load(file = "Data/Cadot/scRNAseq_obj_CLL.RData")
+
+# Basic infos
+cll_obj
+
+# Cell counts per cell type
+table(cll_obj$cell_types)
+# UMAP plot colored by cell type
+DimPlot(cll_obj, group.by = "cell_types")
+DimPlot(cll_obj, group.by = "cell_types", label = TRUE) + NoLegend() + ggtitle("Healthy and B-CLL cells")
+
+## Merge Bcells and CLL into one category: "B-CLLcells"
+cll_obj$cell_types <- as.character(cll_obj$cell_types)
+cll_obj$cell_types[cll_obj$cell_types %in% c("Bcells", "CLL")] <- "B-CLLcells"
+cll_obj$cell_types <- factor(cll_obj$cell_types)
+## Check result
+table(cll_obj$cell_types)
+DimPlot(cll_obj, group.by = "cell_types", label = TRUE) + NoLegend() + ggtitle("B-CLL cells")
+
+# Cell counts per time point
+table(cll_obj$time_point)
+# UMAP plot colored by time point
+DimPlot(cll_obj, group.by = "time_point", label = TRUE) + NoLegend() + ggtitle("UMAP by time point")
+```
+
+## Get myeloid genes from msigdbr
+```{r}
+# Example: all human GO terms containing "monocyte"
+msig_mono <- msigdbr(species = "Homo sapiens", collection = "C5", subcollection = "GO:BP") %>%
+  filter(grepl("MONOCYTE", gs_name, ignore.case = TRUE))
+
+# Check all the monocyte sets
+unique_sets <- unique(msig_mono$gs_name)
+
+# Pick one signature, e.g. GOBP_MONOCYTE_DIFFERENTIATION
+myeloid_genes <- msig_mono %>%
+  filter(gs_name == "GOBP_MONOCYTE_DIFFERENTIATION") %>%
+  pull(gene_symbol)
+
+
+diff_genes <- read.table("Data/DE_genes_auto_mono.csv", header = TRUE, sep=",")
+names(diff_genes)
+diff_genes_all <- as.character(diff_genes$Gene)
+print(intersect(myeloid_genes, diff_genes_all))
+
+# Assuming your main dataframe is named diff_genes
+
+# 1. Upregulated genes in "auto" condition
+diff_genes_up_auto <- subset(diff_genes, Condition == "auto" & Regulation == "Up")
+# 2. Downregulated genes in "auto" condition
+diff_genes_down_auto <- subset(diff_genes, Condition == "auto" & Regulation == "Down")
+# 3. Upregulated genes in "B" condition
+diff_genes_up_B <- subset(diff_genes, Condition == "B" & Regulation == "Up")
+# 4. Downregulated genes in "B" condition
+diff_genes_down_B <- subset(diff_genes, Condition == "B" & Regulation == "Down")
+
+# Convert
+diff_genes_up_auto <- as.character(diff_genes_up_auto$Gene)
+diff_genes_down_auto <- as.character(diff_genes_down_auto$Gene)
+diff_genes_up_B <- as.character(diff_genes_up_B$Gene)
+diff_genes_down_B <- as.character(diff_genes_down_B$Gene)
+
+subset_diff_genes_up_auto <- c("APOC1", "APOE", "C2", "CHI3L1", "CISH", "ENSG00000257607", "ENSG00000271787", "FABP3", "FOLR2", "SCN1B", "SPP1")
+myeloid_genes <- subset_diff_genes_up_auto
+```
+
+## Myeloid genes exploration
+```{r}
+# Curated myeloid gene set (edit to your list)
+# myeloid_genes <- c("LYZ", "S100A9", "CD14", "ITGAM", "FCGR3A", "S100A8", "LST1", "CTSS")
+
+# Keep only genes present in the object to avoid warnings
+myeloid_genes <- intersect(myeloid_genes, rownames(cll_obj))
+if (length(myeloid_genes) < 3) {
+  warning("Very few myeloid genes found in the object; consider updating the list.")
+}
+
+# Compute module score ONCE on the whole object so all subsets share the same scale
+# The first list element name becomes a prefix; Seurat will create 'MyeloidScore1'
+cll_obj <- AddModuleScore(
+  cll_obj,
+  features = list(Myeloid_Score = myeloid_genes),
+  name = "MyeloidScore",
+  nbin = 24,            # default; adjust if  data is very small/large
+  ctrl = 100            # default control genes per bin
+)
+
+# Helper for clean violin plots
+vln_clean <- function(obj, group.by, title, feature = "MyeloidScore1",
+                      rotate_x = FALSE, order_levels = NULL) {
+  if (!is.null(order_levels)) {
+    vals <- FetchData(obj, vars = group.by)[, 1, drop = TRUE]
+    vals <- factor(vals, levels = order_levels)
+    names(vals) <- colnames(obj)                  # <-- ensure names match cells
+    obj[[group.by]] <- vals                       # safe assignment
+  }
+
+  VlnPlot(obj, features = feature, group.by = group.by, pt.size = 0) +
+    labs(title = title, x = group.by, y = "Module score") +
+    theme_bw(base_size = 11) +
+    theme(legend.position = "none",
+          plot.title = element_text(hjust = 0.5),
+          axis.text.x = element_text(angle = if (rotate_x) 45 else 0,
+                                     hjust = if (rotate_x) 1 else 0.5))
+}
+```
+
+## Disease progression: CLL early (M0, M3) vs late (M27)
+```{r}
+# Subset to CLL only
+cll_only <- subset(cll_obj, subset = cell_types == "B-CLLcells")
+
+# Keep only time points of interest; order them
+levels_tp <- c("M0", "M3", "M27")
+cll_only <- subset(cll_only, subset = time_point %in% levels_tp)
+cll_only$time_point <- factor(cll_only$time_point, levels = levels_tp)
+
+# Plot
+p_progression <- vln_clean(
+  cll_only,
+  group.by = "time_point",
+  title = "CLL cells: Upregulated genes monoculture condition score across time (M0, M3 → M27)",
+  order_levels = levels_tp
+)
+p_progression
+
+p_progression + 
+  stat_compare_means(comparisons = list(c("M0","M3"), c("M3","M27"), c("M0","M27")),
+                     method = "wilcox.test")
+p_progression + geom_boxplot(width = 0.1, fill = "white", outlier.shape = NA)
+
+# Wilcoxon rank-sum pairwise tests
+pairwise.wilcox.test(
+  x = cll_only$MyeloidScore1,
+  g = cll_only$time_point,
+  p.adjust.method = "BH"
+)
+
+p_dot <- DotPlot(
+  cll_only,
+  features = myeloid_genes,
+  group.by = "time_point",
+  cols = c("lightgrey","red")
+) + 
+  RotatedAxis() +
+  theme_bw(base_size = 11) +
+  labs(title = "Panel Downregulated genes: CLL cells", x = "Gene", y = "Time point") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+p_dot  # avg exp (color) and pct expressing (dot size)
+
+# Spatial context: UMAP FeaturePlots split by time
+# Pick 3–4 genes for clear viewing
+#fp_genes <- intersect(c("LYZ","S100A9","CD14","ITGAM"), myeloid_genes)
+fp_genes <- intersect(c("CCL4","DDIT4","MTHFD2"), myeloid_genes)
+
+p_feat <- FeaturePlot(
+  cll_only,
+  features = fp_genes,
+  split.by  = "time_point",
+  ncol      = length(fp_genes),
+  order     = TRUE
+) & theme(plot.title = element_text(hjust = 0.5))
+
+p_feat  # one panel per gene, split by M0/M3/M27
+```
+
+## Malignant vs normal B (CLL vs B cells)
+```{r}
+cll_b <- subset(cll_obj, subset = cell_types %in% c("CLL", "Bcells"))
+cll_b$cell_types <- factor(cll_b$cell_types, levels = c("Bcells", "CLL"))
+
+p_cll_vs_b <- vln_clean(
+  cll_b,
+  group.by = "cell_types",
+  title = "Module score (Upregulated genes D4 vs D1): CLL vs B cells",
+  order_levels = c("Bcells", "CLL")
+)
+p_cll_vs_b
+```
+**CLL vs B cells**
+What it tests: Is the (Downregulated D1→D4) signature different between malignant B-CLL and normal B cells of the same lineage?
+Why it’s useful: this is your lineage-matched control—it tells you tumor vs normal within B lineage.
+
+## Absolute reference: CLL vs Monocytes/Macrophages
+```{r}
+cll_mono <- subset(cll_obj, subset = cell_types %in% c("B-CLLcells", "Monocytes/Macrophages"))
+cll_mono$cell_types <- factor(cll_mono$cell_types, levels = c("B-CLLcells", "Monocytes/Macrophages"))
+
+p_cll_vs_myeloid <- vln_clean(
+  cll_mono,
+  group.by = "cell_types",
+  title = "Module score (Upregulated genes in monoculture): CLL vs Monocytes/Macrophages (reference)",
+  order_levels = c("B-CLLcells", "Monocytes/Macrophages")
+)
+p_cll_vs_myeloid
+```
+**CLL vs Monocytes/Macrophages**
+What it tests: Where do CLL cells sit relative to a myeloid reference for this signature?
+Why it’s useful: this is an absolute reference—are CLL scores closer to (or distinct from) a canonical myeloid population?
+
+
+## UMAPs for revision
+```{r}
+# Compute a signature score
+
+# Compute module scores for each gene set
+cll_obj <- AddModuleScore(
+  object = cll_obj,
+  features = list(
+    diff_genes_up_auto,
+    diff_genes_down_auto,
+    diff_genes_up_B,
+    diff_genes_down_B,
+    subset_diff_genes_up_auto
+  ),
+  name = c("AutoUpScore", "AutoDownScore", "BUpScore", "BDownScore", "AutoUpScoreSubset")
+)
+
+grep("Score", colnames(cll_obj@meta.data), value = TRUE)
+
+test1 <- FeaturePlot(cll_obj, features = "AutoUpScore1", cols = c("lightgrey", "darkred"),
+            pt.size = 0.5) + ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+
+test2 <- FeaturePlot(cll_obj, features = "AutoDownScore2", cols = c("lightgrey", "darkblue"),
+            pt.size = 0.5) + ggtitle("Down-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+
+test3 <- FeaturePlot(cll_obj, features = "BUpScore3", cols = c("lightgrey", "darkgreen"),
+            pt.size = 0.5) + ggtitle("Up-regulated genes in monoculture (Cadot scRNA-seq dataset)")
+
+test4 <- FeaturePlot(cll_obj, features = "BDownScore4", cols = c("lightgrey", "purple"),
+            pt.size = 0.5) + ggtitle("Down-regulated genes in monoculture (Cadot scRNA-seq dataset)")
+
+(test1 + test2 + test3 + test4) + plot_layout(ncol = 2, nrow = 2)
+
+
+# Visualize on the UMAP
+FeaturePlot(
+  cll_obj,
+  features = "AutoUpScore1",
+  min.cutoff = "q05",  # 5th percentile
+  max.cutoff = "q95",  # 95th percentile
+  cols = c("white", "firebrick3"),
+  pt.size = 0.5
+) + ggtitle("Combined auto-up gene signature")
+
+FeaturePlot(
+  cll_obj,
+  features = "AutoUpScore1",
+  cols = c("grey90", "deepskyblue2", "darkblue"),
+  pt.size = 0.5
+)
+FeaturePlot(
+  cll_obj,
+  features = "AutoUpScoreSubset5",
+  cols = c("grey90", "deepskyblue2", "darkblue"),
+  pt.size = 0.5
+)
+
+
+# Remove extrem outliers
+FeaturePlot(
+  cll_obj,
+  features   = "AutoUpScore1",
+  pt.size    = 0.4,
+  order      = TRUE,
+  raster     = TRUE,
+  min.cutoff = -0.01,    # just below your lower bound
+  max.cutoff =  0.03     # just above where most data ends
+) +
+  scale_color_gradientn(colors = c("grey90", "gold", "red"),
+                        limits = c(-0.01, 0.03),
+                        oob = scales::squish) +
+  ggtitle("AutoUpScore1 (rescaled for visible contrast)")
+
+# Remove outliers (quartiles)
+FeaturePlot(
+  cll_obj,
+  features   = "AutoUpScoreSubset5",
+  pt.size    = 0.5,
+  order      = TRUE,
+  raster     = TRUE,
+  min.cutoff = "q01",
+  max.cutoff = "q99"
+) +
+  scale_color_gradientn(colors = viridis::viridis(20))+
+  ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+
+
+
+# DimPlot: cell type labels only (no legend)
+p1 <- DimPlot(
+  cll_obj,
+  group.by = "cell_types",
+  label = TRUE
+) +
+  NoLegend() +
+  ggtitle("Cadot scRNA-seq dataset annotated")
+
+# FeaturePlot: AutoUpScore1 signature
+p2 <- FeaturePlot(
+  cll_obj,
+  features   = "AutoUpScore1",
+  pt.size    = 0.3,
+  order      = TRUE,
+  raster     = TRUE,
+  min.cutoff = "q01",
+  max.cutoff = "q99"
+) +
+  scale_color_gradientn(colors = viridis::viridis(20)) +
+  ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+
+# Combine plots (requires patchwork)
+p1 + p2
+
+```
+
+# Reviewer figure
+```{r}
+test1 <- FeaturePlot(cll_obj, features = "AutoUpScore1", cols = c("lightgrey", "darkred"),
+            pt.size = 0.5) + ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+
+test2 <- suppressWarnings(
+  FeaturePlot(
+    cll_obj,
+    features = "AutoUpScore1",
+    cols = c("lightgrey", "darkred"),
+    pt.size = 0.5
+  ) +
+    scale_color_gradient(
+      low = "lightgrey",
+      high = "darkred",
+      trans = "log2"
+      #name = "log2(AutoUpScore1)"
+    ) +
+    ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)")
+)
+
+cll_obj$log2_AutoUpScore1 <- log2(cll_obj$AutoUpScore1 + 1)
+
+
+library(viridis)
+library(ggplot2)
+library(systemfonts)
+library(svglite)
+
+# Build the plot
+test3 <- suppressWarnings(
+  FeaturePlot(
+    cll_obj,
+    label = TRUE,
+    label.size = 5,
+    features = "AutoUpScore1",
+    pt.size = 0.5
+  ) +
+    scale_color_viridis(
+      option = "A",          # A (magma), B (inferno), C (plasma), D (viridis)
+      direction = 1,
+      trans = "log2",
+      name = "Autologous up-regulation\nmodule score"
+    ) +
+    ggtitle("Up-regulated genes in autologous culture (Cadot scRNA-seq dataset)") +
+    theme(
+      plot.title = element_text(size = 14, face = "bold"),
+      legend.title = element_text(size = 11),
+      legend.text  = element_text(size = 10),
+      legend.key.height = unit(0.35, "cm"),
+      legend.key.width  = unit(0.35, "cm")
+    )
+)
+
+# Save as a small SVG (vector)
+# (svglite is used under the hood by ggsave's svg device)
+ggsave(
+  filename = "Results/Plot/AutoUpScore1_annot.svg",
+  plot     = test3,
+  device   = "svg",
+  width    = 8.5,   # inches
+  height   = 5.0,   # inches
+  units    = "in",
+  limitsize = FALSE
+)
+```
+
+
+## Aucell
+```{r}
+## ---- AUCell scoring ------------------------------------------
+if (!requireNamespace("AUCell", quietly = TRUE)) {
+  install.packages("AUCell")
+}
+library(AUCell)
+
+# Signatures
+up_genes_in   <- intersect(up,   rownames(cll_obj))
+down_genes_in <- intersect(down, rownames(cll_obj))
+
+# AUCell needs raw counts (or non-negative matrix); get data from active assay
+assay_use <- DefaultAssay(cll_obj)
+expr_mat  <- GetAssayData(cll_obj, assay = assay_use, slot = "counts")
+if (max(expr_mat) == 0) expr_mat <- GetAssayData(cll_obj, assay = assay_use, slot = "data")
+
+# Build rankings
+cells_rankings <- AUCell_buildRankings(expr_mat, nCores = 1, plotStats = FALSE, verbose = FALSE)
+
+# Calculate AUC
+geneSets <- list(Up_D4vsD1 = up_genes_in, Down_D4vsD1 = down_genes_in)
+auc <- AUCell_calcAUC(geneSets, cells_rankings, aucMaxRank = ceiling(0.05 * nrow(expr_mat)))
+
+# Add to meta.data
+auc_mat <- as.data.frame(t(getAUC(auc)))
+cll_obj$AUC_Up   <- auc_mat$Up_D4vsD1
+cll_obj$AUC_Down <- auc_mat$Down_D4vsD1
+cll_obj$AUC_Net  <- cll_obj$AUC_Up - cll_obj$AUC_Down
+
+# Order time points
+levels_tp <- c("M0","M3","M27")
+cll_obj$time_point <- factor(cll_obj$time_point, levels = levels_tp)
+
+# Plot AUC across time (CLL only, or B-CLLcells after merge)
+cll_only <- subset(cll_obj, subset = cell_types == "B-CLLcells")
+p_auc <- VlnPlot(
+  cll_only, features = c("AUC_Up","AUC_Down","AUC_Net"),
+  group.by = "time_point", pt.size = 0, combine = FALSE
+)
+p_auc <- lapply(p_auc, function(p) p + geom_boxplot(width = 0.12, fill = "white", outlier.shape = NA) +
+                  theme_bw(base_size = 11) + theme(legend.position = "none"))
+p_auc[[1]] + ggtitle("AUCell: Up signature (D4 vs D1) across M0 → M3 → M27")
+p_auc[[2]] + ggtitle("AUCell: Down signature (D4 vs D1) across M0 → M3 → M27")
+p_auc[[3]] + ggtitle("AUCell: Net (Up − Down) across M0 → M3 → M27")
+
+# Stats on AUC (example: Up signature)
+ggpubr::stat_compare_means(
+  data = FetchData(cll_only, vars = c("time_point","AUC_Up")),
+  aes(x = time_point, y = AUC_Up),
+  comparisons = list(c("M0","M3"), c("M3","M27"), c("M0","M27")),
+  method = "wilcox.test"
+)
+
+```
+
