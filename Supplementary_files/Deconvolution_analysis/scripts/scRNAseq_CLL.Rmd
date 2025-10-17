@@ -1,0 +1,180 @@
+---
+title: "scRNAseq_CLL"
+author: "Marcelo Hurtado"
+date: "2025-06-23"
+output: html_document
+---
+
+Load RNA + ADT files
+```{r}
+library(data.table)
+library(Seurat)
+library(dplyr)
+
+# Extended function to load RNA + ADT and return a Seurat object
+load_expression_and_adt <- function(rna_path, adt_path, sample_id) {
+  # Load RNA
+  expr <- fread(cmd = paste("zcat", rna_path), data.table = FALSE)
+  rownames(expr) <- expr[[1]]
+  expr <- expr[,-1]
+  expr_mat <- t(as.matrix(expr))
+  seurat_obj <- CreateSeuratObject(counts = expr_mat, assay = "RNA", project = sample_id)
+
+  # Load ADT if available
+  if (!is.null(adt_path)) {
+    adt <- fread(cmd = paste("zcat", adt_path), data.table = FALSE)
+    rownames(adt) <- adt[[1]]
+    adt <- adt[,-1]
+    adt_mat <- t(as.matrix(adt))
+    colnames(adt_mat) <- paste0(colnames(adt_mat), "-1") #To match barcodes of RNA
+    
+    # Ensure same cells
+    common_cells <- intersect(colnames(seurat_obj), colnames(adt_mat))
+    
+    # Subset RNA and ADT object to keep only common cells
+    seurat_obj <- subset(seurat_obj, cells = common_cells)
+    adt_mat <- adt_mat[, colnames(adt_mat) %in% common_cells]
+    
+    # Ensure matching cell order
+    adt_mat <- adt_mat[, colnames(seurat_obj)]
+    
+    # Add ADT assay
+    seurat_obj[["ADT"]] <- CreateAssayObject(counts = adt_mat)
+  }
+
+  return(seurat_obj)
+}
+
+# Paths to RNA and ADT files
+rna_files <- list(
+  M0 = "~/Downloads/GSE152469_RAW/GSM4616298_Exp_UMI_CLL_CPT1_M0.tsv.gz",
+  M3 = "~/Downloads/GSE152469_RAW/GSM4616299_Exp_UMI_CLL_CPT1_M3.tsv.gz",
+  M27 = "~/Downloads/GSE152469_RAW/GSM4616300_Exp_UMI_CLL_CPT1_M27.tsv.gz"
+)
+
+adt_files <- list(
+  M0 = "~/Downloads/GSE152469_RAW/GSM4616298_Ab_CLL_CPT1_M0.csv.gz",
+  M3 = "~/Downloads/GSE152469_RAW/GSM4616299_Ab_CLL_CPT1_M3.csv.gz",
+  M27 = "~/Downloads/GSE152469_RAW/GSM4616300_Ab_CLL_CPT1_M27.csv.gz"
+)
+
+# Load each sample with RNA + ADT
+seurat_list <- lapply(names(rna_files), function(sample_id) {
+  load_expression_and_adt(rna_files[[sample_id]], adt_files[[sample_id]], sample_id)
+})
+names(seurat_list) <- names(rna_files)
+```
+
+Create CLL seurat object
+```{r}
+cll_obj <- merge(seurat_list[[1]], y = seurat_list[-1])
+cll_obj@meta.data$time_point = c(rep("M0", ncol(seurat_list[[1]])), rep("M3", ncol(seurat_list[[2]])), rep("M27", ncol(seurat_list[[3]]))) #Add info about time point
+cll_obj@meta.data$time_point <- factor(cll_obj@meta.data$time_point, levels = c("M0", "M3", "M27"))
+```
+
+Processing scRNAseq - RNA
+```{r}
+# RNA
+cll_obj <- NormalizeData(cll_obj)
+cll_obj <- FindVariableFeatures(cll_obj)
+cll_obj <- ScaleData(cll_obj)
+cll_obj <- RunPCA(cll_obj)
+cll_obj <- FindNeighbors(cll_obj, dims = 1:20)
+cll_obj <- FindClusters(cll_obj, resolution = 0.5, verbose = FALSE)
+cll_obj <- RunUMAP(cll_obj, dims = 1:20)
+DimPlot(cll_obj, label = TRUE)
+```
+
+Violin plots
+```{r}
+DefaultAssay(cll_obj) <- "ADT"
+markers = c("CD14", "CD19", "CD20", "CD279", "CD3", "CD4", "CD49d", "CD5", "CD56", "CD69", "CD8")
+VlnPlot(cll_obj, features = markers, ncol = 4)
+```
+
+Plot UMAP by treatment
+```{r}
+DimPlot(cll_obj, reduction = "umap", label = TRUE, pt.size = 0.05, split.by = "time_point")
+```
+
+Cluster annotation
+```{r}
+DefaultAssay(cll_obj) <- "RNA"
+#new.cluster.ids <- c("Bcells", "Bcells", "Bcells", "Tcells", "Bcells", "Tcells", "NKcells", "Monocytes/Macrophages")
+#new.cluster.ids <- c("CLL", "Bcells", "CLL", "Tcells", "Bcells", "Tcells", "NKcells", "Monocytes/Macrophages")
+new.cluster.ids <- c("CLL", "CLL", "Bcells", "Tcells", "CLL", "Tcells", "NKcells", "Monocytes/Macrophages")
+names(new.cluster.ids) <- levels(cll_obj)
+cll_obj <- RenameIdents(cll_obj, new.cluster.ids)
+cll_obj@meta.data$cell_types = as.character(Idents(cll_obj))
+DimPlot(cll_obj, reduction = "umap", label = TRUE, pt.size = 0.05) 
+DimPlot(cll_obj, reduction = "umap", label = TRUE, pt.size = 0.05, split.by = "time_point")
+```
+
+Save scRNAseq object
+```{r}
+save(cll_obj, file = "scRNAseq_obj_CLL.RData")
+```
+
+Create cell signatures
+```{r}
+signatures = multideconv::create_sc_signatures(cll_obj@assays$RNA@counts, cll_obj@meta.data, "cell_types", "orig.ident", credentials.mail = "marcelo.hurtado@inserm.fr", 
+                                               credentials.token = "734212f6ad77fc4eea2bdb502792f294", bulk_rna = NULL, cell_markers = NULL, name_signature = "Cadot_CLL_signature")
+```
+
+Create pseudobulk from scRNAseq
+```{r}
+sce_cll = Seurat::as.SingleCellExperiment(cll_obj)
+aggr_counts <- glmGamPoi::pseudobulk(sce_cll, group_by = glmGamPoi::vars(orig.ident), aggregation_functions = list(counts = "rowSums2", .default = "rowSums2"))
+pseudo_counts_raw = data.frame(aggr_counts@assays@data$counts) %>%
+  dplyr::mutate(Sample_ref = rep(NA, nrow(.)))
+
+pseudo_counts = ADImpute::NormalizeTPM(pseudo_counts_raw, log = F) %>%
+  data.frame() %>%
+  dplyr::select(-Sample_ref)
+
+pseudo_counts_raw = pseudo_counts_raw %>%
+  dplyr::select(-Sample_ref)
+```
+
+Deconvolution all without signature creation
+```{r}
+deconv_pseudobulk = multideconv::compute.deconvolution(pseudo_counts, normalized = F, credentials.mail = "marcelo.hurtado@inserm.fr", credentials.token = "734212f6ad77fc4eea2bdb502792f294",
+                                                       file_name = "Pseudobulk", create_signature = F, workers = 6, methods =  c("CBSX", "Epidish", "DWLS"), 
+                                                       signatures_exclude = c("BPRNACan","BPRNACan3DProMet", "BPRNACanProMet", "CBSX-HNSCC-scRNAseq", "CBSX-Melanoma-scRNAseq", 
+                                                                              "CBSX-NSCLC-PBMCs-scRNAseq", "CCLE-TIL10", "LM22", "TIL10"))
+
+deconv_pseudobulk = read.csv("output/Deconvolution_Pseudobulk.csv", row.names = 1)
+```
+
+Deconvolution bayesprism
+```{r}
+deconvolution.results.bayesprism <- omnideconv::deconvolute_bayesprism(bulk_gene_expression = pseudo_counts,
+                                           single_cell_object = as.matrix(cll_obj@assays$RNA@counts),
+                                           cell_type_annotations = cll_obj@meta.data$cell_types,
+                                           n_cores=4)
+
+bayesprism = deconvolution.results.bayesprism[["theta"]]
+colnames(bayesprism) = paste0("Bayesprism_", colnames(bayesprism))
+colnames(bayesprism)[4] = "Bayesprism_Monocytes.Macrophages.cells"
+```
+
+Benchmarking deconvolution
+
+Groundtruth
+```{r}
+tab <- table(cll_obj@meta.data$orig.ident, cll_obj@meta.data$cell_types)
+cells_groundtruth <- as.data.frame.matrix(prop.table(tab, margin = 1))
+colnames(cells_groundtruth) = stringr::str_replace(colnames(cells_groundtruth), "Monocytes/Macrophages", "Monocytes.Macrophages.cells")
+```
+
+Benchmark 
+```{r}
+source("compute_mse.R")
+corr_matrix = benchmark_mse(cbind(deconv_pseudobulk, bayesprism), cells_groundtruth, cells_extra = c("Bcells", "NKcells", "Tcells", "Monocytes.Macrophages.cells"),
+                            scatter = F, file_name = "Benchmark on deconvolution methods applied on (Cadot et al, 2020) data", plot = T, height = 8, width = 10)
+```
+
+Save results
+```{r}
+save(pseudo_counts_raw, pseudo_counts, deconv_pseudobulk, file = "Pseudobulk_results.RData")
+```

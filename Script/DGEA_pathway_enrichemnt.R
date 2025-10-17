@@ -12,10 +12,10 @@ library(ggpubr)
 
 data_auto <- read.table("Results/Normalized_data/Autologous/unnormalized_counts.txt", 
                                    header = TRUE, row.names = 1) 
-colnames(data_auto) <- gsub("^_auto", "autologous", colnames(data_auto))
+
 data_B <- read.table("Results/Normalized_data/B_cell/unnormalized_counts.txt", 
                                 header = TRUE, row.names = 1) 
-colnames(data_B) <- gsub("^_B", "monoculture", colnames(data_B))
+
 
 ####################################################################################################
 # Combine the two conditions into a single dataframe
@@ -191,7 +191,7 @@ ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) 
 
 # Build a MA plot (log ratio - mean average)
 results_df <- as.data.frame(results)
-ggma_plot <- ggmaplot(results_df, main = "Monoculture, D4 vs D1",
+ggma_plot <- ggmaplot(results_df, main = "Autologous vs monoculture",
          fdr = 0.05, fc = 1.5, 
          size = 0.4,
          palette = c("#B31B21", "#1465AC", "darkgray"),
@@ -201,4 +201,4 @@ ggma_plot <- ggmaplot(results_df, main = "Monoculture, D4 vs D1",
          font.legend = "bold",
          font.main = "bold",
          ggtheme = ggplot2::theme_minimal())
-ggsave("Results/Differential_expression/Auto_mono/MA_plot_mono_D4_vs_D1.svg", plot = ggma_plot, width = 6, height = 5, dpi = 600)
+ggsave("Results/Differential_expression/Auto_mono/MA_plot_Auto_vs_mono.svg", plot = ggma_plot, width = 6, height = 5, dpi = 600)
