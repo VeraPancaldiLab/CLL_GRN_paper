@@ -66,7 +66,7 @@ Raw FASTQ files are available via the Sequence Read Archive (SRA):
 - `Data/Processed_data/`  
   Processed, analysis-ready gene expression matrices derived from RSEM expected
   counts and normalized to Transcripts Per Million (TPM). These matrices are
-  merged across samples, reported using HGNC gene symbols only, and are intended
+  merged across samples, reported using HGNC gene symbols or ENS identifiers only, and are intended
   for downstream comparative and time-series analyses.
 
 - `Data/Metadata/`  
