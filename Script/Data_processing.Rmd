@@ -29,8 +29,8 @@ In our case, we have the time-course transcriptomics from 3 patients and 2 techn
 
 ```{r}
 # Read gene count matrices (RSEM) for the different conditions
-gene_count_matrix_auto <- read.table("Data/Gene_count_matrix_ENS_HGCN_auto.txt", header = TRUE, row.names = 1)
-gene_count_matrix_B <- read.table("Data/Gene_count_matrix_ENS_HGCN_B.txt", header = TRUE, row.names = 1)
+gene_count_matrix_auto <- read.table("Data/Raw_data/Gene_count_matrix_ENS_HGCN_auto.txt", header = TRUE, row.names = 1)
+gene_count_matrix_B <- read.table("Data/Raw_data/Gene_count_matrix_ENS_HGCN_B.txt", header = TRUE, row.names = 1)
 
 # Rename days in colnames
 colnames(gene_count_matrix_auto) <- gsub("J", "D", colnames(gene_count_matrix_auto))
