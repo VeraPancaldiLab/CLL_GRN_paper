@@ -19,14 +19,14 @@ library(dplyr)
 library(ggplot2)
 library(tibble)
 
-source("dynGENIE3.R")
+source("dynGENIE3/dynGENIE3.R")
 ```
 
 # Import gene count matrices, TF activity matrixes, and other objects required for the inference 
 
 ```{r}
 # Normalised counts for both conditions 
-normalized_data_auto <- read.table("Results/Normalized_data/normalized_counts.txt", header = TRUE, row.names = 1)
+normalized_data_auto <- read.table("Results/Normalized_data/Autologous/normalized_counts.txt", header = TRUE, row.names = 1)
 normalized_data_B <- read.table("Results/Normalized_data/B_cell/normalized_counts.txt", header = TRUE, row.names = 1)
 
 # TF activity matrices for both conditions 
@@ -41,7 +41,6 @@ TFs_diff_active_B <- read.csv("Results/msVIPER/Monoculture/msViper_mono_TFs.csv"
       
 normalized_counts_auto <- TF_activity_auto[TFs_diff_active_auto$x,  , drop = F] %>% na.omit()
 normalized_counts_B <- TF_activity_B[TFs_diff_active_B$x,  , drop = F] %>% na.omit()
-
 ```
 
 # Process the objects to split the patients and replicates. Thw following chunks must be ran for each condition separately. 
