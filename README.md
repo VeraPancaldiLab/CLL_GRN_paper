@@ -168,7 +168,7 @@ Follow coding conventions & include documentation updates!
 
 ## Citation
 
-The preprint with all results is available in [npj Systems Biology and Applications](https://www.nature.com/articles/s41540-025-00645-4).
+The paper with all results is available in [npj Systems Biology and Applications](https://www.nature.com/articles/s41540-025-00645-4).
 
 ---
 
