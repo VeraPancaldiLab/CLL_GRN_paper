@@ -170,7 +170,20 @@ Follow coding conventions & include documentation updates!
 
 ## Citation
 
-The paper with all results is available in [npj Systems Biology and Applications](https://www.nature.com/articles/s41540-025-00645-4).
+The paper presenting results from this repository is published in [npj Systems Biology and Applications](https://www.nature.com/articles/s41540-025-00645-4).
+
+**Please cite this article if you use this code or data:**
+
+> **Marku, M., Chenel, H., Bordenave, J., *et al.***  
+> *Data-driven network inference and longitudinal transcriptomics unveil dynamic regulation in Chronic Lymphocytic Leukaemia models.*  
+> **npj Systems Biology and Applications** (2026).  
+> https://doi.org/10.1038/s41540-025-00645-4
+
+**Publication details:**
+- Received: 18 October 2025  
+- Accepted: 30 December 2025  
+- Published: 15 January 2026  
+- DOI: https://doi.org/10.1038/s41540-025-00645-4
 
 ---
 
