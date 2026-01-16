@@ -1,5 +1,7 @@
 # CLL_GRN_paper
 
+![Project overview](figure_overview.png)
+
 Welcome to the **CLL_GRN_paper** repository. This project contains the full code, data and analysis scripts supporting our manuscript:
 
 📄 **[Data driven network inference and longitudinal transcriptomics unveil dynamic regulation in Chronic Lymphocytic Leukaemia models](https://www.nature.com/articles/s41540-025-00645-4)**  
