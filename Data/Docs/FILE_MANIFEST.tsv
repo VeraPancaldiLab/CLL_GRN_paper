@@ -1,5 +1,5 @@
 file_name	location	file_type	description
-DATASET_OVERVIEW.md	Data/Docs	Markdown	Master documentation file describing the study context, experimental design, sequencing strategy, data availability, and repository structure
-GEO_GSE313098_DOCUMENTATION.md	Data/Docs	Markdown	Detailed documentation mirroring the GEO Series submission, including study summary, processed and raw data description, sample metadata, and contact information
+DATASET_OVERVIEW.md	Data/Docs	Markdown	Master documentation file describing the study context, experimental design, sequencing strategy, and data availability
+GEO_GSE313098_DOCUMENTATION.md	Data/Docs	Markdown	Detailed documentation mirroring the GEO Series submission, including study summary, data description, sample metadata, and contact information
 Patient_and_sample_metadata.xlsx	Data/Metadata	Excel	Comprehensive patient- and sample-level metadata table including patient ID, culture condition, time point, replicate, and sample-specific attributes
 Patient_clinical_data.xlsx	Data/Metadata	Excel	Complementary files containing clinical informations of the samples
