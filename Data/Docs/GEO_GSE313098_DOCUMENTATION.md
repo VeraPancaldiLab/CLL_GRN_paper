@@ -24,10 +24,10 @@ time point and condition, resulting in 60 RNA-seq samples.
 ## Processed data in GEO
 The following processed files are provided as supplementary data:
 
-- GSE313098_Gene_count_matrix_ENS_HGCN_auto.txt.gz  
+- `GSE313098_Gene_count_matrix_ENS_HGCN_auto.txt.gz`  
   Raw RSEM expected gene counts for autologous PBMC samples
 
-- GSE313098_Gene_count_matrix_ENS_HGCN_B.txt.gz  
+- `GSE313098_Gene_count_matrix_ENS_HGCN_B.txt.gz`  
   Raw RSEM expected gene counts for monoculture CLL B-cell samples
 
 File format:
@@ -41,7 +41,7 @@ These files are available via both FTP and HTTP.
 ## Raw data
 All raw sequencing data are hosted by the Sequence Read Archive (SRA):
 
-- BioProject: PRJNA1378255
+- BioProject: `PRJNA1378255`
 - FASTQ files available via the SRA Run Selector linked on the GEO page
 
 ## Sample metadata
@@ -57,9 +57,9 @@ Metadata includes:
 - Sample-specific attributes (cell type, tissue, molecule type)
 
 ## Contact information
-Hugo Chenel
-Evotec
-195 Route d'Espagne, 31100 Toulouse, France
+Hugo Chenel  
+Evotec  
+195 Route d'Espagne, 31100 Toulouse, France  
 Email: hugo.chenel@evotec.com
 
 Vera Pancaldi  
