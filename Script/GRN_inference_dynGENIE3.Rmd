@@ -26,16 +26,16 @@ source("dynGENIE3.R")
 
 ```{r}
 # Normalised counts for both conditions 
-normalized_data_auto <- read.table("../Results/Normalized_data/normalized_counts.txt", header = TRUE, row.names = 1)
-normalized_data_B <- read.table("../Results/Normalized_data/B_cell/normalized_counts.txt", header = TRUE, row.names = 1)
+normalized_data_auto <- read.table("Results/Normalized_data/normalized_counts.txt", header = TRUE, row.names = 1)
+normalized_data_B <- read.table("Results/Normalized_data/B_cell/normalized_counts.txt", header = TRUE, row.names = 1)
 
 # TF activity matrices for both conditions 
-TF_activity_auto <- read.csv("../Results/Viper/Autologous/TF_score_collectri.csv", header = T, row.names = 1)
-TF_activity_B <- read.csv("../Results/Viper/B_cell/TF_score_collectri.csv", header = T, row.names = 1)
+TF_activity_auto <- read.csv("Results/Viper/Autologous/TF_score_collectri.csv", header = T, row.names = 1)
+TF_activity_B <- read.csv("Results/Viper/B_cell/TF_score_collectri.csv", header = T, row.names = 1)
 
 # Import the list of TFs in interest 
-TFs_diff_active_auto <- read.csv("../Results/msVIPER/Autologous/msViper_auto_TFs.csv")
-TFs_diff_active_B <- read.csv("../Results/msVIPER/Monoculture/msViper_mono_TFs.csv")
+TFs_diff_active_auto <- read.csv("Results/msVIPER/Autologous/msViper_auto_TFs.csv")
+TFs_diff_active_B <- read.csv("Results/msVIPER/Monoculture/msViper_mono_TFs.csv")
 
 # Filter the count matrices according to the gene list of interest and create a common dataframe with the two conditions
       
@@ -213,6 +213,6 @@ intersection_links <- run_multiple_times(
   weight_threshold = 0.01
 )
 
-write.csv(intersection_links_allconds, "../Results/Network_inference/GRN_auto_withTFs_msViper_TFs_001.csv", row.names = F, quote = F)
+write.csv(intersection_links_allconds, "Results/Network_inference/GRN_auto_withTFs_msViper_TFs_001.csv", row.names = F, quote = F)
 ```
 
