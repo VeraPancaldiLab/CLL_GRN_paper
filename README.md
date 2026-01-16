@@ -2,7 +2,9 @@
 
 Welcome to the **CLL_GRN_paper** repository. This project contains the full code, data and analysis scripts supporting our manuscript:
 
-📄 **Time-series RNA-Seq and data-driven network inference unveil dynamic cell phenotypes in Chronic Lymphocytic Leukaemia**
+📄 **[Data driven network inference and longitudinal transcriptomics unveil dynamic regulation in Chronic Lymphocytic Leukaemia models](https://www.nature.com/articles/s41540-025-00645-4)**  
+*npj Systems Biology and Applications* (2026)
+
 
 This comprehensive resource is designed for reproducibility and transparency in our research, providing a step-by-step account of our workflow from raw data processing to network inference and figure generation.
 
@@ -48,7 +50,8 @@ Our workflow offers a **reproducible blueprint** for similar studies in **oncolo
 ### Data
 - **Raw_data/** → Contains original RNA-Seq files (e.g., count matrices) and list of human TFs.
 - **Processed_data/** → Includes normalized (TPM) datasets.
-- **Metadata/** → Detailed experimental design and time point information.
+- **Metadata/** → Detailed experimental design and sample information.
+- **Docs/** → Human-readable documentation describing the dataset context, GEO submission details, file organization, and data availability.
 
 ### Figures
 This repository contains only the final figures used in the paper. It includes high-quality, publication-ready plots such as PCA, heatmaps, networks, and time-series visualizations. No intermediate or exploratory plots are provided.
@@ -89,10 +92,13 @@ Each script implements a computational method to process the RNA-Seq dataset, co
 
 ## Data description
 
-Two different types of cell cultures are used for this study. *Autologous culture:* This culture comprises all peripheral 
-blood mononuclear cells (PBMCs). The culture generation protocol for this category involved the collection of samples 
-from three separate patients. Each patient's samples underwent biological duplication, generating two distinct replicates 
-per patient. *B-CLL monoculture:* B-CLL cells are isolated and cultured individually. 
+Two different types of cell cultures are used for this study. 
+
+*Autologous culture:* This culture comprises all peripheral blood mononuclear cells (PBMCs). The culture generation protocol for this category involved the collection of samples 
+from three separate patients. Each patient's samples underwent biological duplication, generating two distinct replicates per patient. 
+
+*B-CLL monoculture:* B-CLL cells are isolated and cultured individually. 
+
 For the two condition, the cells in suspension are collected At 5 different time points (D1, D4, D8, D11 and D14), on which we 
 perform RNA sequencing. 
 
@@ -162,7 +168,7 @@ Follow coding conventions & include documentation updates!
 
 ## Citation
 
-The preprint with all results is available in [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.20.649300v1.abstract).
+The preprint with all results is available in [npj Systems Biology and Applications](https://www.nature.com/articles/s41540-025-00645-4).
 
 ---
 
@@ -179,7 +185,7 @@ The preprint with all results is available in [bioRxiv](https://www.biorxiv.org/
 ### FAQ
 
 - Q: **How do I update the GRN inference parameters?**
-- A: Modify the parameter section in `Script/Run_dynGENIE3.Rmd` as needed, then re-knit the document.
+- A: Modify the parameter section in `Script/GRN_inference_dynGENIE3.Rmd` as needed, then re-knit the document.
 
 - Q: **Can this pipeline be adapted for other datasets?**
 - A: Yes. The R scripts and R Markdown files are modular and can be adapted for similar RNA-Seq and network analysis projects.
